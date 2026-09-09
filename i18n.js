@@ -3,7 +3,7 @@ const I18N = {
   ar: {
     _dir: 'rtl', _label: 'AR', _locale: 'ar_AR',
     nav_home: 'الرئيسية', nav_gallery: 'معرض الأعمال', nav_services: 'خدماتنا',
-    nav_about: 'من نحن', nav_testimonials: 'آراء العملاء', nav_book: 'احجز الآن',
+    nav_about: 'من نحن', nav_webdesign: 'تصميم مواقع', nav_testimonials: 'آراء العملاء', nav_book: 'احجز الآن',
 
     hero_title: 'نحوّل لحظاتكم', hero_title_span: 'إلى ذكريات خالدة',
     hero_sub: 'نلتقط جمال يومكم الأهم بعدسة فنية راقية تحفظ تفاصيل الفرح والرومانسية للأبد.',
@@ -25,6 +25,14 @@ const I18N = {
     svc_video_t: 'تصوير فيديو سينمائي', svc_video_d: 'أفلام قصيرة بجودة سينمائية تروي قصة مناسبتكم بموسيقى ومونتاج احترافي.',
     svc_drone_t: 'تصوير جوي بالدرون', svc_drone_d: 'لقطات جوية مبهرة تمنح مناسبتكم بُعدًا بصريًا فخمًا من زوايا فريدة.',
     svc_cta_t: 'هل لديكم فكرة مختلفة؟', svc_cta_d: 'تواصلوا معنا لتصميم باقة مخصصة تناسب رؤيتكم وميزانيتكم.', svc_cta_btn: 'تواصل معنا',
+
+    webdesign_tag: 'تصميم مواقع إلكترونية',
+    webdesign_title: 'نصمم مواقع إلكترونية احترافية تعكس قوة علامتك التجارية',
+    webdesign_desc: 'نصمم لكم مواقع إلكترونية عصرية وسريعة، متجاوبة بالكامل مع جميع الأجهزة، وسهلة الاستخدام — لنمنح علامتكم التجارية حضورًا رقميًا يليق بها.',
+    wf1: 'تصميم UI/UX احترافي', wf2: 'متوافق مع جميع الأجهزة والشاشات',
+    wf3: 'سرعة وأداء عاليان', wf4: 'تحسين لمحركات البحث SEO',
+    wf5: 'لوحة تحكم سهلة', wf6: 'تصميم مخصص حسب هوية العميل',
+    webdesign_cta: 'اطلب تصميم موقعك الآن',
 
     about_tag: 'من نحن', about_title: 'فريق يرى الجمال في كل تفصيلة',
     about_p1: 'في استوديو <strong>ELEGANTMEDIA</strong>، نؤمن أن لكل مناسبة روحًا فريدة تستحق أن تُخلَّد بأبهى صورة. منذ أكثر من اثني عشر عامًا، نرافق العائلات والعرسان في أجمل لحظات حياتهم.',
@@ -63,7 +71,7 @@ const I18N = {
   en: {
     _dir: 'ltr', _label: 'EN', _locale: 'en_US',
     nav_home: 'Home', nav_gallery: 'Gallery', nav_services: 'Services',
-    nav_about: 'About Us', nav_testimonials: 'Testimonials', nav_book: 'Book Now',
+    nav_about: 'About Us', nav_webdesign: 'Web Design', nav_testimonials: 'Testimonials', nav_book: 'Book Now',
 
     hero_title: 'We Transform Your Moments', hero_title_span: 'Into Timeless Memories',
     hero_sub: 'We capture the beauty of your most important day with a refined artistic eye that preserves every detail of joy and romance forever.',
@@ -85,6 +93,14 @@ const I18N = {
     svc_video_t: 'Cinematic Videography', svc_video_d: 'Short films of cinematic quality that tell the story of your event with professional music and editing.',
     svc_drone_t: 'Aerial Drone Photography', svc_drone_d: 'Stunning aerial shots that give your event a luxurious visual dimension from unique angles.',
     svc_cta_t: 'Have a Different Idea?', svc_cta_d: 'Contact us to design a custom package that suits your vision and budget.', svc_cta_btn: 'Contact Us',
+
+    webdesign_tag: 'Web Design',
+    webdesign_title: 'We Design Professional Websites That Reflect the Power of Your Brand',
+    webdesign_desc: 'We build modern, fast websites that are fully responsive across every device and effortless to use — giving your brand a digital presence worthy of it.',
+    wf1: 'Professional UI/UX Design', wf2: 'Compatible With All Devices & Screens',
+    wf3: 'High Speed & Performance', wf4: 'Search Engine Optimization (SEO)',
+    wf5: 'Easy-to-Use Control Panel', wf6: 'Custom Design Matching Your Brand Identity',
+    webdesign_cta: 'Order Your Website Now',
 
     about_tag: 'About Us', about_title: 'A Team That Sees Beauty in Every Detail',
     about_p1: 'At <strong>ELEGANTMEDIA</strong> studio, we believe every occasion has a unique soul that deserves to be immortalized in its most beautiful form. For over twelve years, we have accompanied families and couples through the most beautiful moments of their lives.',
@@ -123,7 +139,7 @@ const I18N = {
   sv: {
     _dir: 'ltr', _label: 'SV', _locale: 'sv_SE',
     nav_home: 'Hem', nav_gallery: 'Galleri', nav_services: 'Tjänster',
-    nav_about: 'Om oss', nav_testimonials: 'Omdömen', nav_book: 'Boka nu',
+    nav_about: 'Om oss', nav_webdesign: 'Webbdesign', nav_testimonials: 'Omdömen', nav_book: 'Boka nu',
 
     hero_title: 'Vi förvandlar era ögonblick', hero_title_span: 'till eviga minnen',
     hero_sub: 'Vi fångar skönheten i er viktigaste dag med en förfinad konstnärlig blick som bevarar varje detalj av glädje och romantik för alltid.',
@@ -145,6 +161,14 @@ const I18N = {
     svc_video_t: 'Filmisk videografi', svc_video_d: 'Kortfilmer av filmisk kvalitet som berättar historien om ert evenemang med professionell musik och redigering.',
     svc_drone_t: 'Flygfoto med drönare', svc_drone_d: 'Hänförande flygbilder som ger ert evenemang en lyxig visuell dimension från unika vinklar.',
     svc_cta_t: 'Har ni en annan idé?', svc_cta_d: 'Kontakta oss för att skapa ett skräddarsytt paket som passar er vision och budget.', svc_cta_btn: 'Kontakta oss',
+
+    webdesign_tag: 'Webbdesign',
+    webdesign_title: 'Vi designar professionella webbplatser som speglar ert varumärkes styrka',
+    webdesign_desc: 'Vi bygger moderna, snabba webbplatser som är helt responsiva på alla enheter och enkla att använda — för en digital närvaro värdig ert varumärke.',
+    wf1: 'Professionell UI/UX-design', wf2: 'Kompatibel med alla enheter och skärmar',
+    wf3: 'Hög hastighet och prestanda', wf4: 'Sökmotoroptimering (SEO)',
+    wf5: 'Lättanvänt kontrollpanel', wf6: 'Skräddarsydd design efter er varumärkesidentitet',
+    webdesign_cta: 'Beställ er webbplats nu',
 
     about_tag: 'Om oss', about_title: 'Ett team som ser skönhet i varje detalj',
     about_p1: 'På studion <strong>ELEGANTMEDIA</strong> tror vi att varje tillfälle har en unik själ som förtjänar att förevigas i den vackraste bilden. I över tolv år har vi följt familjer och par genom livets vackraste stunder.',
