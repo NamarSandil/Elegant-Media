@@ -1,23 +1,79 @@
-/* ===== Gallery data (titles & labels come from i18n) ===== */
+/* ===== Gallery data (titles & labels come from i18n) =====
+   These are Unsplash placeholders until the studio's own photographs arrive.
+   To swap one in: put the file in assets/gallery/ and replace
+       photo: 'photo-1519225421980-715cb0215aed'
+   with
+       file:  'assets/gallery/g1.jpg'
+   Nothing else needs changing. See assets/README.md. */
 const galleryItems = [
-  { id: 'g1',  cat: 'wedding',    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80', tall: false },
-  { id: 'g2',  cat: 'engagement', img: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&q=80', tall: true },
-  { id: 'g3',  cat: 'outdoor',    img: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80', tall: false },
-  { id: 'g4',  cat: 'wedding',    img: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80', tall: false },
-  { id: 'g5',  cat: 'party',      img: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80', tall: false },
-  { id: 'g6',  cat: 'special',    img: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80', tall: true },
-  { id: 'g7',  cat: 'wedding',    img: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80', tall: false },
-  { id: 'g8',  cat: 'engagement', img: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80', tall: false },
-  { id: 'g9',  cat: 'outdoor',    img: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&q=80', tall: false },
-  { id: 'g10', cat: 'party',      img: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80', tall: true },
-  { id: 'g11', cat: 'special',    img: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80', tall: false },
-  { id: 'g12', cat: 'wedding',    img: 'https://images.unsplash.com/photo-1525258946800-98cfd641d0de?w=800&q=80', tall: false },
+  { id: 'g1',  cat: 'wedding',    photo: 'photo-1519225421980-715cb0215aed', tall: false },
+  { id: 'g2',  cat: 'engagement', photo: 'photo-1606216794074-735e91aa2c92', tall: true  },
+  { id: 'g3',  cat: 'outdoor',    photo: 'photo-1583939003579-730e3918a45a', tall: false },
+  { id: 'g4',  cat: 'wedding',    photo: 'photo-1465495976277-4387d4b0b4c6', tall: false },
+  { id: 'g5',  cat: 'party',      photo: 'photo-1530103862676-de8c9debad1d', tall: false },
+  { id: 'g6',  cat: 'special',    photo: 'photo-1523580494863-6f3031224c94', tall: true  },
+  { id: 'g7',  cat: 'wedding',    photo: 'photo-1511285560929-80b456fea0bc', tall: false },
+  { id: 'g8',  cat: 'engagement', photo: 'photo-1591604466107-ec97de577aff', tall: false },
+  { id: 'g9',  cat: 'outdoor',    photo: 'photo-1522673607200-164d1b6ce486', tall: false },
+  { id: 'g10', cat: 'party',      photo: 'photo-1492684223066-81342ee5ff30', tall: true  },
+  { id: 'g11', cat: 'special',    photo: 'photo-1464366400600-7168b8af9bc3', tall: false },
+  { id: 'g12', cat: 'wedding',    photo: 'photo-1525258946800-98cfd641d0de', tall: false },
 ];
+
+/* Unsplash resizes and crops straight from URL parameters, so each device can
+   download only the pixels it will actually show rather than the same 800px
+   file everywhere. Local files are used exactly as they are. */
+const THUMB_WIDTHS = [400, 600, 800, 1000, 1200];
+const THUMB_SIZES  = '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 92vw';
+
+const LANDSCAPE = 3 / 4;   // height ÷ width -> 4:3
+const PORTRAIT  = 4 / 3;   // height ÷ width -> 3:4
+
+/* The wider variants are only ever picked by large or high-density displays,
+   where compression artefacts are far harder to see - so quality can come
+   down as width goes up with no visible difference. A 1200px file at q=55 is
+   27% smaller than the same file at q=75 and looks identical on a retina
+   screen. Without this, serving retina-sharp images would have doubled the
+   page weight. */
+const qualityFor = w => w >= 1200 ? 55 : w >= 1000 ? 62 : w >= 800 ? 68 : 75;
+
+function thumbSet(item, ratio) {
+  if (item.file) return { src: item.file, srcset: '' };
+  const at = n =>
+    `https://images.unsplash.com/${item.photo}?w=${n}&h=${Math.round(n * ratio)}` +
+    `&fit=crop&q=${qualityFor(n)}&fm=webp`;
+  return { src: at(800), srcset: THUMB_WIDTHS.map(n => `${at(n)} ${n}w`).join(', ') };
+}
+
+/* "tall" tiles are 4:3 on phones and only become 3:4 from 768px up, so the
+   portrait crop is served only where it is actually displayed. Without this,
+   phones downloaded a 3:4 image and then cropped most of it away. */
+function pictureFor(item) {
+  const attrs = 'width="800" height="600" alt="" loading="lazy" decoding="async"';
+  const wide = thumbSet(item, LANDSCAPE);
+  const img = s =>
+    `<img src="${s.src}"${s.srcset ? ` srcset="${s.srcset}" sizes="${THUMB_SIZES}"` : ''} ${attrs} />`;
+
+  if (!item.tall) return img(wide);
+
+  const tall = thumbSet(item, PORTRAIT);
+  return `<picture>
+          ${tall.srcset ? `<source media="(min-width: 768px)" srcset="${tall.srcset}" sizes="${THUMB_SIZES}" />` : ''}
+          ${img(wide)}
+        </picture>`;
+}
+
+/* Full-size version for the lightbox - uncropped, so the whole frame shows. */
+function fullSize(item) {
+  return item.file || `https://images.unsplash.com/${item.photo}?w=1600&q=80&fm=webp`;
+}
 
 const grid = document.getElementById('galleryGrid');
 let visibleItems = [];
 let currentFilter = 'all';
-let currentLang = localStorage.getItem('elegantmedia_lang') || 'sv';
+let currentLang = (() => {
+  try { return localStorage.getItem('elegantmedia_lang') || 'sv'; } catch (e) { return 'sv'; }
+})();
 
 function t(key) { return (I18N[currentLang] && I18N[currentLang][key]) || ''; }
 
@@ -37,7 +93,7 @@ function renderGallery(filter = currentFilter) {
     fig.className = 'g-item' + (item.tall ? ' tall' : '');
     fig.innerHTML = `
       <button type="button" class="g-btn">
-        <img src="${item.img}" alt="" loading="lazy" />
+        ${pictureFor(item)}
         <span class="g-zoom" aria-hidden="true">⤢</span>
         <span class="g-overlay">
           <span class="g-title">${item.title}</span>
@@ -82,7 +138,7 @@ function openLightbox(idx) {
 }
 function updateLightbox() {
   const item = visibleItems[currentIndex];
-  lbImg.src = item.img.replace('w=800', 'w=1400');
+  lbImg.src = fullSize(item);
   lbImg.alt = item.title;
   lbCaption.textContent = `${item.title} — ${item.label}`;
 }
@@ -122,14 +178,29 @@ document.addEventListener('keydown', e => {
 });
 
 /* ===== Language ===== */
+
+/* Must stay in step with the loader in index.html's <head>. Only one of these
+   is ever loaded at a time - Latin readers never download the Arabic faces
+   and vice versa. */
+const FONTS = {
+  ltr: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap',
+  rtl: 'https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap'
+};
+
 function applyLang(lang) {
   const dict = I18N[lang];
   if (!dict) return;
   currentLang = lang;
-  localStorage.setItem('elegantmedia_lang', lang);
+  try { localStorage.setItem('elegantmedia_lang', lang); } catch (e) { /* storage blocked */ }
 
   document.documentElement.lang = lang;
   document.documentElement.dir = dict._dir;
+
+  const fontLink = document.getElementById('langFonts');
+  if (fontLink) {
+    const href = FONTS[dict._dir] || FONTS.ltr;
+    if (fontLink.href !== href) fontLink.href = href;
+  }
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const v = dict[el.dataset.i18n];
