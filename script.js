@@ -78,6 +78,7 @@ let currentLang = (() => {
 function t(key) { return (I18N[currentLang] && I18N[currentLang][key]) || ''; }
 
 function renderGallery(filter = currentFilter) {
+  if (!grid) return;            // pages that have no gallery (e.g. webbdesign.html)
   currentFilter = filter;
   grid.innerHTML = '';
   visibleItems = galleryItems
@@ -156,26 +157,30 @@ function navLightbox(dir) {
   updateLightbox();
 }
 
-document.getElementById('lbClose').addEventListener('click', closeLightbox);
-document.getElementById('lbPrev').addEventListener('click', () => navLightbox(-1));
-document.getElementById('lbNext').addEventListener('click', () => navLightbox(1));
-lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-document.addEventListener('keydown', e => {
-  if (!lb.classList.contains('open')) return;
-  const rtl = document.documentElement.dir === 'rtl';
-  if (e.key === 'Escape') { closeLightbox(); return; }
-  if (e.key === 'ArrowLeft') navLightbox(rtl ? 1 : -1);
-  if (e.key === 'ArrowRight') navLightbox(rtl ? -1 : 1);
+/* Wired up only where a lightbox exists - webbdesign.html has no gallery. */
+if (lb) {
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => navLightbox(-1));
+  document.getElementById('lbNext').addEventListener('click', () => navLightbox(1));
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
 
-  /* Keep Tab inside the dialog while it is open. */
-  if (e.key === 'Tab') {
-    const f = [...lb.querySelectorAll('button')];
-    if (!f.length) return;
-    const first = f[0], last = f[f.length - 1];
-    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-  }
-});
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    const rtl = document.documentElement.dir === 'rtl';
+    if (e.key === 'Escape') { closeLightbox(); return; }
+    if (e.key === 'ArrowLeft') navLightbox(rtl ? 1 : -1);
+    if (e.key === 'ArrowRight') navLightbox(rtl ? -1 : 1);
+
+    /* Keep Tab inside the dialog while it is open. */
+    if (e.key === 'Tab') {
+      const f = [...lb.querySelectorAll('button')];
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+}
 
 /* ===== Language ===== */
 
@@ -235,9 +240,13 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 
 /* ===== Navbar scroll + mobile menu ===== */
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-});
+/* Pages without a full-height hero behind the bar (webbdesign.html) keep it
+   solid at all times, so the scroll toggle is skipped there. */
+if (navbar && !navbar.classList.contains('navbar--static')) {
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+}
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
@@ -284,20 +293,24 @@ const counterObs = new IntersectionObserver(entries => {
 counters.forEach(c => counterObs.observe(c));
 
 /* ===== Booking form ===== */
-document.getElementById('bookingForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const note = document.getElementById('formNote');
-  note.hidden = false;
-  e.target.reset();
-  setTimeout(() => { note.hidden = true; }, 6000);
-});
+const bookingForm = document.getElementById('bookingForm');
+if (bookingForm) {
+  bookingForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const note = document.getElementById('formNote');
+    note.hidden = false;
+    e.target.reset();
+    setTimeout(() => { note.hidden = true; }, 6000);
+  });
+
+  /* Booking date: no dates in the past */
+  const dateField = document.getElementById('date');
+  if (dateField) dateField.min = new Date().toISOString().split('T')[0];
+}
 
 /* ===== Year ===== */
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* ===== Booking date: no dates in the past ===== */
-const dateField = document.getElementById('date');
-dateField.min = new Date().toISOString().split('T')[0];
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 /* ===== Init ===== */
 applyLang(currentLang);

@@ -308,6 +308,41 @@ h1, h2, h3, .logo-text { font-family: var(--font-head); font-weight: 700; }
 }
 .service-card--cta h3 { color: var(--white); }
 
+/* ===== Standalone page head (webbdesign.html) ===== */
+/* No full-height hero here, so this clears the fixed navbar and gives the
+   page a title block of its own. */
+.page-head {
+  padding-top: clamp(120px, 17vw, 170px);
+  padding-bottom: clamp(8px, 2vw, 20px);
+  text-align: center;
+}
+.page-title {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  /* without this it inherits the body's 1.8, which leaves a long headline
+     sprawling over five airy lines */
+  line-height: 1.25;
+  max-width: 24ch; margin-inline: auto;
+}
+.page-lead {
+  color: var(--grey); font-size: 1.1rem;
+  max-width: 62ch; margin: 18px auto 0;
+}
+/* Current page in the nav, for people who navigate by keyboard or reading
+   order rather than by looking at the highlight. */
+.nav-links a[aria-current="page"] { color: var(--gold-light); }
+.nav-links a[aria-current="page"]:not(.nav-cta)::after { width: 100%; }
+
+.wd-back-wrap { padding-bottom: clamp(50px, 8vw, 90px); text-align: center; }
+.wd-back {
+  display: inline-block; color: var(--gold-light); font-weight: 500;
+  padding: 12px 4px; transition: color .3s;
+}
+/* "Back" points left in Swedish and English and right in Arabic, so the arrow
+   lives in CSS rather than in the translated string. */
+.wd-back::before { content: '\2190'; margin-inline-end: 8px; }
+[dir="rtl"] .wd-back::before { content: '\2192'; }
+.wd-back:hover { color: var(--white); }
+
 /* ===== Web Design ===== */
 .webdesign-section { background: var(--black); }
 .webdesign-inner { display: grid; grid-template-columns: 1fr; gap: 44px; align-items: center; }
@@ -450,6 +485,7 @@ h1, h2, h3, .logo-text { font-family: var(--font-head); font-weight: 700; }
 }
 [dir="ltr"] .section-tag, [dir="ltr"] .hero-eyebrow { letter-spacing: 2px; }
 [dir="ltr"] .hero-title { line-height: 1.05; }
+[dir="ltr"] .page-title { line-height: 1.12; }
 [dir="ltr"] .hero-overlay {
   background: linear-gradient(255deg, rgba(13,13,13,.92) 0%, rgba(13,13,13,.6) 45%, rgba(13,13,13,.25) 100%);
 }
