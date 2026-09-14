@@ -292,15 +292,55 @@ const counterObs = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 counters.forEach(c => counterObs.observe(c));
 
-/* ===== Booking form ===== */
+/* ===== Booking form =====
+   The form used to call preventDefault(), show "your request has been
+   received" and then throw the data away - it had no destination at all, so
+   every enquiry ever submitted was lost.
+
+   It now hands the details to WhatsApp, which is the one contact route on
+   this site already known to work. The visitor still presses send in
+   WhatsApp themselves, so the confirmation below says exactly that rather
+   than claiming the booking is done.
+
+   When a real email destination is available this is the place to add it -
+   post to the form service, and keep WhatsApp as the alternative. */
+
+/* One place to change the number when the correct one is confirmed. */
+const WHATSAPP_NUMBER = '4676200281';
+
 const bookingForm = document.getElementById('bookingForm');
 if (bookingForm) {
+  const status = document.getElementById('formStatus');
+  const fallback = document.getElementById('formFallback');
+
+  function bookingMessage() {
+    const get = id => (document.getElementById(id).value || '').trim();
+    const typeSel = document.getElementById('type');
+    const typeLabel = typeSel.selectedIndex > 0
+      ? typeSel.options[typeSel.selectedIndex].textContent.trim()
+      : '';
+
+    const lines = [t('wa_title'), ''];
+    lines.push(`${t('wa_name')}: ${get('name')}`);
+    lines.push(`${t('wa_phone')}: ${get('phone')}`);
+    if (typeLabel) lines.push(`${t('wa_type')}: ${typeLabel}`);
+    if (get('date')) lines.push(`${t('wa_date')}: ${get('date')}`);
+    if (get('message')) lines.push(`${t('wa_details')}: ${get('message')}`);
+    return lines.join('\n');
+  }
+
   bookingForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const note = document.getElementById('formNote');
-    note.hidden = false;
-    e.target.reset();
-    setTimeout(() => { note.hidden = true; }, 6000);
+    e.preventDefault();   // the browser has already enforced the required fields
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(bookingMessage())}`;
+    fallback.href = url;
+    status.hidden = false;
+
+    /* Opened from a click, so this is normally allowed. If a pop-up blocker
+       stops it, the fallback link above is already pointing at the same
+       message. The form is deliberately NOT reset - if the hand-off fails
+       the visitor still has everything they typed. */
+    window.open(url, '_blank', 'noopener');
   });
 
   /* Booking date: no dates in the past */
