@@ -70,6 +70,10 @@ const I18N = {
     a11y_view: 'عرض الصورة', a11y_rating: '5 من 5 نجوم',
     about_img_alt: 'فريق التصوير أثناء العمل',
 
+    /* Web design page */
+    wd_back: 'العودة إلى التصوير',
+    wd_intro: 'إلى جانب التصوير، نصمّم ونبني مواقع إلكترونية للأعمال التي تريد حضورًا رقميًا يعكس جودة خدماتها.',
+
     g1: 'عرس ملكي', g2: 'الوعد', g3: 'تحت غروب الشمس', g4: 'موكب العرس',
     g5: 'أمسية لا تُنسى', g6: 'احتفال التخرج', g7: 'تبادل الخواتم', g8: 'بداية الحكاية',
     g9: 'في أحضان الطبيعة', g10: 'أجواء مليئة بالفرح', g11: 'لمسة عائلية', g12: 'الرقصة الأولى',
@@ -145,6 +149,10 @@ const I18N = {
     a11y_view: 'View image', a11y_rating: '5 out of 5 stars',
     about_img_alt: 'The photography team at work',
 
+    /* Web design page */
+    wd_back: 'Back to photography',
+    wd_intro: 'Alongside photography, we design and build websites for businesses that want a digital presence matching the quality of their work.',
+
     g1: 'Royal Wedding', g2: 'The Promise', g3: 'Under the Sunset', g4: 'The Wedding Procession',
     g5: 'A Night to Remember', g6: 'Graduation Celebration', g7: 'The Ring Exchange', g8: 'The Story Begins',
     g9: 'In the Heart of Nature', g10: 'Joyful Moments', g11: 'A Family Touch', g12: 'The First Dance',
@@ -219,6 +227,10 @@ const I18N = {
     a11y_close: 'Stäng', a11y_prev: 'Föregående', a11y_next: 'Nästa',
     a11y_view: 'Visa bild', a11y_rating: '5 av 5 stjärnor',
     about_img_alt: 'Fotografteamet under arbete',
+
+    /* Web design page */
+    wd_back: 'Tillbaka till fotografering',
+    wd_intro: 'Vid sidan av fotograferingen designar och bygger vi webbplatser för företag som vill ha en digital närvaro som matchar kvaliteten på deras arbete.',
 
     g1: 'Kungligt bröllop', g2: 'Löftet', g3: 'Under solnedgången', g4: 'Bröllopståget',
     g5: 'Kvällen att minnas', g6: 'Examensfirande', g7: 'Ringbytet', g8: 'Sagan börjar',

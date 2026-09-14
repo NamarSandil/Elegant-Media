@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="sv" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d0d0d" />
+
+  <!-- SEO -->
+  <title>Webbdesign | ELEGANTMEDIA</title>
+  <meta name="description" content="ELEGANTMEDIA designar och bygger moderna, snabba och responsiva webbplatser med genomtänkt UI/UX, sökmotoroptimering och en design anpassad efter er varumärkesidentitet." />
+  <meta name="author" content="ELEGANTMEDIA" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://namarsandil.github.io/Elegant-Media/webbdesign.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="sv_SE" />
+  <meta property="og:title" content="Webbdesign | ELEGANTMEDIA" />
+  <meta property="og:description" content="Moderna, snabba och responsiva webbplatser som speglar ert varumärkes styrka." />
+  <meta property="og:url" content="https://namarsandil.github.io/Elegant-Media/webbdesign.html" />
+
+  <!-- Icons -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Fonts: only the two families the chosen language actually uses.
+       Kept identical to index.html - see the note there. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script>
+    (function () {
+      var lang = null;
+      try { lang = localStorage.getItem('elegantmedia_lang'); } catch (e) { /* storage blocked */ }
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.id = 'langFonts';
+      link.href = (lang === 'ar')
+        ? 'https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap'
+        : 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap';
+      document.head.appendChild(link);
+    })();
+  </script>
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap" />
+  </noscript>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="i18n.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <a href="#main" class="skip-link" data-i18n="a11y_skip">Hoppa till innehåll</a>
+
+  <!-- ===== Header / Navbar =====
+       Same markup as index.html, except the links point back at the home page
+       rather than at anchors on this one. -->
+  <header class="navbar scrolled navbar--static" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-text">ELEGANT<span class="logo-suffix">MEDIA</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="nav_home">Hem</a>
+        <a href="index.html#gallery" data-i18n="nav_gallery">Galleri</a>
+        <a href="index.html#services" data-i18n="nav_services">Tjänster</a>
+        <a href="webbdesign.html" aria-current="page" data-i18n="nav_webdesign">Webbdesign</a>
+        <a href="index.html#about" data-i18n="nav_about">Om oss</a>
+        <a href="index.html#testimonials" data-i18n="nav_testimonials">Omdömen</a>
+        <a href="index.html#contact" class="nav-cta" data-i18n="nav_book">Boka nu</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-switch" id="langSwitch" role="group" data-i18n-aria="a11y_lang" aria-label="Välj språk">
+          <button type="button" class="lang-btn" data-lang="ar" lang="ar" aria-pressed="false">AR</button>
+          <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">EN</button>
+          <button type="button" class="lang-btn" data-lang="sv" lang="sv" aria-pressed="false">SV</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" type="button"
+                aria-expanded="false" aria-controls="navLinks"
+                data-i18n-aria="a11y_menu" aria-label="Meny">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== Page head ===== -->
+    <div class="page-head">
+      <div class="container">
+        <h1 class="page-title" data-i18n="webdesign_title">Vi designar professionella webbplatser som speglar ert varumärkes styrka</h1>
+        <p class="page-lead" data-i18n="wd_intro">Vid sidan av fotograferingen designar och bygger vi webbplatser för företag som vill ha en digital närvaro som matchar kvaliteten på deras arbete.</p>
+      </div>
+    </div>
+
+    <section class="section webdesign-section" id="webdesign">
+      <div class="container webdesign-inner">
+        <div class="webdesign-text reveal">
+          <!-- The page's <h1> above already carries webdesign_title, so the
+               section does not repeat it. -->
+          <span class="section-tag" data-i18n="webdesign_tag">Webbdesign</span>
+          <p data-i18n="webdesign_desc">Vi bygger moderna, snabba webbplatser som är helt responsiva på alla enheter och enkla att använda — för en digital närvaro värdig ert varumärke.</p>
+
+          <ul class="webdesign-features">
+            <li class="reveal"><span class="wf-icon">🎨</span><span data-i18n="wf1">Professionell UI/UX-design</span></li>
+            <li class="reveal"><span class="wf-icon">📱</span><span data-i18n="wf2">Kompatibel med alla enheter och skärmar</span></li>
+            <li class="reveal"><span class="wf-icon">⚡</span><span data-i18n="wf3">Hög hastighet och prestanda</span></li>
+            <li class="reveal"><span class="wf-icon">🔍</span><span data-i18n="wf4">Sökmotoroptimering (SEO)</span></li>
+            <li class="reveal"><span class="wf-icon">🛠️</span><span data-i18n="wf5">Lättanvänd kontrollpanel</span></li>
+            <li class="reveal"><span class="wf-icon">✨</span><span data-i18n="wf6">Skräddarsydd design efter er varumärkesidentitet</span></li>
+          </ul>
+
+          <div class="webdesign-actions hero-actions">
+            <a href="https://wa.me/46735617258" class="btn btn-gold" target="_blank" rel="noopener" data-i18n="webdesign_cta">Beställ er webbplats nu</a>
+          </div>
+        </div>
+
+        <div class="webdesign-media reveal">
+          <svg class="wd-mockup" viewBox="0 0 580 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Website design mockup">
+            <defs>
+              <linearGradient id="wdGold" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="var(--gold-light)"/>
+                <stop offset="100%" stop-color="var(--gold-deep)"/>
+              </linearGradient>
+              <radialGradient id="wdGlow" cx="50%" cy="45%" r="60%">
+                <stop offset="0%" stop-color="var(--gold)" stop-opacity="0.28"/>
+                <stop offset="100%" stop-color="var(--gold)" stop-opacity="0"/>
+              </radialGradient>
+              <clipPath id="wdWinClip"><rect x="14" y="34" width="430" height="336" rx="16"/></clipPath>
+              <clipPath id="wdPhoneClip"><rect x="352" y="150" width="176" height="288" rx="30"/></clipPath>
+            </defs>
+
+            <circle cx="290" cy="230" r="230" fill="url(#wdGlow)"/>
+
+            <rect x="14" y="34" width="430" height="336" rx="16" fill="#1c1c1c" stroke="var(--gold)" stroke-opacity="0.3"/>
+            <g clip-path="url(#wdWinClip)">
+              <rect x="14" y="34" width="430" height="44" fill="#161616"/>
+              <circle cx="36" cy="56" r="5" fill="var(--gold-deep)"/>
+              <circle cx="54" cy="56" r="5" fill="var(--gold)"/>
+              <circle cx="72" cy="56" r="5" fill="var(--gold-light)"/>
+              <rect x="160" y="48" width="200" height="16" rx="8" fill="#0d0d0d"/>
+            </g>
+
+            <rect x="36" y="96" width="22" height="22" rx="6" fill="url(#wdGold)"/>
+            <rect x="72" y="102" width="36" height="6" rx="3" fill="#ffffff" fill-opacity=".35"/>
+            <rect x="118" y="102" width="36" height="6" rx="3" fill="#ffffff" fill-opacity=".35"/>
+            <rect x="164" y="102" width="36" height="6" rx="3" fill="#ffffff" fill-opacity=".35"/>
+            <rect x="368" y="94" width="58" height="22" rx="11" fill="url(#wdGold)"/>
+
+            <rect x="36" y="150" width="240" height="16" rx="8" fill="#f5f2ea"/>
+            <rect x="36" y="176" width="170" height="16" rx="8" fill="var(--gold-light)"/>
+
+            <rect x="36" y="208" width="300" height="7" rx="3.5" fill="#ffffff" fill-opacity=".25"/>
+            <rect x="36" y="222" width="260" height="7" rx="3.5" fill="#ffffff" fill-opacity=".25"/>
+
+            <rect x="36" y="246" width="112" height="32" rx="16" fill="url(#wdGold)"/>
+            <rect x="160" y="246" width="96" height="32" rx="16" fill="none" stroke="#ffffff" stroke-opacity=".4"/>
+
+            <g>
+              <rect x="36" y="304" width="118" height="52" rx="10" fill="#161616" stroke="rgba(201,162,75,.25)"/>
+              <circle cx="56" cy="324" r="8" fill="var(--gold)" fill-opacity=".25"/>
+              <rect x="72" y="320" width="60" height="6" rx="3" fill="#ffffff" fill-opacity=".3"/>
+              <rect x="72" y="332" width="40" height="6" rx="3" fill="#ffffff" fill-opacity=".18"/>
+
+              <rect x="164" y="304" width="118" height="52" rx="10" fill="#161616" stroke="rgba(201,162,75,.25)"/>
+              <circle cx="184" cy="324" r="8" fill="var(--gold)" fill-opacity=".25"/>
+              <rect x="200" y="320" width="60" height="6" rx="3" fill="#ffffff" fill-opacity=".3"/>
+              <rect x="200" y="332" width="40" height="6" rx="3" fill="#ffffff" fill-opacity=".18"/>
+
+              <rect x="292" y="304" width="118" height="52" rx="10" fill="#161616" stroke="rgba(201,162,75,.25)"/>
+              <circle cx="312" cy="324" r="8" fill="var(--gold)" fill-opacity=".25"/>
+              <rect x="328" y="320" width="60" height="6" rx="3" fill="#ffffff" fill-opacity=".3"/>
+              <rect x="328" y="332" width="40" height="6" rx="3" fill="#ffffff" fill-opacity=".18"/>
+            </g>
+
+            <g class="wd-phone">
+              <rect x="352" y="150" width="176" height="288" rx="30" fill="#141414" stroke="var(--gold)" stroke-opacity=".5" stroke-width="2"/>
+              <g clip-path="url(#wdPhoneClip)">
+                <rect x="352" y="150" width="176" height="288" fill="#161616"/>
+                <rect x="410" y="162" width="60" height="10" rx="5" fill="#0d0d0d"/>
+                <rect x="372" y="196" width="136" height="70" rx="10" fill="url(#wdGold)" fill-opacity=".15"/>
+                <rect x="384" y="212" width="100" height="10" rx="5" fill="#f5f2ea"/>
+                <rect x="384" y="230" width="70" height="8" rx="4" fill="#ffffff" fill-opacity=".3"/>
+                <rect x="384" y="246" width="90" height="10" rx="5" fill="url(#wdGold)"/>
+                <rect x="372" y="284" width="136" height="44" rx="8" fill="#1c1c1c" stroke="rgba(201,162,75,.25)"/>
+                <rect x="372" y="338" width="136" height="44" rx="8" fill="#1c1c1c" stroke="rgba(201,162,75,.25)"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== Back to the photography site ===== -->
+    <div class="container wd-back-wrap">
+      <a href="index.html" class="wd-back" data-i18n="wd_back">Tillbaka till fotografering</a>
+    </div>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="logo footer-logo">
+        <span class="logo-text">ELEGANT<span class="logo-suffix">MEDIA</span></span>
+      </a>
+      <p class="footer-tag" data-i18n="footer_tag">Vi förvandlar era ögonblick till eviga minnen</p>
+      <nav class="footer-links">
+        <a href="index.html#gallery" data-i18n="footer_gallery">Galleriet</a>
+        <a href="index.html#services" data-i18n="footer_services">Tjänster</a>
+        <a href="webbdesign.html" data-i18n="nav_webdesign">Webbdesign</a>
+        <a href="index.html#about" data-i18n="footer_about">Om oss</a>
+        <a href="index.html#contact" data-i18n="footer_contact">Kontakt</a>
+      </nav>
+      <p class="copyright">© <span id="year"></span> <span data-i18n="brand">ELEGANT<span class="logo-suffix">MEDIA</span></span>. <span data-i18n="footer_rights">Alla rättigheter förbehållna.</span></p>
+    </div>
+  </footer>
+
+</body>
+</html>
