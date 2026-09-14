@@ -95,7 +95,7 @@ function renderGallery(filter = currentFilter) {
     fig.innerHTML = `
       <button type="button" class="g-btn">
         ${pictureFor(item)}
-        <span class="g-zoom" aria-hidden="true">⤢</span>
+        <span class="g-zoom" aria-hidden="true"><svg class="icon"><use href="#i-expand"/></svg></span>
         <span class="g-overlay">
           <span class="g-title">${item.title}</span>
           <span class="g-cat">${item.label}</span>

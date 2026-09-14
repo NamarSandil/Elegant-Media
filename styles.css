@@ -96,6 +96,22 @@ ul { list-style: none; }
 .container { width: min(1180px, 92%); margin-inline: auto; }
 .section { padding: var(--section-py) 0; }
 
+/* ===== Icons =====
+   Drawn rather than typed. Emoji are rendered by the operating system, so the
+   same character was a different picture on Windows, macOS, Android and iOS -
+   and none of them could be made to match the brand's gold. These inherit
+   colour from their container and size from its font-size. */
+.icon-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.icon {
+  width: 1em; height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;      /* keeps 1.5px strokes from clipping at the edge */
+}
+
 /* ===== Accessibility utilities ===== */
 
 /* Visible only to screen readers. */
@@ -348,7 +364,7 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .g-zoom {
   position: absolute; top: 16px; inset-inline-start: 16px; width: 42px; height: 42px; border-radius: 50%;
   background: rgba(201,162,75,.9); color: var(--black); display: grid; place-items: center;
-  font-size: var(--text-md); opacity: 0; transform: scale(.6); transition: all .4s var(--ease);
+  font-size: 18px; opacity: 0; transform: scale(.6); transition: all .4s var(--ease);
 }
 .g-btn:hover .g-zoom, .g-btn:focus-visible .g-zoom { opacity: 1; transform: scale(1); }
 
@@ -361,8 +377,9 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 }
 .service-card:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: var(--shadow); }
 .service-icon {
-  width: 78px; height: 78px; margin: 0 auto 22px; border-radius: 50%; font-size: 2rem;
-  display: grid; place-items: center; background: rgba(201,162,75,.12); border: 1px solid var(--line);
+  width: 78px; height: 78px; margin: 0 auto var(--space-md); border-radius: 50%;
+  font-size: 34px; color: var(--gold-light);
+  display: grid; place-items: center; background: var(--surface-gold-wash); border: 1px solid var(--line);
 }
 .service-card h3 { font-size: var(--text-xl); margin-bottom: var(--space-xs); color: var(--gold-light); }
 .service-card p { color: var(--grey); }
@@ -423,7 +440,8 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .webdesign-features li:nth-child(6) { transition-delay: .29s; }
 .wf-icon {
   width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center;
-  font-size: var(--text-md); background: rgba(201,162,75,.12); border: 1px solid var(--line);
+  font-size: 20px; color: var(--gold-light);
+  background: var(--surface-gold-wash); border: 1px solid var(--line);
 }
 
 .webdesign-media svg { width: 100%; height: auto; filter: drop-shadow(0 20px 45px rgba(0,0,0,.45)); }
@@ -450,8 +468,11 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .about-text strong { color: var(--gold-light); }
 .about-list { margin: 24px 0 30px; display: grid; gap: var(--space-xs); }
 .about-list li { position: relative; padding-inline-start: 30px; color: var(--text-secondary); }
+/* Drawn as a rotated square rather than the ✦ character, which falls back to
+   a missing-glyph box in fonts that don't carry it. */
 .about-list li::before {
-  content: '✦'; position: absolute; inset-inline-start: 0; top: 2px; color: var(--gold);
+  content: ''; position: absolute; inset-inline-start: 1px; top: .72em;
+  width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg);
 }
 
 /* ===== Testimonials ===== */
@@ -479,9 +500,13 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .contact-list li { display: flex; align-items: center; gap: var(--space-sm); }
 .ci-icon {
   width: 52px; height: 52px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center;
-  font-size: var(--text-lg); background: rgba(201,162,75,.12); border: 1px solid var(--line);
+  font-size: 25px; color: var(--gold-light);
+  background: var(--surface-gold-wash); border: 1px solid var(--line);
 }
-.contact-list span { color: var(--grey); font-size: var(--text-sm); display: block; }
+/* Scoped to the label span inside the text column. As `.contact-list span`
+   this also matched .ci-icon - a plain <span> - and shrank the icon circles'
+   font-size to 14px, which had been quietly undersizing them all along. */
+.contact-list div span { color: var(--text-muted); font-size: var(--text-sm); display: block; }
 /* inline-block + padding lifts these from 23px to clear the 24px minimum */
 .contact-list a { color: var(--white); font-weight: 500; transition: color .3s; display: inline-block; padding-block: 3px; }
 .contact-list a:hover { color: var(--gold-light); }
