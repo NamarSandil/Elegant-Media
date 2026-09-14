@@ -29,25 +29,36 @@ function renderGallery(filter = currentFilter) {
     .map(i => ({ ...i, title: t(i.id), label: t('filter_' + i.cat) }));
 
   visibleItems.forEach((item, idx) => {
-    const div = document.createElement('div');
-    div.className = 'g-item reveal visible' + (item.tall ? ' tall' : '');
-    div.innerHTML = `
-      <img src="${item.img}" alt="${item.title} - ${item.label}" loading="lazy" />
-      <div class="g-zoom">⤢</div>
-      <div class="g-overlay">
-        <h4>${item.title}</h4>
-        <span>${item.label}</span>
-      </div>`;
-    div.addEventListener('click', () => openLightbox(idx));
-    grid.appendChild(div);
+    /* <figure> wrapping a <button>: the button makes each image reachable by
+       keyboard, and keeping only phrasing content inside it stays valid HTML.
+       The button carries the accessible name, so the <img> is marked
+       decorative to avoid the name being announced twice. */
+    const fig = document.createElement('figure');
+    fig.className = 'g-item' + (item.tall ? ' tall' : '');
+    fig.innerHTML = `
+      <button type="button" class="g-btn">
+        <img src="${item.img}" alt="" loading="lazy" />
+        <span class="g-zoom" aria-hidden="true">⤢</span>
+        <span class="g-overlay">
+          <span class="g-title">${item.title}</span>
+          <span class="g-cat">${item.label}</span>
+        </span>
+      </button>`;
+    const btn = fig.querySelector('.g-btn');
+    btn.setAttribute('aria-label', `${t('a11y_view')}: ${item.title} — ${item.label}`);
+    btn.addEventListener('click', () => openLightbox(idx));
+    grid.appendChild(fig);
   });
 }
 
 /* ===== Filters ===== */
 document.querySelectorAll('.filter').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelector('.filter.active').classList.remove('active');
-    btn.classList.add('active');
+    document.querySelectorAll('.filter').forEach(b => {
+      const on = b === btn;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', String(on));   // state, not just colour
+    });
     renderGallery(btn.dataset.filter);
   });
 });
@@ -58,12 +69,16 @@ const lbImg = document.getElementById('lbImg');
 const lbCaption = document.getElementById('lbCaption');
 let currentIndex = 0;
 
+let lastFocused = null;   // where focus was before the dialog opened
+
 function openLightbox(idx) {
+  lastFocused = document.activeElement;
   currentIndex = idx;
   updateLightbox();
   lb.classList.add('open');
   lb.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
+  document.getElementById('lbClose').focus();
 }
 function updateLightbox() {
   const item = visibleItems[currentIndex];
@@ -75,6 +90,10 @@ function closeLightbox() {
   lb.classList.remove('open');
   lb.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
+  /* Return focus to the image that opened it, so keyboard users don't get
+     dumped back at the top of the page. */
+  if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
+  lastFocused = null;
 }
 function navLightbox(dir) {
   currentIndex = (currentIndex + dir + visibleItems.length) % visibleItems.length;
@@ -88,9 +107,18 @@ lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
 document.addEventListener('keydown', e => {
   if (!lb.classList.contains('open')) return;
   const rtl = document.documentElement.dir === 'rtl';
-  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'Escape') { closeLightbox(); return; }
   if (e.key === 'ArrowLeft') navLightbox(rtl ? 1 : -1);
   if (e.key === 'ArrowRight') navLightbox(rtl ? -1 : 1);
+
+  /* Keep Tab inside the dialog while it is open. */
+  if (e.key === 'Tab') {
+    const f = [...lb.querySelectorAll('button')];
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
 });
 
 /* ===== Language ===== */
@@ -111,8 +139,20 @@ function applyLang(lang) {
     const v = dict[el.dataset.i18nPh];
     if (v != null) el.placeholder = v;
   });
+  /* Interface labels announced by screen readers - these used to stay
+     Swedish no matter which language was selected. */
+  document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+    const v = dict[el.dataset.i18nAria];
+    if (v != null) el.setAttribute('aria-label', v);
+  });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+    const v = dict[el.dataset.i18nAlt];
+    if (v != null) el.alt = v;
+  });
   document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
+    const on = btn.dataset.lang === lang;
+    btn.classList.toggle('active', on);
+    btn.setAttribute('aria-pressed', String(on));
   });
 
   renderGallery(currentFilter);
@@ -129,8 +169,20 @@ window.addEventListener('scroll', () => {
 });
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
-navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+function setMenu(open) {
+  navLinks.classList.toggle('open', open);
+  navToggle.setAttribute('aria-expanded', String(open));
+}
+navToggle.addEventListener('click', () => setMenu(!navLinks.classList.contains('open')));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+/* Escape closes the menu and hands focus back to the button that opened it. */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+    setMenu(false);
+    navToggle.focus();
+  }
+});
 
 /* ===== Reveal on scroll ===== */
 const observer = new IntersectionObserver(entries => {
