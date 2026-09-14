@@ -38,6 +38,23 @@ to update per photo — Arabic, English and Swedish.
 **4. Change the category** with `cat:` — one of `wedding`, `engagement`,
 `party`, `special`, `outdoor`. This decides which filter button shows it.
 
+### Still to add: a christening category
+
+Christenings and church events are now listed as a service, but there is **no
+gallery category for them yet** — deliberately. Adding a `Dop` filter button
+that shows stock photographs of other people's christenings would be worse
+than not having one.
+
+When real christening photographs arrive:
+
+1. Save them as above and set `cat: 'christening'` on each.
+2. In `index.html`, add a filter button next to the others:
+   ```html
+   <button type="button" class="filter" data-filter="christening" aria-pressed="false" data-i18n="filter_christening">Dop</button>
+   ```
+3. In `i18n.js`, add `filter_christening` to all three languages —
+   `'Dop'` (Swedish), `'Christenings'` (English), `'تعميد'` (Arabic).
+
 ### Sizes and shapes
 
 | Setting | Shape | Export at |
