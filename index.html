@@ -387,8 +387,19 @@
           <label for="message" data-i18n="form_msg">Ytterligare detaljer</label>
           <textarea id="message" name="message" rows="4" placeholder="Berätta om ert evenemang..." data-i18n-ph="form_msg_ph"></textarea>
         </div>
-        <button type="submit" class="btn btn-gold btn-block" data-i18n="form_submit">Skicka bokningsförfrågan</button>
-        <p class="form-note" id="formNote" hidden data-i18n="form_note">✓ Din förfrågan har mottagits! Vi kontaktar dig snart.</p>
+        <button type="submit" class="btn btn-gold btn-block form-submit">
+          <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+          <span data-i18n="form_submit">Skicka via WhatsApp</span>
+        </button>
+
+        <p class="form-privacy" data-i18n="form_privacy">Dina uppgifter skickas som ett WhatsApp-meddelande från din egen telefon. Vi sparar ingenting på den här webbplatsen.</p>
+
+        <!-- role=status + aria-live so screen readers are told what happened.
+             Previously the confirmation simply appeared, silently. -->
+        <div class="form-status" id="formStatus" role="status" aria-live="polite" hidden>
+          <p class="form-note" data-i18n="form_sent">WhatsApp har öppnats med dina uppgifter ifyllda. Tryck på skicka där för att slutföra din förfrågan.</p>
+          <a class="form-fallback" id="formFallback" href="#" target="_blank" rel="noopener" data-i18n="form_fallback">Öppnades inte WhatsApp? Öppna det här</a>
+        </div>
       </form>
     </div>
   </section>

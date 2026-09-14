@@ -535,7 +535,37 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); }
 .field input::placeholder, .field textarea::placeholder { color: var(--text-subtle); opacity: 1; }
 .field textarea { resize: vertical; }
-.form-note { margin-top: 16px; color: var(--gold-light); text-align: center; font-weight: 600; }
+/* Submit button carries the WhatsApp icon, so it needs to lay out as a row
+   rather than as a plain inline-block. */
+.form-submit {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-2xs); font-size: 1rem;
+}
+.form-submit .icon { font-size: 20px; }
+
+/* What happens to the visitor's details - required when a form collects
+   personal data, and short enough that people actually read it. */
+.form-privacy {
+  margin-top: var(--space-xs);
+  color: var(--text-subtle);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.form-status {
+  margin-top: var(--space-sm);
+  padding: var(--space-sm);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-gold-wash);
+}
+.form-note { color: var(--gold-light); text-align: center; font-weight: 600; }
+.form-fallback {
+  display: block; margin-top: var(--space-2xs); text-align: center;
+  color: var(--text-secondary); font-size: var(--text-sm); text-decoration: underline;
+}
+.form-fallback:hover { color: var(--gold-light); }
 
 /* ===== Footer ===== */
 .footer { background: var(--black-soft); padding: 56px 0 30px; border-top: 1px solid var(--line); }

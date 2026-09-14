@@ -57,7 +57,13 @@ const I18N = {
     form_type_w: 'تصوير عرس', form_type_e: 'تصوير خطوبة', form_type_s: 'مناسبة خاصة',
     form_type_v: 'فيديو سينمائي', form_type_d: 'تصوير جوي بالدرون',
     form_date: 'التاريخ المفضّل', form_msg: 'تفاصيل إضافية', form_msg_ph: 'أخبرنا عن مناسبتك...',
-    form_submit: 'إرسال طلب الحجز', form_note: '✓ تم استلام طلبك! سنتواصل معك قريبًا.',
+    form_submit: 'إرسال عبر واتساب',
+    form_privacy: 'تُرسَل بياناتك كرسالة واتساب من هاتفك أنت. لا نحفظ أي شيء على هذا الموقع.',
+    form_sent: 'تم فتح واتساب وبياناتك جاهزة. اضغط «إرسال» هناك لإتمام طلبك.',
+    form_fallback: 'لم يُفتح واتساب؟ افتحه من هنا',
+    /* Labels inside the WhatsApp message itself */
+    wa_title: 'طلب حجز – ELEGANTMEDIA', wa_name: 'الاسم', wa_phone: 'الهاتف',
+    wa_type: 'نوع المناسبة', wa_date: 'التاريخ المفضّل', wa_details: 'تفاصيل',
 
     footer_tag: 'نحوّل لحظاتكم إلى ذكريات خالدة',
     footer_gallery: 'المعرض', footer_services: 'الخدمات', footer_about: 'من نحن', footer_contact: 'تواصل',
@@ -136,7 +142,13 @@ const I18N = {
     form_type_w: 'Wedding Photography', form_type_e: 'Engagement Photography', form_type_s: 'Special Occasion',
     form_type_v: 'Cinematic Video', form_type_d: 'Aerial Drone Photography',
     form_date: 'Preferred Date', form_msg: 'Additional Details', form_msg_ph: 'Tell us about your event...',
-    form_submit: 'Send Booking Request', form_note: '✓ Your request has been received! We will contact you soon.',
+    form_submit: 'Send via WhatsApp',
+    form_privacy: 'Your details are sent as a WhatsApp message from your own phone. Nothing is stored on this website.',
+    form_sent: 'WhatsApp has opened with your details filled in. Press send there to complete your request.',
+    form_fallback: "Didn't WhatsApp open? Open it here",
+    /* Labels inside the WhatsApp message itself */
+    wa_title: 'Booking request – ELEGANTMEDIA', wa_name: 'Name', wa_phone: 'Phone',
+    wa_type: 'Type of event', wa_date: 'Preferred date', wa_details: 'Details',
 
     footer_tag: 'We Transform Your Moments Into Timeless Memories',
     footer_gallery: 'Gallery', footer_services: 'Services', footer_about: 'About Us', footer_contact: 'Contact',
@@ -215,7 +227,13 @@ const I18N = {
     form_type_w: 'Bröllop', form_type_e: 'Förlovning', form_type_s: 'Speciellt tillfälle',
     form_type_v: 'Filmisk video', form_type_d: 'Flygdrönare',
     form_date: 'Önskat datum', form_msg: 'Ytterligare detaljer', form_msg_ph: 'Berätta om ert evenemang...',
-    form_submit: 'Skicka bokningsförfrågan', form_note: '✓ Din förfrågan har mottagits! Vi kontaktar dig snart.',
+    form_submit: 'Skicka via WhatsApp',
+    form_privacy: 'Dina uppgifter skickas som ett WhatsApp-meddelande från din egen telefon. Vi sparar ingenting på den här webbplatsen.',
+    form_sent: 'WhatsApp har öppnats med dina uppgifter ifyllda. Tryck på skicka där för att slutföra din förfrågan.',
+    form_fallback: 'Öppnades inte WhatsApp? Öppna det här',
+    /* Labels inside the WhatsApp message itself */
+    wa_title: 'Bokningsförfrågan – ELEGANTMEDIA', wa_name: 'Namn', wa_phone: 'Telefon',
+    wa_type: 'Typ av evenemang', wa_date: 'Önskat datum', wa_details: 'Detaljer',
 
     footer_tag: 'Vi förvandlar era ögonblick till eviga minnen',
     footer_gallery: 'Galleri', footer_services: 'Tjänster', footer_about: 'Om oss', footer_contact: 'Kontakt',
