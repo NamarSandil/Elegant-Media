@@ -68,6 +68,60 @@
 </head>
 <body>
 
+  <svg class="icon-sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-rings" viewBox="0 0 24 24">
+        <circle cx="8.6" cy="14.4" r="5.6"/>
+        <circle cx="15.4" cy="14.4" r="5.6"/>
+      </symbol>
+      <symbol id="i-ring-gem" viewBox="0 0 24 24">
+        <circle cx="12" cy="16" r="5.1"/>
+        <path d="M7.7 5.9 L12 1.9 L16.3 5.9 L12 11.5 Z"/>
+        <path d="M7.7 5.9 H16.3"/>
+      </symbol>
+      <symbol id="i-glasses" viewBox="0 0 24 24">
+        <g transform="rotate(15 8 12)">
+          <path d="M5.6 3 H10.4 L9.4 9.4 Q8 11 6.6 9.4 Z"/>
+          <path d="M8 11 V18.4"/><path d="M5.7 19.3 H10.3"/>
+        </g>
+        <g transform="rotate(-15 16 12)">
+          <path d="M13.6 3 H18.4 L17.4 9.4 Q16 11 14.6 9.4 Z"/>
+          <path d="M16 11 V18.4"/><path d="M13.7 19.3 H18.3"/>
+        </g>
+      </symbol>
+      <symbol id="i-clapper" viewBox="0 0 24 24">
+        <rect x="2.6" y="9.4" width="18.8" height="11" rx="1.8"/>
+        <path d="M2.9 9.4 L4.3 4.6 L21.1 6.6 L20.9 9.4"/>
+        <path d="M8.5 5.2 L6.7 9.4"/>
+        <path d="M13.5 5.8 L11.7 9.4"/>
+        <path d="M18.4 6.4 L16.6 9.4"/>
+      </symbol>
+      <symbol id="i-drone" viewBox="0 0 24 24">
+        <rect x="9.2" y="9.2" width="5.6" height="5.6" rx="1.6"/>
+        <path d="M9.2 9.2 L6.4 6.4"/><path d="M14.8 9.2 L17.6 6.4"/>
+        <path d="M9.2 14.8 L6.4 17.6"/><path d="M14.8 14.8 L17.6 17.6"/>
+        <circle cx="5" cy="5" r="2.5"/>
+        <circle cx="19" cy="5" r="2.5"/>
+        <circle cx="5" cy="19" r="2.5"/>
+        <circle cx="19" cy="19" r="2.5"/>
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <path d="M6.8 3.6h3.1a1 1 0 0 1 1 .9l.5 3.4a1 1 0 0 1-.5 1L9 10a13 13 0 0 0 5 5l1.1-1.9a1 1 0 0 1 1-.5l3.4.5a1 1 0 0 1 .9 1v3.1a1.6 1.6 0 0 1-1.7 1.6A16.5 16.5 0 0 1 5.2 5.3 1.6 1.6 0 0 1 6.8 3.6z"/>
+      </symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24">
+        <path d="M20.4 11.4a7.9 7.9 0 0 1-8.4 7.9 8.6 8.6 0 0 1-2.7-.5L4.6 20.4l1.6-4.7A7.9 7.9 0 1 1 20.4 11.4z"/>
+      </symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24">
+        <rect x="2.8" y="5" width="18.4" height="14" rx="2"/>
+        <path d="M3.6 6.5 L12 12.9 L20.4 6.5"/>
+      </symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24">
+        <path d="M14.6 4.6h4.8v4.8"/><path d="M9.4 19.4H4.6v-4.8"/>
+        <path d="M19.4 4.6 L13.6 10.4"/><path d="M4.6 19.4 L10.4 13.6"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <a href="#main" class="skip-link" data-i18n="a11y_skip">Hoppa till innehåll</a>
 
   <!-- ===== Header / Navbar ===== -->
@@ -172,27 +226,27 @@
 
       <div class="services-grid">
         <article class="service-card reveal">
-          <div class="service-icon">💍</div>
+          <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-rings"/></svg></div>
           <h3 data-i18n="svc_wedding_t">Bröllopsfotografering</h3>
           <p data-i18n="svc_wedding_d">Fullständig dokumentation av er bröllopsdag i filmisk stil som bevarar varje leende och glädjetår.</p>
         </article>
         <article class="service-card reveal">
-          <div class="service-icon">💐</div>
+          <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-ring-gem"/></svg></div>
           <h3 data-i18n="svc_engagement_t">Förlovningsfotografering</h3>
           <p data-i18n="svc_engagement_d">Romantiska sessioner som firar början på er historia med en elegant och oförglömlig stil.</p>
         </article>
         <article class="service-card reveal">
-          <div class="service-icon">🎉</div>
+          <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-glasses"/></svg></div>
           <h3 data-i18n="svc_special_t">Speciella tillfällen</h3>
           <p data-i18n="svc_special_d">Födelsedagar, examina, familjekvällar — vi fångar glädjen i varje ögonblick med stort hantverk.</p>
         </article>
         <article class="service-card reveal">
-          <div class="service-icon">🎬</div>
+          <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-clapper"/></svg></div>
           <h3 data-i18n="svc_video_t">Filmisk videografi</h3>
           <p data-i18n="svc_video_d">Kortfilmer av filmisk kvalitet som berättar historien om ert evenemang med professionell musik och redigering.</p>
         </article>
         <article class="service-card reveal">
-          <div class="service-icon">🚁</div>
+          <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-drone"/></svg></div>
           <h3 data-i18n="svc_drone_t">Flygfoto med drönare</h3>
           <p data-i18n="svc_drone_d">Hänförande flygbilder som ger ert evenemang en lyxig visuell dimension från unika vinklar.</p>
         </article>
@@ -273,15 +327,15 @@
 
         <ul class="contact-list">
           <li>
-            <span class="ci-icon">📞</span>
+            <span class="ci-icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
             <div><span data-i18n="contact_phone">Telefon</span><a href="tel:+467200281" dir="ltr">+46 7200281</a></div>
           </li>
           <li>
-            <span class="ci-icon">💬</span>
+            <span class="ci-icon"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span>
             <div><span data-i18n="contact_whatsapp">WhatsApp</span><a href="https://wa.me/4676200281" target="_blank" rel="noopener" dir="ltr">+46 76 200 281</a></div>
           </li>
           <li>
-            <span class="ci-icon">✉️</span>
+            <span class="ci-icon"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
             <div><span data-i18n="contact_email">E-post</span><a href="mailto:info@lumsa.com">info@lumsa.com</a></div>
           </li>
         </ul>
