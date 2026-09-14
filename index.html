@@ -46,6 +46,8 @@
 </head>
 <body>
 
+  <a href="#main" class="skip-link" data-i18n="a11y_skip">Hoppa till innehåll</a>
+
   <!-- ===== Header / Navbar ===== -->
   <header class="navbar" id="navbar">
     <div class="container nav-inner">
@@ -64,17 +66,21 @@
       </nav>
 
       <div class="nav-actions">
-        <div class="lang-switch" id="langSwitch">
-          <button type="button" class="lang-btn" data-lang="ar">AR</button>
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
-          <button type="button" class="lang-btn" data-lang="sv">SV</button>
+        <div class="lang-switch" id="langSwitch" role="group" data-i18n-aria="a11y_lang" aria-label="Välj språk">
+          <button type="button" class="lang-btn" data-lang="ar" lang="ar" aria-pressed="false">AR</button>
+          <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">EN</button>
+          <button type="button" class="lang-btn" data-lang="sv" lang="sv" aria-pressed="false">SV</button>
         </div>
-        <button class="nav-toggle" id="navToggle" aria-label="Meny">
+        <button class="nav-toggle" id="navToggle" type="button"
+                aria-expanded="false" aria-controls="navLinks"
+                data-i18n-aria="a11y_menu" aria-label="Meny">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
+
+  <main id="main">
 
   <!-- ===== Hero ===== -->
   <section class="hero" id="hero">
@@ -88,7 +94,7 @@
         <a href="#gallery" class="btn btn-outline" data-i18n="hero_view">Se vårt arbete</a>
       </div>
     </div>
-    <a href="#gallery" class="scroll-down" aria-label="scroll"><span></span></a>
+    <a href="#gallery" class="scroll-down" data-i18n-aria="a11y_scroll" aria-label="Scrolla till galleriet"><span></span></a>
   </section>
 
   <!-- ===== Stats ===== -->
@@ -111,12 +117,12 @@
       </div>
 
       <div class="filters reveal" id="filters">
-        <button class="filter active" data-filter="all" data-i18n="filter_all">Alla</button>
-        <button class="filter" data-filter="wedding" data-i18n="filter_wedding">Bröllop</button>
-        <button class="filter" data-filter="engagement" data-i18n="filter_engagement">Förlovning</button>
-        <button class="filter" data-filter="party" data-i18n="filter_party">Fester</button>
-        <button class="filter" data-filter="special" data-i18n="filter_special">Speciella tillfällen</button>
-        <button class="filter" data-filter="outdoor" data-i18n="filter_outdoor">Utomhus</button>
+        <button type="button" class="filter active" data-filter="all" aria-pressed="true" data-i18n="filter_all">Alla</button>
+        <button type="button" class="filter" data-filter="wedding" aria-pressed="false" data-i18n="filter_wedding">Bröllop</button>
+        <button type="button" class="filter" data-filter="engagement" aria-pressed="false" data-i18n="filter_engagement">Förlovning</button>
+        <button type="button" class="filter" data-filter="party" aria-pressed="false" data-i18n="filter_party">Fester</button>
+        <button type="button" class="filter" data-filter="special" aria-pressed="false" data-i18n="filter_special">Speciella tillfällen</button>
+        <button type="button" class="filter" data-filter="outdoor" aria-pressed="false" data-i18n="filter_outdoor">Utomhus</button>
       </div>
 
       <div class="gallery-grid" id="galleryGrid"><!-- filled by JS --></div>
@@ -269,7 +275,7 @@
   <section class="section about-section" id="about">
     <div class="container about-inner">
       <div class="about-media reveal">
-        <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=900&q=80" alt="Fotografteamet under arbete" loading="lazy" />
+        <img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=900&q=80" data-i18n-alt="about_img_alt" alt="Fotografteamet under arbete" loading="lazy" />
         <div class="about-badge"><strong>+12</strong><span data-i18n="about_badge_text">Års kreativitet</span></div>
       </div>
       <div class="about-text reveal">
@@ -298,17 +304,17 @@
 
       <div class="testimonials-grid">
         <figure class="testimonial reveal">
-          <div class="stars">★★★★★</div>
+          <div class="stars"><span aria-hidden="true">★★★★★</span><span class="sr-only" data-i18n="a11y_rating">5 av 5 stjärnor</span></div>
           <blockquote data-i18n="tst1_q">Våra bröllopsbilder överträffade alla våra förväntningar! Professionalism och förfinad smak i varje bild. Tack för dessa tidlösa minnen.</blockquote>
           <figcaption><img src="https://i.pravatar.cc/80?img=47" alt="" loading="lazy" /><span><strong data-i18n="tst1_name">Emma & Erik</strong><em data-i18n="tst1_role">Nygifta</em></span></figcaption>
         </figure>
         <figure class="testimonial reveal">
-          <div class="stars">★★★★★</div>
+          <div class="stars"><span aria-hidden="true">★★★★★</span><span class="sr-only" data-i18n="a11y_rating">5 av 5 stjärnor</span></div>
           <blockquote data-i18n="tst2_q">Den filmiska videon var ett sant konstverk. Vi grät av glädje när vi såg den! Ett elegant och professionellt team i alla avseenden.</blockquote>
           <figcaption><img src="https://i.pravatar.cc/80?img=32" alt="" loading="lazy" /><span><strong data-i18n="tst2_name">Anna Lindqvist</strong><em data-i18n="tst2_role">Förlovningsfest</em></span></figcaption>
         </figure>
         <figure class="testimonial reveal">
-          <div class="stars">★★★★★</div>
+          <div class="stars"><span aria-hidden="true">★★★★★</span><span class="sr-only" data-i18n="a11y_rating">5 av 5 stjärnor</span></div>
           <blockquote data-i18n="tst3_q">Drönarfilmningen gav vårt evenemang en lyx vi inte hade föreställt oss. Förstklassig service och punktlighet. Jag rekommenderar dem varmt.</blockquote>
           <figcaption><img src="https://i.pravatar.cc/80?img=12" alt="" loading="lazy" /><span><strong data-i18n="tst3_name">Johan Andersson</strong><em data-i18n="tst3_role">Familjeevenemang</em></span></figcaption>
         </figure>
@@ -392,6 +398,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- ===== Footer ===== -->
   <footer class="footer">
     <div class="container footer-inner">
@@ -411,11 +419,12 @@
   </footer>
 
   <!-- ===== Lightbox ===== -->
-  <div class="lightbox" id="lightbox" aria-hidden="true">
-    <button class="lb-close" id="lbClose" aria-label="Stäng">✕</button>
-    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Föregående">‹</button>
+  <div class="lightbox" id="lightbox" aria-hidden="true"
+       role="dialog" aria-modal="true" data-i18n-aria="a11y_lightbox" aria-label="Bildvisare">
+    <button type="button" class="lb-close" id="lbClose" data-i18n-aria="a11y_close" aria-label="Stäng">✕</button>
+    <button type="button" class="lb-nav lb-prev" id="lbPrev" data-i18n-aria="a11y_prev" aria-label="Föregående">‹</button>
     <img alt="" id="lbImg" />
-    <button class="lb-nav lb-next" id="lbNext" aria-label="Nästa">›</button>
+    <button type="button" class="lb-nav lb-next" id="lbNext" data-i18n-aria="a11y_next" aria-label="Nästa">›</button>
     <div class="lb-caption" id="lbCaption"></div>
   </div>
 

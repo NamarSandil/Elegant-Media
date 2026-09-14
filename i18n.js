@@ -63,6 +63,13 @@ const I18N = {
     footer_gallery: 'المعرض', footer_services: 'الخدمات', footer_about: 'من نحن', footer_contact: 'تواصل',
     brand: 'ELEGANT<span class="logo-suffix">MEDIA</span>', footer_rights: 'جميع الحقوق محفوظة.',
 
+    /* Interface labels for screen readers — never shown on screen */
+    a11y_skip: 'تخطَّ إلى المحتوى', a11y_menu: 'القائمة', a11y_lang: 'اختيار اللغة',
+    a11y_scroll: 'انتقل إلى معرض الأعمال', a11y_lightbox: 'عارض الصور',
+    a11y_close: 'إغلاق', a11y_prev: 'السابق', a11y_next: 'التالي',
+    a11y_view: 'عرض الصورة', a11y_rating: '5 من 5 نجوم',
+    about_img_alt: 'فريق التصوير أثناء العمل',
+
     g1: 'عرس ملكي', g2: 'الوعد', g3: 'تحت غروب الشمس', g4: 'موكب العرس',
     g5: 'أمسية لا تُنسى', g6: 'احتفال التخرج', g7: 'تبادل الخواتم', g8: 'بداية الحكاية',
     g9: 'في أحضان الطبيعة', g10: 'أجواء مليئة بالفرح', g11: 'لمسة عائلية', g12: 'الرقصة الأولى',
@@ -131,6 +138,13 @@ const I18N = {
     footer_gallery: 'Gallery', footer_services: 'Services', footer_about: 'About Us', footer_contact: 'Contact',
     brand: 'ELEGANT<span class="logo-suffix">MEDIA</span>', footer_rights: 'All rights reserved.',
 
+    /* Interface labels for screen readers — never shown on screen */
+    a11y_skip: 'Skip to content', a11y_menu: 'Menu', a11y_lang: 'Select language',
+    a11y_scroll: 'Scroll to gallery', a11y_lightbox: 'Image viewer',
+    a11y_close: 'Close', a11y_prev: 'Previous', a11y_next: 'Next',
+    a11y_view: 'View image', a11y_rating: '5 out of 5 stars',
+    about_img_alt: 'The photography team at work',
+
     g1: 'Royal Wedding', g2: 'The Promise', g3: 'Under the Sunset', g4: 'The Wedding Procession',
     g5: 'A Night to Remember', g6: 'Graduation Celebration', g7: 'The Ring Exchange', g8: 'The Story Begins',
     g9: 'In the Heart of Nature', g10: 'Joyful Moments', g11: 'A Family Touch', g12: 'The First Dance',
@@ -198,6 +212,13 @@ const I18N = {
     footer_tag: 'Vi förvandlar era ögonblick till eviga minnen',
     footer_gallery: 'Galleri', footer_services: 'Tjänster', footer_about: 'Om oss', footer_contact: 'Kontakt',
     brand: 'ELEGANT<span class="logo-suffix">MEDIA</span>', footer_rights: 'Alla rättigheter förbehållna.',
+
+    /* Interface labels for screen readers — never shown on screen */
+    a11y_skip: 'Hoppa till innehåll', a11y_menu: 'Meny', a11y_lang: 'Välj språk',
+    a11y_scroll: 'Scrolla till galleriet', a11y_lightbox: 'Bildvisare',
+    a11y_close: 'Stäng', a11y_prev: 'Föregående', a11y_next: 'Nästa',
+    a11y_view: 'Visa bild', a11y_rating: '5 av 5 stjärnor',
+    about_img_alt: 'Fotografteamet under arbete',
 
     g1: 'Kungligt bröllop', g2: 'Löftet', g3: 'Under solnedgången', g4: 'Bröllopståget',
     g5: 'Kvällen att minnas', g6: 'Examensfirande', g7: 'Ringbytet', g8: 'Sagan börjar',
