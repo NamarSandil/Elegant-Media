@@ -330,6 +330,7 @@ h1, h2, h3, .logo-text { font-family: var(--font-head); font-weight: 700; }
   border-radius: 10px; color: var(--white); font-family: var(--font-body); font-size: 1rem; transition: border-color .3s;
 }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); }
+.field input::placeholder, .field textarea::placeholder { color: #8f8d88; opacity: 1; }
 .field textarea { resize: vertical; }
 .form-note { margin-top: 16px; color: var(--gold-light); text-align: center; font-weight: 600; }
 
@@ -341,7 +342,7 @@ h1, h2, h3, .logo-text { font-family: var(--font-head); font-weight: 700; }
 .footer-links { display: flex; gap: 26px; flex-wrap: wrap; justify-content: center; }
 .footer-links a { color: #ccc; transition: color .3s; }
 .footer-links a:hover { color: var(--gold-light); }
-.copyright { color: #666; font-size: .9rem; margin-top: 8px; }
+.copyright { color: #8f8d88; font-size: .9rem; margin-top: 8px; }
 
 /* ===== Lightbox ===== */
 .lightbox {

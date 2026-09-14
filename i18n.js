@@ -167,7 +167,7 @@ const I18N = {
     webdesign_desc: 'Vi bygger moderna, snabba webbplatser som är helt responsiva på alla enheter och enkla att använda — för en digital närvaro värdig ert varumärke.',
     wf1: 'Professionell UI/UX-design', wf2: 'Kompatibel med alla enheter och skärmar',
     wf3: 'Hög hastighet och prestanda', wf4: 'Sökmotoroptimering (SEO)',
-    wf5: 'Lättanvänt kontrollpanel', wf6: 'Skräddarsydd design efter er varumärkesidentitet',
+    wf5: 'Lättanvänd kontrollpanel', wf6: 'Skräddarsydd design efter er varumärkesidentitet',
     webdesign_cta: 'Beställ er webbplats nu',
 
     about_tag: 'Om oss', about_title: 'Ett team som ser skönhet i varje detalj',

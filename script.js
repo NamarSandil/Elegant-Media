@@ -172,5 +172,9 @@ document.getElementById('bookingForm').addEventListener('submit', e => {
 /* ===== Year ===== */
 document.getElementById('year').textContent = new Date().getFullYear();
 
+/* ===== Booking date: no dates in the past ===== */
+const dateField = document.getElementById('date');
+dateField.min = new Date().toISOString().split('T')[0];
+
 /* ===== Init ===== */
 applyLang(currentLang);

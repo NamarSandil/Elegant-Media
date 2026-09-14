@@ -1,0 +1,13 @@
+# Working documents for the 2026 audit & redesign.
+# Deliberately NOT committed: this repository is public, and these files
+# discuss the site's fabricated content candidly. They live locally and in
+# the Desktop backup instead.
+.claude/
+UX_AUDIT.md
+PLAN.md
+BRAND.md
+
+# OS noise
+Thumbs.db
+desktop.ini
+.DS_Store
