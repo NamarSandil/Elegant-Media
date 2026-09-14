@@ -184,10 +184,17 @@ h1, h2, h3, .logo-text { font-family: var(--font-head); font-weight: 700; }
 .nav-toggle span { width: 26px; height: 2px; background: var(--white); transition: .3s; }
 
 /* ===== Hero ===== */
-.hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.hero {
+  position: relative; display: flex; align-items: center; overflow: hidden;
+  min-height: 100vh;
+  /* svh = the viewport height *with* the mobile browser's toolbars showing.
+     Plain 100vh is taller than the visible area on iOS Safari and Android
+     Chrome, which pushed the booking buttons below the fold on first paint. */
+  min-height: 100svh;
+}
 .hero-bg {
   position: absolute; inset: 0;
-  background: url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&q=80') center/cover no-repeat;
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
   animation: heroZoom 18s ease-in-out infinite alternate;
 }
 @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.12); } }
@@ -260,6 +267,7 @@ h1, h2, h3, .logo-text { font-family: var(--font-head); font-weight: 700; }
    rather than outside it, where it would be invisible. */
 .g-btn:focus-visible { outline: 3px solid var(--gold-light); outline-offset: -5px; border-radius: var(--radius); }
 
+.g-item picture { display: block; width: 100%; height: 100%; }
 .g-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
 .g-btn:hover img, .g-btn:focus-visible img { transform: scale(1.1); }
 .g-overlay {
