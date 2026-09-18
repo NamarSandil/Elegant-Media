@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="sv" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d0d0d" />
+
+  <!-- SEO -->
+  <title>Integritetspolicy | ELEGANTMEDIA</title>
+  <meta name="description" content="Hur ELEGANTMEDIA hanterar uppgifterna du skickar via bokningsformuläret: vad vi samlar in, varför, vem som tar del av dem, hur länge vi sparar dem och vilka rättigheter du har." />
+  <meta name="author" content="ELEGANTMEDIA" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://namarsandil.github.io/Elegant-Media/integritet.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="sv_SE" />
+  <meta property="og:title" content="Integritetspolicy | ELEGANTMEDIA" />
+  <meta property="og:description" content="Hur vi hanterar uppgifterna du skickar till oss." />
+  <meta property="og:url" content="https://namarsandil.github.io/Elegant-Media/integritet.html" />
+
+  <!-- Icons -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+
+  <!-- Fonts: only the two families the chosen language actually uses.
+       Kept identical to index.html - see the note there. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script>
+    (function () {
+      var lang = null;
+      try { lang = localStorage.getItem('elegantmedia_lang'); } catch (e) { /* storage blocked */ }
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.id = 'langFonts';
+      link.href = (lang === 'ar')
+        ? 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap'
+        : 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap';
+      document.head.appendChild(link);
+    })();
+  </script>
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap" />
+  </noscript>
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="i18n.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <a href="#main" class="skip-link" data-i18n="a11y_skip">Hoppa till innehåll</a>
+
+  <!-- ===== Header / Navbar =====
+       Same markup as index.html, except the links point back at the home page
+       rather than at anchors on this one. -->
+  <header class="navbar scrolled navbar--static" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-text">ELEGANT<span class="logo-suffix">MEDIA</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html" data-i18n="nav_home">Hem</a>
+        <a href="index.html#gallery" data-i18n="nav_gallery">Galleri</a>
+        <a href="index.html#services" data-i18n="nav_services">Tjänster</a>
+        <a href="webbdesign.html" data-i18n="nav_webdesign">Webbdesign</a>
+        <a href="index.html#about" data-i18n="nav_about">Om oss</a>
+        <a href="index.html#contact" class="nav-cta" data-i18n="nav_book">Boka nu</a>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="lang-switch" id="langSwitch" role="group" data-i18n-aria="a11y_lang" aria-label="Välj språk">
+          <button type="button" class="lang-btn" data-lang="ar" lang="ar" aria-pressed="false">AR</button>
+          <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">EN</button>
+          <button type="button" class="lang-btn" data-lang="sv" lang="sv" aria-pressed="false">SV</button>
+        </div>
+        <button class="nav-toggle" id="navToggle" type="button"
+                aria-expanded="false" aria-controls="navLinks"
+                data-i18n-aria="a11y_menu" aria-label="Meny">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== Page head ===== -->
+    <div class="page-head">
+      <div class="container">
+        <h1 class="page-title" data-i18n="pp_title">Integritetspolicy</h1>
+        <p class="page-lead" data-i18n="pp_intro">Här beskriver vi vilka uppgifter vi får när du kontaktar oss, varför vi behöver dem och vad du har rätt till. Vi samlar bara in det som behövs för att svara på din förfrågan.</p>
+        <p class="pp-updated" data-i18n="pp_updated">Senast uppdaterad 18 september 2026</p>
+      </div>
+    </div>
+
+    <!-- ===== Policy =====
+         Plain-language notice for the booking form. The retention wording
+         ("deleted once the matter is closed") is a commitment the owner has
+         to keep - change it here and in i18n.js if the practice differs. -->
+    <section class="section legal-section">
+      <div class="container legal">
+        <h2 data-i18n="pp_who_h">Vem ansvarar för dina uppgifter?</h2>
+        <p data-i18n="pp_who_p">ELEGANTMEDIA, Spånga, Stockholm, är personuppgiftsansvarig. Du når oss på <a href="mailto:elegantmedia200@gmail.com" dir="ltr">elegantmedia200@gmail.com</a> eller <a href="tel:+46762000281" dir="ltr">+46 76 200 02 81</a>.</p>
+        <h2 data-i18n="pp_what_h">Vilka uppgifter samlar vi in?</h2>
+        <p data-i18n="pp_what_p">När du fyller i bokningsformuläret: ditt namn, ditt telefonnummer, din e-postadress om du anger den, typ av tillfälle, önskat datum och det du skriver i meddelandet. Vi samlar inte in något annat – inga spårningskakor och ingen besöksstatistik.</p>
+        <h2 data-i18n="pp_why_h">Varför behöver vi dem?</h2>
+        <p data-i18n="pp_why_p">För att kunna svara på din förfrågan, ta fram ett förslag och, om du bokar, genomföra uppdraget. Den rättsliga grunden är att du själv har bett oss om det inför ett möjligt avtal (artikel 6.1 b i dataskyddsförordningen, GDPR).</p>
+        <h2 data-i18n="pp_share_h">Vem mer tar del av uppgifterna?</h2>
+        <p data-i18n="pp_share_p">Formuläret levereras till vår e-post av tjänsten FormSubmit, som sparar inskickade uppgifter i högst 30 dagar. Vår e-post hanteras av Google (Gmail). Väljer du att skicka via WhatsApp går meddelandet genom WhatsApp (Meta). Vi säljer aldrig dina uppgifter och lämnar inte ut dem till någon annan.</p>
+        <h2 data-i18n="pp_keep_h">Hur länge sparar vi dem?</h2>
+        <p data-i18n="pp_keep_p">Så länge det behövs för att besvara din förfrågan och, om du bokar, för att genomföra uppdraget och uppfylla bokföringskrav. Förfrågningar som inte leder till en bokning raderar vi när ärendet är avslutat.</p>
+        <h2 data-i18n="pp_rights_h">Dina rättigheter</h2>
+        <p data-i18n="pp_rights_p">Du har rätt att få veta vilka uppgifter vi har om dig, att få dem rättade eller raderade och att invända mot hur vi använder dem. Kontakta oss så hjälper vi dig. Om du anser att vi hanterar dina uppgifter fel kan du klaga hos Integritetsskyddsmyndigheten (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).</p>
+        <h2 data-i18n="pp_site_h">Om den här webbplatsen</h2>
+        <p data-i18n="pp_site_p">Webbplatsen sparar bara ditt språkval, och bara i din egen webbläsare. Typsnitt hämtas från Google Fonts och bilder från Unsplash, vilket innebär att din IP-adress skickas till dem när sidan laddas – så fungerar alla sådana tjänster. Webbplatsen använder inga kakor.</p>
+      </div>
+    </section>
+
+    <div class="container wd-back-wrap">
+      <a href="index.html" class="wd-back" data-i18n="pp_back">Tillbaka till startsidan</a>
+    </div>
+
+  </main>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="index.html" class="logo footer-logo">
+        <span class="logo-text">ELEGANT<span class="logo-suffix">MEDIA</span></span>
+      </a>
+      <p class="footer-tag" data-i18n="footer_tag">Vi förvandlar era ögonblick till eviga minnen</p>
+      <nav class="footer-links">
+        <a href="index.html#gallery" data-i18n="footer_gallery">Galleriet</a>
+        <a href="index.html#services" data-i18n="footer_services">Tjänster</a>
+        <a href="webbdesign.html" data-i18n="nav_webdesign">Webbdesign</a>
+        <a href="index.html#about" data-i18n="footer_about">Om oss</a>
+        <a href="index.html#contact" data-i18n="footer_contact">Kontakt</a>
+        <a href="integritet.html" aria-current="page" data-i18n="footer_privacy">Integritet</a>
+      </nav>
+      <p class="copyright">© <span id="year"></span> <span data-i18n="brand">ELEGANT<span class="logo-suffix">MEDIA</span></span>. <span data-i18n="footer_rights">Alla rättigheter förbehållna.</span></p>
+    </div>
+  </footer>
+
+</body>
+</html>
