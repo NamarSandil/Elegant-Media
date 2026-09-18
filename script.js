@@ -297,16 +297,18 @@ counters.forEach(c => counterObs.observe(c));
    received" and then throw the data away - it had no destination at all, so
    every enquiry ever submitted was lost.
 
-   It now hands the details to WhatsApp, which is the one contact route on
-   this site already known to work. The visitor still presses send in
+   It now hands the details to WhatsApp. The visitor still presses send in
    WhatsApp themselves, so the confirmation below says exactly that rather
    than claiming the booking is done.
 
-   When a real email destination is available this is the place to add it -
-   post to the form service, and keep WhatsApp as the alternative. */
+   When the email path is added, this is the place for it - post to the form
+   service, and keep WhatsApp as the alternative. */
 
-/* One place to change the number when the correct one is confirmed. */
-const WHATSAPP_NUMBER = '4676200281';
+/* International format with no "+" and no leading 00, which is what wa.me
+   expects. Confirmed by the owner on 2026-09-18 as +46 76 200 02 81.
+   The number used before (4676200281) was missing a digit - it was not a
+   valid Swedish mobile, so WhatsApp could not open a chat with it. */
+const WHATSAPP_NUMBER = '46762000281';
 
 const bookingForm = document.getElementById('bookingForm');
 if (bookingForm) {
