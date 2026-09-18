@@ -1,0 +1,54 @@
+# Rebuilds the English and Arabic pages (and every page's <head>) whenever the
+# text or a template changes, so an edit to i18n.js made on github.com is
+# published in all three languages with no tools on anyone's computer.
+#
+# If the build fails - for example a text key is missing in one language -
+# this run fails, nothing is committed, and the live site stays as it was.
+
+name: Build language pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - i18n.js
+      - index.html
+      - webbdesign.html
+      - integritet.html
+      - tools/build.py
+  workflow_dispatch:        # "Run workflow" button on the Actions tab
+
+permissions:
+  contents: write           # needed to commit the rebuilt pages
+
+concurrency:
+  group: build-pages        # one at a time; a second push waits its turn
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main           # the newest main, not the commit that queued this run
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build
+        run: python tools/build.py
+
+      - name: Commit the rebuilt pages, if anything changed
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Pages were already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Named paths only - never add everything.
+          git add index.html webbdesign.html integritet.html en ar sitemap.xml 404.html
+          git commit -m "Rebuild language pages from i18n.js"
+          git push

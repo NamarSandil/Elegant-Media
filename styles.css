@@ -567,6 +567,8 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
    this also matched .ci-icon - a plain <span> - and shrank the icon circles'
    font-size to 14px, which had been quietly undersizing them all along. */
 .contact-list div span { color: var(--text-muted); font-size: var(--text-sm); display: block; }
+/* A contact line that isn't a link (the service area) - reads like the links. */
+.contact-list .ci-value { color: var(--text-primary); font-weight: 500; }
 /* inline-block + padding lifts these from 23px to clear the 24px minimum */
 .contact-list a { color: var(--white); font-weight: 500; transition: color .3s; display: inline-block; padding-block: 3px; }
 .contact-list a:hover { color: var(--gold-light); }

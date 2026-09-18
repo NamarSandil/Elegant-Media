@@ -5,6 +5,13 @@ photography, not Elegant Media's work. This folder is where the real
 photographs go. The site is already built to use them; nothing needs
 redesigning when they arrive.
 
+> **Three languages, one set of files to edit.** The Swedish pages in the
+> main folder (`index.html` and the others) are the originals. The `en/` and
+> `ar/` folders are generated from them by `tools/build.py` — never edit those
+> two folders. Make image changes in the Swedish page only; when you commit on
+> GitHub, the English and Arabic pages rebuild themselves within a minute or
+> two. Image paths like `assets/gallery/g1.jpg` work unchanged in all three.
+
 ---
 
 ## The gallery (12 images)
@@ -115,12 +122,18 @@ a public website. This matters legally under GDPR and it matters to clients.
 
 ## Once the real photos are in
 
-Three things on the site still describe placeholder content and should be
+Two things on the site still describe placeholder content and should be
 revisited at the same time:
 
-- The gallery says *"Browse a curated selection of our work"* — true only once
-  these are real.
-- The `og:image` in `index.html` (the picture shown when the site is shared on
-  Facebook or WhatsApp) still points at Unsplash.
-- The business listing data at the top of `index.html` has an `"image"` field
-  pointing at Unsplash too.
+- **The wording.** While the photos are stock, the site deliberately avoids
+  calling them "our work" — the gallery and its buttons refer to "the
+  gallery" instead ("Se galleriet", "Browse the Gallery", "تصفّح المعرض").
+  Once the photos are genuinely the studio's,
+  that can change: edit `gallery_desc`, `hero_view` and `about_btn` in
+  `i18n.js`, in all three languages.
+- **The sharing picture.** The image shown when the site is shared on
+  Facebook or WhatsApp, and the one in the Google business listing, is set
+  once as `OG_IMAGE` near the top of `tools/build.py`. Point it at the real
+  hero photo (use its full address, e.g.
+  `https://namarsandil.github.io/Elegant-Media/assets/hero/hero.jpg`) and it
+  updates on every page in all three languages.
