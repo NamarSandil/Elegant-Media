@@ -2,6 +2,18 @@
 const I18N = {
   ar: {
     _dir: 'rtl', _label: 'AR', _locale: 'ar_AR',
+
+    /* Page titles and descriptions - become <title>, the search result
+       snippet and the social-media preview. Keep titles under ~60
+       characters and descriptions under ~160, or Google cuts them. */
+    meta_home_title: 'مصوّر أعراس ومناسبات في ستوكهولم | ELEGANTMEDIA',
+    meta_home_desc: 'تصوير فوتوغرافي وفيديو في ستوكهولم للأعراس والخطوبة والعماد والحفلات، مع تصوير جوي بالدرون. عرض سعر حسب مناسبتكم. نتحدث العربية والسويدية والإنجليزية.',
+    meta_wd_title: 'تصميم مواقع إلكترونية في ستوكهولم | ELEGANTMEDIA',
+    meta_wd_desc: 'تصمم ELEGANTMEDIA وتبني مواقع إلكترونية عصرية وسريعة ومتجاوبة مع جميع الأجهزة، بتجربة استخدام مدروسة وتحسين لمحركات البحث وتصميم يناسب هويتكم.',
+    meta_pp_title: 'سياسة الخصوصية | ELEGANTMEDIA',
+    meta_pp_desc: 'كيف تتعامل ELEGANTMEDIA مع البيانات التي ترسلونها عبر نموذج الحجز: ما نجمعه، ولماذا، ومن يطّلع عليه، ومدة الاحتفاظ به، وحقوقكم.',
+    meta_og_alt: 'ELEGANTMEDIA – تصوير فوتوغرافي وفيديو للأعراس والمناسبات في ستوكهولم',
+
     nav_home: 'الرئيسية', nav_gallery: 'معرض الأعمال', nav_services: 'خدماتنا',
     nav_about: 'من نحن', nav_webdesign: 'تصميم مواقع', nav_testimonials: 'آراء العملاء', nav_book: 'احجز الآن',
 
@@ -58,6 +70,7 @@ const I18N = {
     contact_tag: 'تواصل معنا', contact_title: 'لنبدأ بصناعة ذكراكم القادمة',
     contact_desc: 'املأ النموذج لحجز جلستك، أو تواصل معنا مباشرة عبر القنوات التالية. فريقنا جاهز للإجابة على استفساراتكم.',
     contact_phone: 'الهاتف', contact_whatsapp: 'واتساب', contact_email: 'البريد الإلكتروني',
+    contact_area: 'المنطقة', contact_area_v: 'سبونغا (Spånga)، ستوكهولم',
     form_title: 'نموذج حجز جلسة', form_name: 'الاسم الكامل', form_name_ph: 'اكتب اسمك',
     form_phone: 'رقم الجوال', form_type: 'نوع المناسبة', form_type_opt0: 'اختر...',
     form_type_w: 'تصوير عرس', form_type_e: 'تصوير خطوبة', form_type_s: 'مناسبة خاصة',
@@ -109,7 +122,7 @@ const I18N = {
     pp_rights_h: 'حقوقكم',
     pp_rights_p: 'يحق لكم معرفة البيانات التي نحتفظ بها عنكم، وطلب تصحيحها أو حذفها، والاعتراض على طريقة استخدامها. تواصلوا معنا وسنساعدكم. وإن رأيتم أننا نتعامل مع بياناتكم بشكل خاطئ، يمكنكم تقديم شكوى إلى هيئة حماية الخصوصية السويدية (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).',
     pp_site_h: 'عن هذا الموقع',
-    pp_site_p: 'لا يحفظ هذا الموقع سوى اللغة التي تختارونها، وفي متصفحكم أنتم فقط. تُحمَّل الخطوط من Google Fonts والصور من Unsplash، ما يعني أن عنوان IP الخاص بكم يُرسَل إليهما عند تحميل الصفحة — وهكذا تعمل جميع هذه الخدمات. لا يستخدم الموقع ملفات تعريف الارتباط.',
+    pp_site_p: 'لا يحفظ هذا الموقع أي شيء في متصفحكم — لا ملفات تعريف ارتباط ولا تخزين محلي. تُحمَّل الخطوط من Google Fonts والصور من Unsplash، ما يعني أن عنوان IP الخاص بكم يُرسَل إليهما عند تحميل الصفحة — وهكذا تعمل جميع هذه الخدمات.',
     pp_back: 'العودة إلى الصفحة الرئيسية',
 
     g1: 'عرس ملكي', g2: 'الوعد', g3: 'تحت غروب الشمس', g4: 'موكب العرس',
@@ -119,6 +132,18 @@ const I18N = {
 
   en: {
     _dir: 'ltr', _label: 'EN', _locale: 'en_US',
+
+    /* Page titles and descriptions - become <title>, the search result
+       snippet and the social-media preview. Keep titles under ~60
+       characters and descriptions under ~160, or Google cuts them. */
+    meta_home_title: 'Wedding & Event Photographer in Stockholm | ELEGANTMEDIA',
+    meta_home_desc: 'Wedding, engagement, christening and party photography and film in Stockholm, drone included. Tailored quotes. We speak Swedish, English and Arabic.',
+    meta_wd_title: 'Web Design in Stockholm | ELEGANTMEDIA',
+    meta_wd_desc: 'ELEGANTMEDIA designs and builds modern, fast, fully responsive websites with thoughtful UI/UX, search optimisation and a design that fits your brand.',
+    meta_pp_title: 'Privacy Policy | ELEGANTMEDIA',
+    meta_pp_desc: 'How ELEGANTMEDIA handles the details you send through the booking form: what we collect, why, who else sees them, how long we keep them and your rights.',
+    meta_og_alt: 'ELEGANTMEDIA – wedding and event photography and film in Stockholm',
+
     nav_home: 'Home', nav_gallery: 'Gallery', nav_services: 'Services',
     nav_about: 'About Us', nav_webdesign: 'Web Design', nav_testimonials: 'Testimonials', nav_book: 'Book Now',
 
@@ -175,6 +200,7 @@ const I18N = {
     contact_tag: 'Contact Us', contact_title: 'Let\'s Start Creating Your Next Memory',
     contact_desc: 'Fill out the form to book your session, or reach us directly through the channels below. Our team is ready to answer your questions.',
     contact_phone: 'Phone', contact_whatsapp: 'WhatsApp', contact_email: 'Email',
+    contact_area: 'Area', contact_area_v: 'Spånga, Stockholm',
     form_title: 'Booking Form', form_name: 'Full Name', form_name_ph: 'Enter your name',
     form_phone: 'Phone Number', form_type: 'Event Type', form_type_opt0: 'Select...',
     form_type_w: 'Wedding Photography', form_type_e: 'Engagement Photography', form_type_s: 'Special Occasion',
@@ -226,7 +252,7 @@ const I18N = {
     pp_rights_h: 'Your rights',
     pp_rights_p: 'You have the right to know what information we hold about you, to have it corrected or deleted, and to object to how we use it. Contact us and we will help. If you believe we are handling your information wrongly, you can complain to the Swedish Authority for Privacy Protection (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).',
     pp_site_h: 'About this website',
-    pp_site_p: 'This website only stores your language choice, and only in your own browser. Fonts are loaded from Google Fonts and images from Unsplash, which means your IP address is sent to them when the page loads – that is how all such services work. The website uses no cookies.',
+    pp_site_p: 'This website stores nothing in your browser – no cookies and no local storage. Fonts are loaded from Google Fonts and images from Unsplash, which means your IP address is sent to them when the page loads – that is how all such services work.',
     pp_back: 'Back to the home page',
 
     g1: 'Royal Wedding', g2: 'The Promise', g3: 'Under the Sunset', g4: 'The Wedding Procession',
@@ -236,6 +262,18 @@ const I18N = {
 
   sv: {
     _dir: 'ltr', _label: 'SV', _locale: 'sv_SE',
+
+    /* Page titles and descriptions - become <title>, the search result
+       snippet and the social-media preview. Keep titles under ~60
+       characters and descriptions under ~160, or Google cuts them. */
+    meta_home_title: 'Fotograf i Stockholm – bröllop, dop & fest | ELEGANTMEDIA',
+    meta_home_desc: 'Fotograf och filmare i Stockholm för bröllop, förlovning, dop och fest, även med drönare. Offert efter ert tillfälle. Vi talar svenska, engelska och arabiska.',
+    meta_wd_title: 'Webbdesign i Stockholm | ELEGANTMEDIA',
+    meta_wd_desc: 'ELEGANTMEDIA designar och bygger moderna, snabba och responsiva webbplatser med genomtänkt UI/UX, sökmotoroptimering och en design anpassad efter er varumärkesidentitet.',
+    meta_pp_title: 'Integritetspolicy | ELEGANTMEDIA',
+    meta_pp_desc: 'Hur ELEGANTMEDIA hanterar uppgifterna du skickar via bokningsformuläret: vad vi samlar in, varför, vem som tar del av dem, hur länge vi sparar dem och dina rättigheter.',
+    meta_og_alt: 'ELEGANTMEDIA – fotografi och film för bröllop och fest i Stockholm',
+
     nav_home: 'Hem', nav_gallery: 'Galleri', nav_services: 'Tjänster',
     nav_about: 'Om oss', nav_webdesign: 'Webbdesign', nav_testimonials: 'Omdömen', nav_book: 'Boka nu',
 
@@ -292,6 +330,7 @@ const I18N = {
     contact_tag: 'Kontakta oss', contact_title: 'Låt oss börja skapa ert nästa minne',
     contact_desc: 'Fyll i formuläret för att boka din session, eller nå oss direkt via kanalerna nedan. Vårt team är redo att svara på era frågor.',
     contact_phone: 'Telefon', contact_whatsapp: 'WhatsApp', contact_email: 'E-post',
+    contact_area: 'Område', contact_area_v: 'Spånga, Stockholm',
     form_title: 'Bokningsformulär', form_name: 'Fullständigt namn', form_name_ph: 'Ange ditt namn',
     form_phone: 'Telefonnummer', form_type: 'Typ av evenemang', form_type_opt0: 'Välj...',
     form_type_w: 'Bröllop', form_type_e: 'Förlovning', form_type_s: 'Speciellt tillfälle',
@@ -343,7 +382,7 @@ const I18N = {
     pp_rights_h: 'Dina rättigheter',
     pp_rights_p: 'Du har rätt att få veta vilka uppgifter vi har om dig, att få dem rättade eller raderade och att invända mot hur vi använder dem. Kontakta oss så hjälper vi dig. Om du anser att vi hanterar dina uppgifter fel kan du klaga hos Integritetsskyddsmyndigheten (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).',
     pp_site_h: 'Om den här webbplatsen',
-    pp_site_p: 'Webbplatsen sparar bara ditt språkval, och bara i din egen webbläsare. Typsnitt hämtas från Google Fonts och bilder från Unsplash, vilket innebär att din IP-adress skickas till dem när sidan laddas – så fungerar alla sådana tjänster. Webbplatsen använder inga kakor.',
+    pp_site_p: 'Webbplatsen sparar ingenting i din webbläsare – inga kakor och ingen lokal lagring. Typsnitt hämtas från Google Fonts och bilder från Unsplash, vilket innebär att din IP-adress skickas till dem när sidan laddas – så fungerar alla sådana tjänster.',
     pp_back: 'Tillbaka till startsidan',
 
     g1: 'Kungligt bröllop', g2: 'Löftet', g3: 'Under solnedgången', g4: 'Bröllopståget',

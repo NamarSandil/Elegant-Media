@@ -37,8 +37,13 @@ const PORTRAIT  = 4 / 3;   // height ÷ width -> 3:4
    page weight. */
 const qualityFor = w => w >= 1200 ? 55 : w >= 1000 ? 62 : w >= 800 ? 68 : 75;
 
+/* Pages in /en/ and /ar/ sit one folder down. The build marks them with
+   <html data-root="../"> so a local photo such as assets/gallery/g1.jpg
+   resolves from the site root on every page. */
+const ROOT = document.documentElement.dataset.root || '';
+
 function thumbSet(item, ratio) {
-  if (item.file) return { src: item.file, srcset: '' };
+  if (item.file) return { src: ROOT + item.file, srcset: '' };
   const at = n =>
     `https://images.unsplash.com/${item.photo}?w=${n}&h=${Math.round(n * ratio)}` +
     `&fit=crop&q=${qualityFor(n)}&fm=webp`;
@@ -65,15 +70,20 @@ function pictureFor(item) {
 
 /* Full-size version for the lightbox - uncropped, so the whole frame shows. */
 function fullSize(item) {
-  return item.file || `https://images.unsplash.com/${item.photo}?w=1600&q=80&fm=webp`;
+  return item.file ? ROOT + item.file : `https://images.unsplash.com/${item.photo}?w=1600&q=80&fm=webp`;
 }
 
 const grid = document.getElementById('galleryGrid');
 let visibleItems = [];
 let currentFilter = 'all';
-let currentLang = (() => {
-  try { return localStorage.getItem('elegantmedia_lang') || 'sv'; } catch (e) { return 'sv'; }
-})();
+/* Each language has its own address (/, /en/, /ar/), so the page's language
+   is whatever its own <html lang> says. Nothing is stored in the browser. */
+let currentLang = I18N[document.documentElement.lang] ? document.documentElement.lang : 'sv';
+
+/* Earlier versions of the site saved the chosen language in the visitor's
+   browser. Nothing reads it any more; clearing it keeps the privacy page's
+   "stores nothing in your browser" true for returning visitors as well. */
+try { localStorage.removeItem('elegantmedia_lang'); } catch (e) { /* storage blocked */ }
 
 function t(key) { return (I18N[currentLang] && I18N[currentLang][key]) || ''; }
 
@@ -182,30 +192,18 @@ if (lb) {
   });
 }
 
-/* ===== Language ===== */
+/* ===== Language =====
+   tools/build.py writes each language version with its text, fonts, <head>
+   and language switcher already in place, and the switcher is plain links
+   between the versions - so nothing here changes language any more.
 
-/* Must stay in step with the loader in index.html's <head>. Only one of these
-   is ever loaded at a time - Latin readers never download the Arabic faces
-   and vice versa. */
-const FONTS = {
-  ltr: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap',
-  rtl: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap'
-};
-
+   Filling the text in again is a safety net, not the main route: if i18n.js
+   has been edited but the pages not yet rebuilt, visitors still see the new
+   wording straight away. It also renders the gallery, which is built here. */
 function applyLang(lang) {
   const dict = I18N[lang];
   if (!dict) return;
   currentLang = lang;
-  try { localStorage.setItem('elegantmedia_lang', lang); } catch (e) { /* storage blocked */ }
-
-  document.documentElement.lang = lang;
-  document.documentElement.dir = dict._dir;
-
-  const fontLink = document.getElementById('langFonts');
-  if (fontLink) {
-    const href = FONTS[dict._dir] || FONTS.ltr;
-    if (fontLink.href !== href) fontLink.href = href;
-  }
 
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const v = dict[el.dataset.i18n];
@@ -225,18 +223,9 @@ function applyLang(lang) {
     const v = dict[el.dataset.i18nAlt];
     if (v != null) el.alt = v;
   });
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    const on = btn.dataset.lang === lang;
-    btn.classList.toggle('active', on);
-    btn.setAttribute('aria-pressed', String(on));
-  });
 
   renderGallery(currentFilter);
 }
-
-document.querySelectorAll('.lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => applyLang(btn.dataset.lang));
-});
 
 /* ===== Navbar scroll + mobile menu ===== */
 const navbar = document.getElementById('navbar');
