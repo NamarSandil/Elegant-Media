@@ -36,6 +36,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # is a change here plus a rebuild.
 SITE = "https://namarsandil.github.io/Elegant-Media/"
 
+# Proves to Google Search Console that this site belongs to the studio
+# (property: the SITE address above, added by the owner on 2026-09-18).
+# Google re-checks it from time to time, so it has to stay. It is public by
+# design - it only works for the Google account that created it. A move to a
+# custom domain needs a new property and a new code here.
+GOOGLE_SITE_VERIFICATION = "U59bcrzSS9EYo_qQybPawmnmjly41655PvMC7Fz8YPo"
+
 LTR_FONTS = ("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700"
              "&family=Jost:wght@300;400;500;600&display=swap")
 # The wordmark is Latin Cormorant in every language, so Arabic needs that
@@ -241,6 +248,10 @@ def head_block(page, lang, strings, t):
         '<meta name="description" content="%s" />' % e(desc),
         '<link rel="canonical" href="%s" />' % url,
     ]
+    # Google looks for this on the property's own address - the Swedish home.
+    if page == "index.html" and lang == DEFAULT and GOOGLE_SITE_VERIFICATION:
+        lines.insert(3, '<meta name="google-site-verification" content="%s" />'
+                     % e(GOOGLE_SITE_VERIFICATION))
     for other in LANGS:
         lines.append('<link rel="alternate" hreflang="%s" href="%s" />' % (other, absolute_url(page, other)))
     lines.append('<link rel="alternate" hreflang="x-default" href="%s" />' % absolute_url(page, DEFAULT))
