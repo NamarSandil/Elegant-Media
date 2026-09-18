@@ -189,7 +189,7 @@ if (lb) {
    and vice versa. */
 const FONTS = {
   ltr: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap',
-  rtl: 'https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap'
+  rtl: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap'
 };
 
 function applyLang(lang) {

@@ -79,6 +79,18 @@
   --font-body: 'Tajawal', sans-serif;
 }
 
+/* The font pair follows the language. Only the active language's fonts are
+   downloaded (see the loader in each page's <head>), so --font-head and
+   --font-body must always name fonts that are actually loaded. Without this
+   rule, everything written as var(--font-head) - every button, the trust
+   strip, gallery captions, the About badge, step numbers - asked for
+   El Messiri in Swedish and English, where it is never loaded, and fell back
+   to the browser's default serif. */
+[dir="ltr"] {
+  --font-head: 'Cormorant Garamond', serif;
+  --font-body: 'Jost', sans-serif;
+}
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
 body {
