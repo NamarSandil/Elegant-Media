@@ -306,7 +306,36 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .stat strong {
   display: block; font-family: var(--font-head); font-size: clamp(2rem, 8vw, 3rem); color: var(--gold-light); line-height: 1;
 }
-.stat span { color: var(--grey); font-size: var(--text-base); margin-top: 8px; display: block; }
+.stat span { color: var(--text-muted); font-size: var(--text-base); margin-top: 8px; display: block; }
+/* Two of the three items are short statements rather than counters, so they
+   need a size that sits below the big numeral without looking like body copy. */
+.stat-text {
+  font-size: clamp(1.15rem, 4vw, 1.45rem);
+  line-height: var(--leading-heading);
+}
+
+/* ===== How it works ===== */
+.steps-section { background: var(--black-soft); }
+/* <ol> for the semantics - these are four steps in order - but the visible
+   numbers are the gold discs below, so the native markers are hidden. */
+.steps { display: grid; grid-template-columns: 1fr; gap: var(--space-md); list-style: none; }
+.step {
+  position: relative;
+  background: var(--black-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius); padding: var(--space-lg) var(--space-md);
+  transition: border-color var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
+}
+.step:hover { border-color: var(--gold); transform: translateY(-4px); }
+.step-num {
+  display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-head); font-weight: 700; font-size: var(--text-md);
+  color: var(--gold-light);
+  background: var(--surface-gold-wash); border: 1px solid var(--line);
+}
+.step h3 { font-size: var(--text-lg); margin-bottom: var(--space-2xs); color: var(--text-primary); }
+.step p { color: var(--text-muted); }
 
 /* ===== Section heads ===== */
 .section-head { text-align: center; max-width: 640px; margin: 0 auto var(--space-xl); }
@@ -475,7 +504,10 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
   width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg);
 }
 
-/* ===== Testimonials ===== */
+/* ===== Testimonials =====
+   The section markup was removed in Batch 4a - its three quotes, names and
+   faces were all invented. These styles are kept deliberately so the
+   section can be rebuilt as soon as there are genuine reviews to show. */
 .testimonials-section { background: var(--black-soft); }
 .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); }
 .testimonial {
@@ -625,7 +657,6 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 
 /* Large phones — 480px+ */
 @media (min-width: 480px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
   .hero-actions .btn, .webdesign-actions .btn { flex: 0 1 auto; text-align: center; }
   .nav-inner { gap: var(--space-xs); }
   .nav-actions { gap: 10px; }
@@ -636,7 +667,8 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 
 /* Tablets — 768px+ */
 @media (min-width: 768px) {
-  .gallery-grid, .services-grid, .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid, .services-grid, .testimonials-grid, .steps { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
   .g-item.tall { aspect-ratio: 3/4; }
   .field-row { grid-template-columns: 1fr 1fr; }
   .webdesign-features { grid-template-columns: 1fr 1fr; }
@@ -651,8 +683,12 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
     justify-content: flex-end;
     visibility: visible;   /* desktop nav is always on screen */
   }
-  .stats-grid { grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
   .gallery-grid, .services-grid, .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+  .steps { grid-template-columns: repeat(4, 1fr); }
+  /* Six services fill two clean rows of three; the enquiry card then
+     spans the full width rather than sitting alone in a third row. */
+  .service-card--cta { grid-column: 1 / -1; }
   .webdesign-inner { grid-template-columns: 1.1fr 1fr; gap: 60px; }
   .about-inner { grid-template-columns: 1fr 1.1fr; gap: 60px; }
   .about-media { max-width: none; margin-inline: 0; }

@@ -7,7 +7,7 @@
 
   <!-- SEO -->
   <title>ELEGANTMEDIA | Lyxig bröllops- och evenemangsfotografering</title>
-  <meta name="description" content="ELEGANTMEDIA-studion för bröllop, förlovning, speciella tillfällen, filmisk video och flygfoto med drönare. Vi förvandlar era ögonblick till eviga minnen med elegans och lyx." />
+  <meta name="description" content="ELEGANTMEDIA fotograferar bröllop, förlovning, dop och kyrkliga tillfällen, fest och speciella tillfällen — samt filmisk video och flygfoto med drönare. Offert för varje tillfälle. Svenska, English, العربية." />
   <meta name="author" content="ELEGANTMEDIA" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://namarsandil.github.io/Elegant-Media/" />
@@ -16,7 +16,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="sv_SE" />
   <meta property="og:title" content="ELEGANTMEDIA | Lyxig bröllops- och evenemangsfotografering" />
-  <meta property="og:description" content="Vi förvandlar era ögonblick till eviga minnen. Bröllop, förlovning, filmisk video och flygfoto." />
+  <meta property="og:description" content="Vi förvandlar era ögonblick till eviga minnen. Bröllop, förlovning, dop, fest, filmisk video och flygfoto." />
   <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80" />
 
   <!-- Icons -->
@@ -90,6 +90,15 @@
           <path d="M16 11 V18.4"/><path d="M13.7 19.3 H18.3"/>
         </g>
       </symbol>
+      <symbol id="i-church" viewBox="0 0 24 24">
+        <path d="M12 1.8 V5.2"/>
+        <path d="M10.4 3.2 H13.6"/>
+        <path d="M6.2 10.4 L12 5.4 L17.8 10.4"/>
+        <path d="M7.4 10.4 V20.6"/>
+        <path d="M16.6 10.4 V20.6"/>
+        <path d="M4.6 20.6 H19.4"/>
+        <path d="M10.2 20.6 V16.2 a1.8 1.8 0 0 1 3.6 0 V20.6"/>
+      </symbol>
       <symbol id="i-clapper" viewBox="0 0 24 24">
         <rect x="2.6" y="9.4" width="18.8" height="11" rx="1.8"/>
         <path d="M2.9 9.4 L4.3 4.6 L21.1 6.6 L20.9 9.4"/>
@@ -138,7 +147,6 @@
         <a href="#services" data-i18n="nav_services">Tjänster</a>
         <a href="webbdesign.html" data-i18n="nav_webdesign">Webbdesign</a>
         <a href="#about" data-i18n="nav_about">Om oss</a>
-        <a href="#testimonials" data-i18n="nav_testimonials">Omdömen</a>
         <a href="#contact" class="nav-cta" data-i18n="nav_book">Boka nu</a>
       </nav>
 
@@ -184,13 +192,26 @@
     <a href="#gallery" class="scroll-down" data-i18n-aria="a11y_scroll" aria-label="Scrolla till galleriet"><span></span></a>
   </section>
 
-  <!-- ===== Stats ===== -->
+  <!-- ===== Trust strip =====
+       Was four counters: 850 weddings, 12 years, 127 five-star reviews and 40
+       awards. The owner has confirmed only the twelve years is real, so the
+       other three are gone rather than adjusted. What replaces them are plain
+       facts about the studio - the three languages in particular are a genuine
+       differentiator and a stronger signal than an invented award count. -->
   <section class="stats">
     <div class="container stats-grid">
-      <div class="stat reveal"><strong data-count="850">0</strong><span data-i18n="stat_weddings">Dokumenterade bröllop</span></div>
-      <div class="stat reveal"><strong data-count="12">0</strong><span data-i18n="stat_years">Års erfarenhet</span></div>
-      <div class="stat reveal"><strong data-count="127">0</strong><span data-i18n="stat_reviews">Femstjärniga omdömen</span></div>
-      <div class="stat reveal"><strong data-count="40">0</strong><span data-i18n="stat_awards">Lokala priser</span></div>
+      <div class="stat reveal">
+        <strong data-count="12">0</strong>
+        <span data-i18n="stat_years">Års erfarenhet</span>
+      </div>
+      <div class="stat reveal">
+        <strong class="stat-text" data-i18n="stat_langs_v">Svenska · English · <span lang="ar">العربية</span></strong>
+        <span data-i18n="stat_langs">Vi arbetar på tre språk</span>
+      </div>
+      <div class="stat reveal">
+        <strong class="stat-text" data-i18n="stat_services_v">Foto · Film · Drönare</strong>
+        <span data-i18n="stat_services">Allt från samma team</span>
+      </div>
     </div>
   </section>
 
@@ -242,6 +263,11 @@
           <p data-i18n="svc_special_d">Födelsedagar, examina, familjekvällar — vi fångar glädjen i varje ögonblick med stort hantverk.</p>
         </article>
         <article class="service-card reveal">
+          <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-church"/></svg></div>
+          <h3 data-i18n="svc_christening_t">Dop &amp; kyrkliga tillfällen</h3>
+          <p data-i18n="svc_christening_d">Dop, första nattvarden och familjehögtider i kyrkan — fotograferat diskret och med respekt för rummet.</p>
+        </article>
+        <article class="service-card reveal">
           <div class="service-icon"><svg class="icon" aria-hidden="true"><use href="#i-clapper"/></svg></div>
           <h3 data-i18n="svc_video_t">Filmisk videografi</h3>
           <p data-i18n="svc_video_d">Kortfilmer av filmisk kvalitet som berättar historien om ert evenemang med professionell musik och redigering.</p>
@@ -257,6 +283,45 @@
           <a href="#contact" class="btn btn-gold btn-sm" data-i18n="svc_cta_btn">Kontakta oss</a>
         </article>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== How it works =====
+       Sits between Services and About deliberately. Price is the first
+       question most visitors have, and this studio quotes per event rather
+       than publishing a list - so this section answers what a price list
+       normally answers (what happens, in what order, what you end up with)
+       and says plainly why there is no fixed figure. -->
+  <section class="section steps-section" id="how">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag" data-i18n="how_tag">Så går det till</span>
+        <h2 data-i18n="how_title">Från första kontakt till färdiga bilder</h2>
+        <p data-i18n="how_desc">Varje tillfälle är olika, därför sätts varje offert ihop för just er. Så här ser vägen dit ut.</p>
+      </div>
+
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">1</span>
+          <h3 data-i18n="how_1_t">Berätta om ert tillfälle</h3>
+          <p data-i18n="how_1_d">Datum, plats och vad ni har i tankarna. Ett kort meddelande räcker för att börja.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">2</span>
+          <h3 data-i18n="how_2_t">Ni får ett förslag</h3>
+          <p data-i18n="how_2_d">Det finns ingen fast prislista: omfattning, timmar och leverans sätts efter ert tillfälle, inte efter ett paket någon annan valt.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">3</span>
+          <h3 data-i18n="how_3_t">Vi fotograferar dagen</h3>
+          <p data-i18n="how_3_d">Vi arbetar lugnt i bakgrunden, så att ingen behöver tänka på kameran.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num" aria-hidden="true">4</span>
+          <h3 data-i18n="how_4_t">Ni får bilderna</h3>
+          <p data-i18n="how_4_d">Utvalda och redigerade, levererade digitalt att dela och skriva ut som ni vill.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -285,35 +350,6 @@
           <li data-i18n="about_li3">Fullständig sekretess och respekt för er integritet</li>
         </ul>
         <a href="#gallery" class="btn btn-dark" data-i18n="about_btn">Se vårt arbete</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Testimonials ===== -->
-  <section class="section testimonials-section" id="testimonials">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="section-tag" data-i18n="testimonials_tag">Omdömen</span>
-        <h2 data-i18n="testimonials_title">Våra kunders förtroende är vår medalj</h2>
-        <p data-i18n="testimonials_desc">Ärliga ord från familjer och par som delat sina vackraste stunder med oss.</p>
-      </div>
-
-      <div class="testimonials-grid">
-        <figure class="testimonial reveal">
-          <div class="stars"><span aria-hidden="true">★★★★★</span><span class="sr-only" data-i18n="a11y_rating">5 av 5 stjärnor</span></div>
-          <blockquote data-i18n="tst1_q">Våra bröllopsbilder överträffade alla våra förväntningar! Professionalism och förfinad smak i varje bild. Tack för dessa tidlösa minnen.</blockquote>
-          <figcaption><img src="https://i.pravatar.cc/80?img=47" alt="" width="80" height="80" loading="lazy" decoding="async" /><span><strong data-i18n="tst1_name">Emma & Erik</strong><em data-i18n="tst1_role">Nygifta</em></span></figcaption>
-        </figure>
-        <figure class="testimonial reveal">
-          <div class="stars"><span aria-hidden="true">★★★★★</span><span class="sr-only" data-i18n="a11y_rating">5 av 5 stjärnor</span></div>
-          <blockquote data-i18n="tst2_q">Den filmiska videon var ett sant konstverk. Vi grät av glädje när vi såg den! Ett elegant och professionellt team i alla avseenden.</blockquote>
-          <figcaption><img src="https://i.pravatar.cc/80?img=32" alt="" width="80" height="80" loading="lazy" decoding="async" /><span><strong data-i18n="tst2_name">Anna Lindqvist</strong><em data-i18n="tst2_role">Förlovningsfest</em></span></figcaption>
-        </figure>
-        <figure class="testimonial reveal">
-          <div class="stars"><span aria-hidden="true">★★★★★</span><span class="sr-only" data-i18n="a11y_rating">5 av 5 stjärnor</span></div>
-          <blockquote data-i18n="tst3_q">Drönarfilmningen gav vårt evenemang en lyx vi inte hade föreställt oss. Förstklassig service och punktlighet. Jag rekommenderar dem varmt.</blockquote>
-          <figcaption><img src="https://i.pravatar.cc/80?img=12" alt="" width="80" height="80" loading="lazy" decoding="async" /><span><strong data-i18n="tst3_name">Johan Andersson</strong><em data-i18n="tst3_role">Familjeevenemang</em></span></figcaption>
-        </figure>
       </div>
     </div>
   </section>

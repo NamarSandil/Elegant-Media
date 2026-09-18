@@ -7,13 +7,14 @@ const I18N = {
 
     hero_title: 'نحوّل لحظاتكم', hero_title_span: 'إلى ذكريات خالدة',
     hero_sub: 'نلتقط جمال يومكم الأهم بعدسة فنية راقية تحفظ تفاصيل الفرح والرومانسية للأبد.',
-    hero_book: 'احجز جلستك', hero_view: 'مشاهدة الأعمال',
+    hero_book: 'احجز جلستك', hero_view: 'تصفّح المعرض',
 
-    stat_weddings: 'عرس موثّق', stat_years: 'عام خبرة',
-    stat_reviews: 'تقييم خمس نجوم', stat_awards: 'جائزة محلية',
+    stat_years: 'عام خبرة',
+    stat_langs_v: 'العربية · <span lang="en">English</span> · <span lang="sv">Svenska</span>', stat_langs: 'نعمل بثلاث لغات',
+    stat_services_v: 'تصوير · فيديو · درون', stat_services: 'كل ذلك من الفريق نفسه',
 
     gallery_tag: 'معرض الأعمال', gallery_title: 'لحظات التقطناها بشغف',
-    gallery_desc: 'تصفّح مجموعة مختارة من أعمالنا حسب الفئة، واضغط على أي صورة لمشاهدتها بالحجم الكامل.',
+    gallery_desc: 'تصفّح المعرض حسب الفئة، واضغط على أي صورة لمشاهدتها بالحجم الكامل.',
     filter_all: 'الكل', filter_wedding: 'أعراس', filter_engagement: 'خطوبة',
     filter_party: 'حفلات', filter_special: 'مناسبات خاصة', filter_outdoor: 'جلسات خارجية',
 
@@ -22,6 +23,8 @@ const I18N = {
     svc_wedding_t: 'تصوير الأعراس', svc_wedding_d: 'توثيق كامل ليوم زفافكم بأسلوب سينمائي يحفظ كل ابتسامة ودمعة فرح.',
     svc_engagement_t: 'تصوير الخطوبة', svc_engagement_d: 'جلسات رومانسية تحتفي ببداية قصتكم بإطلالة أنيقة لا تُنسى.',
     svc_special_t: 'تصوير المناسبات الخاصة', svc_special_d: 'أعياد ميلاد، تخرّج، أمسيات عائلية — نلتقط بهجة كل لحظة بحرفية عالية.',
+    svc_christening_t: 'تصوير العماد والمناسبات الكنسية',
+    svc_christening_d: 'العماد، المناولة الأولى والاحتفالات العائلية في الكنيسة — نصوّر بهدوء واحترام لقدسية المكان.',
     svc_video_t: 'تصوير فيديو سينمائي', svc_video_d: 'أفلام قصيرة بجودة سينمائية تروي قصة مناسبتكم بموسيقى ومونتاج احترافي.',
     svc_drone_t: 'تصوير جوي بالدرون', svc_drone_d: 'لقطات جوية مبهرة تمنح مناسبتكم بُعدًا بصريًا فخمًا من زوايا فريدة.',
     svc_cta_t: 'هل لديكم فكرة مختلفة؟', svc_cta_d: 'تواصلوا معنا لتصميم باقة مخصصة تناسب رؤيتكم وميزانيتكم.', svc_cta_btn: 'تواصل معنا',
@@ -38,16 +41,19 @@ const I18N = {
     about_p1: 'في استوديو <strong>ELEGANTMEDIA</strong>، نؤمن أن لكل مناسبة روحًا فريدة تستحق أن تُخلَّد بأبهى صورة. منذ أكثر من اثني عشر عامًا، نرافق العائلات والعرسان في أجمل لحظات حياتهم.',
     about_p2: 'يضم فريقنا نخبة من المصوّرين ومخرجي الفيديو وطيّاري الدرون المحترفين، نعمل بأحدث المعدّات وبشغف لا ينضب لنقدّم لكم أعمالًا تتجاوز توقعاتكم.',
     about_li1: 'أحدث الكاميرات والعدسات الاحترافية', about_li2: 'تسليم سريع وتعديل بجودة عالية', about_li3: 'سرّية تامة واحترام لخصوصيتكم',
-    about_btn: 'شاهد أعمالنا', about_badge_text: 'عامًا من الإبداع',
+    about_btn: 'تصفّح المعرض', about_badge_text: 'عامًا من الإبداع',
 
     testimonials_tag: 'آراء العملاء', testimonials_title: 'ثقة عملائنا وسامنا',
     testimonials_desc: 'كلمات صادقة من عائلات وعرسان شاركونا أجمل لحظاتهم.',
-    tst1_q: 'صور زفافنا فاقت كل توقعاتنا! الاحترافية والذوق الرفيع في كل لقطة. شكرًا لكم على هذه الذكريات الخالدة.',
-    tst1_name: 'إيما وإريك', tst1_role: 'عروسان',
-    tst2_q: 'الفيديو السينمائي كان تحفة فنية حقيقية. بكينا من الفرح ونحن نشاهده! فريق راقٍ ومحترف بكل معنى الكلمة.',
-    tst2_name: 'آنا ليندكفيست', tst2_role: 'حفل خطوبة',
-    tst3_q: 'التصوير الجوي بالدرون أعطى مناسبتنا فخامة لم نتخيّلها. تعامل راقٍ والتزام بالمواعيد. أنصح بهم بشدة.',
-    tst3_name: 'يوهان أندرسون', tst3_role: 'مناسبة عائلية',
+
+
+    /* How it works - answers what a price list normally would */
+    how_tag: 'كيف نعمل', how_title: 'من أول رسالة إلى الصور النهائية',
+    how_desc: 'كل مناسبة مختلفة، ولذلك يُعدّ كل عرض سعر خصيصًا لكم. هذه هي الخطوات.',
+    how_1_t: 'أخبرونا عن مناسبتكم', how_1_d: 'التاريخ، المكان، وما تتخيّلونه. رسالة قصيرة تكفي للبداية.',
+    how_2_t: 'نرسل لكم عرضًا مخصصًا', how_2_d: 'لا توجد قائمة أسعار ثابتة: نحدّد النطاق والساعات وطريقة التسليم حسب مناسبتكم أنتم.',
+    how_3_t: 'نصوّر اليوم نفسه', how_3_d: 'نعمل بهدوء في الخلفية حتى لا ينشغل أحد بالكاميرا.',
+    how_4_t: 'تستلمون الصور', how_4_d: 'منقّاة ومعالجة، وتُسلَّم رقميًا لتشاركوها وتطبعوها كما تحبّون.',
 
     contact_tag: 'تواصل معنا', contact_title: 'لنبدأ بصناعة ذكراكم القادمة',
     contact_desc: 'املأ النموذج لحجز جلستك، أو تواصل معنا مباشرة عبر القنوات التالية. فريقنا جاهز للإجابة على استفساراتكم.',
@@ -92,13 +98,14 @@ const I18N = {
 
     hero_title: 'We Transform Your Moments', hero_title_span: 'Into Timeless Memories',
     hero_sub: 'We capture the beauty of your most important day with a refined artistic eye that preserves every detail of joy and romance forever.',
-    hero_book: 'Book Your Session', hero_view: 'View Our Work',
+    hero_book: 'Book Your Session', hero_view: 'Browse the Gallery',
 
-    stat_weddings: 'Weddings Documented', stat_years: 'Years of Experience',
-    stat_reviews: 'Five-Star Reviews', stat_awards: 'Local Awards',
+    stat_years: 'Years of Experience',
+    stat_langs_v: 'Svenska · English · <span lang="ar">العربية</span>', stat_langs: 'We work in three languages',
+    stat_services_v: 'Photo · Film · Drone', stat_services: 'All from the same team',
 
     gallery_tag: 'Our Gallery', gallery_title: 'Moments Captured With Passion',
-    gallery_desc: 'Browse a curated selection of our work by category, and click any photo to view it in full size.',
+    gallery_desc: 'Browse the gallery by category, and select any photograph to view it full size.',
     filter_all: 'All', filter_wedding: 'Weddings', filter_engagement: 'Engagement',
     filter_party: 'Parties', filter_special: 'Special Occasions', filter_outdoor: 'Outdoor Sessions',
 
@@ -107,6 +114,8 @@ const I18N = {
     svc_wedding_t: 'Wedding Photography', svc_wedding_d: 'Complete documentation of your wedding day in a cinematic style that preserves every smile and tear of joy.',
     svc_engagement_t: 'Engagement Photography', svc_engagement_d: 'Romantic sessions celebrating the start of your story with an elegant, unforgettable style.',
     svc_special_t: 'Special Occasions', svc_special_d: 'Birthdays, graduations, family evenings — we capture the joy of every moment with great craftsmanship.',
+    svc_christening_t: 'Christenings & Church Events',
+    svc_christening_d: 'Christenings, first communions and family celebrations in church — photographed quietly and with respect for the setting.',
     svc_video_t: 'Cinematic Videography', svc_video_d: 'Short films of cinematic quality that tell the story of your event with professional music and editing.',
     svc_drone_t: 'Aerial Drone Photography', svc_drone_d: 'Stunning aerial shots that give your event a luxurious visual dimension from unique angles.',
     svc_cta_t: 'Have a Different Idea?', svc_cta_d: 'Contact us to design a custom package that suits your vision and budget.', svc_cta_btn: 'Contact Us',
@@ -123,16 +132,19 @@ const I18N = {
     about_p1: 'At <strong>ELEGANTMEDIA</strong> studio, we believe every occasion has a unique soul that deserves to be immortalized in its most beautiful form. For over twelve years, we have accompanied families and couples through the most beautiful moments of their lives.',
     about_p2: 'Our team brings together elite photographers, videographers and professional drone pilots. We work with the latest equipment and unwavering passion to deliver work that exceeds your expectations.',
     about_li1: 'The latest professional cameras and lenses', about_li2: 'Fast delivery and high-quality editing', about_li3: 'Complete confidentiality and respect for your privacy',
-    about_btn: 'View Our Work', about_badge_text: 'Years of Creativity',
+    about_btn: 'Browse the Gallery', about_badge_text: 'Years of Creativity',
 
     testimonials_tag: 'Testimonials', testimonials_title: 'Our Clients\' Trust Is Our Badge',
     testimonials_desc: 'Honest words from families and couples who shared their most beautiful moments with us.',
-    tst1_q: 'Our wedding photos exceeded all our expectations! Professionalism and refined taste in every shot. Thank you for these timeless memories.',
-    tst1_name: 'Emma & Erik', tst1_role: 'Newlyweds',
-    tst2_q: 'The cinematic video was a true work of art. We cried with joy watching it! An elegant and professional team in every sense of the word.',
-    tst2_name: 'Anna Lindqvist', tst2_role: 'Engagement Party',
-    tst3_q: 'The aerial drone footage gave our event a luxury we hadn\'t imagined. Top-notch service and punctuality. I highly recommend them.',
-    tst3_name: 'Johan Andersson', tst3_role: 'Family Event',
+
+
+    /* How it works - answers what a price list normally would */
+    how_tag: 'How it works', how_title: 'From first message to finished photographs',
+    how_desc: 'Every occasion is different, which is why every quote is put together for you. Here is the path.',
+    how_1_t: 'Tell us about your occasion', how_1_d: 'The date, the place and what you have in mind. A short message is enough to start.',
+    how_2_t: 'You get a tailored quote', how_2_d: 'There is no fixed price list: scope, hours and delivery are set around your event, not a package someone else chose.',
+    how_3_t: 'We photograph the day', how_3_d: 'We work quietly in the background, so nobody spends the day thinking about the camera.',
+    how_4_t: 'You receive the photographs', how_4_d: 'Selected and edited, delivered digitally for you to share and print as you like.',
 
     contact_tag: 'Contact Us', contact_title: 'Let\'s Start Creating Your Next Memory',
     contact_desc: 'Fill out the form to book your session, or reach us directly through the channels below. Our team is ready to answer your questions.',
@@ -177,13 +189,14 @@ const I18N = {
 
     hero_title: 'Vi förvandlar era ögonblick', hero_title_span: 'till eviga minnen',
     hero_sub: 'Vi fångar skönheten i er viktigaste dag med en förfinad konstnärlig blick som bevarar varje detalj av glädje och romantik för alltid.',
-    hero_book: 'Boka din session', hero_view: 'Se vårt arbete',
+    hero_book: 'Boka din session', hero_view: 'Se galleriet',
 
-    stat_weddings: 'Dokumenterade bröllop', stat_years: 'Års erfarenhet',
-    stat_reviews: 'Femstjärniga omdömen', stat_awards: 'Lokala priser',
+    stat_years: 'Års erfarenhet',
+    stat_langs_v: 'Svenska · English · <span lang="ar">العربية</span>', stat_langs: 'Vi arbetar på tre språk',
+    stat_services_v: 'Foto · Film · Drönare', stat_services: 'Allt från samma team',
 
     gallery_tag: 'Vårt galleri', gallery_title: 'Ögonblick fångade med passion',
-    gallery_desc: 'Bläddra bland ett utvalt urval av vårt arbete efter kategori och klicka på valfri bild för att se den i full storlek.',
+    gallery_desc: 'Bläddra i galleriet efter kategori och välj en bild för att se den i full storlek.',
     filter_all: 'Alla', filter_wedding: 'Bröllop', filter_engagement: 'Förlovning',
     filter_party: 'Fester', filter_special: 'Speciella tillfällen', filter_outdoor: 'Utomhus',
 
@@ -192,6 +205,8 @@ const I18N = {
     svc_wedding_t: 'Bröllopsfotografering', svc_wedding_d: 'Fullständig dokumentation av er bröllopsdag i filmisk stil som bevarar varje leende och glädjetår.',
     svc_engagement_t: 'Förlovningsfotografering', svc_engagement_d: 'Romantiska sessioner som firar början på er historia med en elegant och oförglömlig stil.',
     svc_special_t: 'Speciella tillfällen', svc_special_d: 'Födelsedagar, examina, familjekvällar — vi fångar glädjen i varje ögonblick med stort hantverk.',
+    svc_christening_t: 'Dop & kyrkliga tillfällen',
+    svc_christening_d: 'Dop, första nattvarden och familjehögtider i kyrkan — fotograferat diskret och med respekt för rummet.',
     svc_video_t: 'Filmisk videografi', svc_video_d: 'Kortfilmer av filmisk kvalitet som berättar historien om ert evenemang med professionell musik och redigering.',
     svc_drone_t: 'Flygfoto med drönare', svc_drone_d: 'Hänförande flygbilder som ger ert evenemang en lyxig visuell dimension från unika vinklar.',
     svc_cta_t: 'Har ni en annan idé?', svc_cta_d: 'Kontakta oss för att skapa ett skräddarsytt paket som passar er vision och budget.', svc_cta_btn: 'Kontakta oss',
@@ -208,16 +223,19 @@ const I18N = {
     about_p1: 'På studion <strong>ELEGANTMEDIA</strong> tror vi att varje tillfälle har en unik själ som förtjänar att förevigas i den vackraste bilden. I över tolv år har vi följt familjer och par genom livets vackraste stunder.',
     about_p2: 'Vårt team samlar elitfotografer, videografer och professionella drönarpiloter. Vi arbetar med den senaste utrustningen och outtröttlig passion för att leverera arbete som överträffar era förväntningar.',
     about_li1: 'De senaste professionella kamerorna och objektiven', about_li2: 'Snabb leverans och högkvalitativ redigering', about_li3: 'Fullständig sekretess och respekt för er integritet',
-    about_btn: 'Se vårt arbete', about_badge_text: 'Års kreativitet',
+    about_btn: 'Se galleriet', about_badge_text: 'Års kreativitet',
 
     testimonials_tag: 'Omdömen', testimonials_title: 'Våra kunders förtroende är vår medalj',
     testimonials_desc: 'Ärliga ord från familjer och par som delat sina vackraste stunder med oss.',
-    tst1_q: 'Våra bröllopsbilder överträffade alla våra förväntningar! Professionalism och förfinad smak i varje bild. Tack för dessa tidlösa minnen.',
-    tst1_name: 'Emma & Erik', tst1_role: 'Nygifta',
-    tst2_q: 'Den filmiska videon var ett sant konstverk. Vi grät av glädje när vi såg den! Ett elegant och professionellt team i alla avseenden.',
-    tst2_name: 'Anna Lindqvist', tst2_role: 'Förlovningsfest',
-    tst3_q: 'Drönarfilmningen gav vårt evenemang en lyx vi inte hade föreställt oss. Förstklassig service och punktlighet. Jag rekommenderar dem varmt.',
-    tst3_name: 'Johan Andersson', tst3_role: 'Familjeevenemang',
+
+
+    /* How it works - answers what a price list normally would */
+    how_tag: 'Så går det till', how_title: 'Från första kontakt till färdiga bilder',
+    how_desc: 'Varje tillfälle är olika, därför sätts varje offert ihop för just er. Så här ser vägen dit ut.',
+    how_1_t: 'Berätta om ert tillfälle', how_1_d: 'Datum, plats och vad ni har i tankarna. Ett kort meddelande räcker för att börja.',
+    how_2_t: 'Ni får ett förslag', how_2_d: 'Det finns ingen fast prislista: omfattning, timmar och leverans sätts efter ert tillfälle, inte efter ett paket någon annan valt.',
+    how_3_t: 'Vi fotograferar dagen', how_3_d: 'Vi arbetar lugnt i bakgrunden, så att ingen behöver tänka på kameran.',
+    how_4_t: 'Ni får bilderna', how_4_d: 'Utvalda och redigerade, levererade digitalt att dela och skriva ut som ni vill.',
 
     contact_tag: 'Kontakta oss', contact_title: 'Låt oss börja skapa ert nästa minne',
     contact_desc: 'Fyll i formuläret för att boka din session, eller nå oss direkt via kanalerna nedan. Vårt team är redo att svara på era frågor.',
