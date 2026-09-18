@@ -189,7 +189,7 @@ if (lb) {
    and vice versa. */
 const FONTS = {
   ltr: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap',
-  rtl: 'https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap'
+  rtl: 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap'
 };
 
 function applyLang(lang) {
@@ -293,16 +293,26 @@ const counterObs = new IntersectionObserver(entries => {
 counters.forEach(c => counterObs.observe(c));
 
 /* ===== Booking form =====
-   The form used to call preventDefault(), show "your request has been
-   received" and then throw the data away - it had no destination at all, so
-   every enquiry ever submitted was lost.
+   History: the form used to show "your request has been received" and throw
+   the data away (fixed in Batch 2 with a WhatsApp hand-off), and that
+   hand-off pointed at a number with a missing digit (fixed in Batch 4b).
 
-   It now hands the details to WhatsApp. The visitor still presses send in
-   WhatsApp themselves, so the confirmation below says exactly that rather
-   than claiming the booking is done.
+   There are now two ways to send, as the owner chose at the start:
+   - "Skicka förfrågan" emails the enquiry to the studio through FormSubmit.
+     This is the default, and what Enter submits.
+   - "Skicka via WhatsApp" opens WhatsApp with the enquiry written out.
 
-   When the email path is added, this is the place for it - post to the form
-   service, and keep WhatsApp as the alternative. */
+   The visitor is only ever told their request was received when FormSubmit
+   has actually confirmed it. Anything else - network failure, timeout, or
+   the form not yet being activated - offers WhatsApp instead, with the
+   details already filled in, so nobody is left not knowing.
+
+   FormSubmit sends a one-time "Activate Form" email to BOOKING_EMAIL on the
+   first submission. Until someone clicks it, submissions are held (for up to
+   30 days, per formsubmit.co/help) and delivered on activation.
+
+   When testing, never submit against the real endpoint - it emails the
+   owner. Stub window.fetch and window.open instead. */
 
 /* International format with no "+" and no leading 00, which is what wa.me
    expects. Confirmed by the owner on 2026-09-18 as +46 76 200 02 81.
@@ -310,40 +320,151 @@ counters.forEach(c => counterObs.observe(c));
    valid Swedish mobile, so WhatsApp could not open a chat with it. */
 const WHATSAPP_NUMBER = '46762000281';
 
+/* Where email enquiries go. Given by the owner on 2026-09-18. If the
+   activation email never arrives, this address is the first thing to check. */
+const BOOKING_EMAIL = 'elegantmedia200@gmail.com';
+
+/* How long to wait for FormSubmit before offering WhatsApp instead. */
+const EMAIL_TIMEOUT_MS = 15000;
+
+/* Event types -> the Swedish label, so the studio's inbox always reads the
+   same way whichever language the visitor used. */
+const TYPE_KEYS = {
+  wedding: 'form_type_w', engagement: 'form_type_e', christening: 'form_type_c',
+  special: 'form_type_s', video: 'form_type_v', drone: 'form_type_d'
+};
+const LANG_NAMES = { sv: 'Svenska', en: 'Engelska', ar: 'Arabiska' };
+
 const bookingForm = document.getElementById('bookingForm');
 if (bookingForm) {
   const status = document.getElementById('formStatus');
+  const failWa = document.getElementById('failWa');
   const fallback = document.getElementById('formFallback');
+  const submitButtons = [...bookingForm.querySelectorAll('button[type="submit"]')];
 
-  function bookingMessage() {
-    const get = id => (document.getElementById(id).value || '').trim();
-    const typeSel = document.getElementById('type');
-    const typeLabel = typeSel.selectedIndex > 0
-      ? typeSel.options[typeSel.selectedIndex].textContent.trim()
-      : '';
-
-    const lines = [t('wa_title'), ''];
-    lines.push(`${t('wa_name')}: ${get('name')}`);
-    lines.push(`${t('wa_phone')}: ${get('phone')}`);
-    if (typeLabel) lines.push(`${t('wa_type')}: ${typeLabel}`);
-    if (get('date')) lines.push(`${t('wa_date')}: ${get('date')}`);
-    if (get('message')) lines.push(`${t('wa_details')}: ${get('message')}`);
-    return lines.join('\n');
+  /* Show exactly one status message ("sending", "ok", "fail", "wa") or none. */
+  function setStatus(state) {
+    if (state) status.dataset.state = state;
+    else delete status.dataset.state;
+    status.querySelectorAll('[data-state-part]').forEach(el => {
+      el.hidden = el.dataset.statePart !== state;
+    });
   }
 
-  bookingForm.addEventListener('submit', e => {
+  function setBusy(busy) {
+    submitButtons.forEach(b => { b.disabled = busy; });
+    bookingForm.setAttribute('aria-busy', String(busy));
+  }
+
+  function readFields() {
+    const get = id => (document.getElementById(id).value || '').trim();
+    const typeSel = document.getElementById('type');
+    return {
+      name: get('name'), phone: get('phone'), email: get('email'),
+      date: get('date'), message: get('message'),
+      type: typeSel.value,
+      /* the label as the visitor saw it, in their language */
+      typeLabel: typeSel.selectedIndex > 0
+        ? typeSel.options[typeSel.selectedIndex].textContent.trim() : ''
+    };
+  }
+
+  /* The WhatsApp message is written in the visitor's language - it is their
+     message, sent from their phone. */
+  function whatsappUrl(f) {
+    const lines = [t('wa_title'), ''];
+    lines.push(`${t('wa_name')}: ${f.name}`);
+    lines.push(`${t('wa_phone')}: ${f.phone}`);
+    if (f.email) lines.push(`${t('wa_email')}: ${f.email}`);
+    if (f.typeLabel) lines.push(`${t('wa_type')}: ${f.typeLabel}`);
+    if (f.date) lines.push(`${t('wa_date')}: ${f.date}`);
+    if (f.message) lines.push(`${t('wa_details')}: ${f.message}`);
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+  }
+
+  /* The email is a notification to the studio, so its labels are always
+     Swedish, plus a note of which language the visitor was using - that is
+     the language to reply in. */
+  function emailPayload(f) {
+    const sv = I18N.sv;
+    const payload = {
+      _subject: `Ny bokningsförfrågan – ${f.name}`,
+      _template: 'table',
+      'Namn': f.name,
+      'Telefon': f.phone,
+      'Typ av tillfälle': sv[TYPE_KEYS[f.type]] || f.type,
+      'Önskat datum': f.date || '–',
+      'Meddelande': f.message || '–',
+      'Språk på webbplatsen': LANG_NAMES[currentLang] || currentLang
+    };
+    if (f.email) {
+      payload.email = f.email;      // FormSubmit's reply-to convention
+      payload._replyto = f.email;
+    }
+    return payload;
+  }
+
+  /* true only when FormSubmit confirms the message was accepted. It has been
+     documented both as the string "true" and as a boolean, so both count. */
+  async function sendEmail(f) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), EMAIL_TIMEOUT_MS);
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${BOOKING_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(emailPayload(f)),
+        signal: ctrl.signal
+      });
+      if (!res.ok) return false;
+      const data = await res.json().catch(() => ({}));
+      return data.success === true || data.success === 'true';
+    } catch (err) {
+      return false;   // offline, blocked, timed out - WhatsApp is offered instead
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
+  bookingForm.addEventListener('submit', async e => {
     e.preventDefault();   // the browser has already enforced the required fields
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(bookingMessage())}`;
-    fallback.href = url;
-    status.hidden = false;
+    /* A filled spam trap: pretend it worked and send nothing. */
+    if (document.getElementById('hp_check').value) { setStatus('ok'); return; }
 
-    /* Opened from a click, so this is normally allowed. If a pop-up blocker
-       stops it, the fallback link above is already pointing at the same
-       message. The form is deliberately NOT reset - if the hand-off fails
-       the visitor still has everything they typed. */
-    window.open(url, '_blank', 'noopener');
+    const f = readFields();
+    const waUrl = whatsappUrl(f);
+    failWa.href = waUrl;
+    fallback.href = waUrl;
+
+    /* Enter in a text field submits with the first button, so email is the
+       default whenever no button was named. */
+    const via = (e.submitter && e.submitter.value) || 'email';
+
+    if (via === 'whatsapp') {
+      setStatus('wa');
+      /* Opened directly from the click so pop-up blockers allow it. If one
+         intervenes anyway, the link in the status message has the same
+         message. The form is NOT reset - the details stay if this fails. */
+      window.open(waUrl, '_blank', 'noopener');
+      return;
+    }
+
+    setBusy(true);
+    setStatus('sending');
+    const ok = await sendEmail(f);
+    setBusy(false);
+
+    if (ok) {
+      setStatus('ok');
+      bookingForm.reset();   // only once it has genuinely been received
+    } else {
+      setStatus('fail');     // details kept, WhatsApp offered with them filled in
+    }
   });
+
+  /* Choosing WhatsApp from the failure message swaps to the WhatsApp note. */
+  failWa.addEventListener('click', () => setStatus('wa'));
 
   /* Booking date: no dates in the past */
   const dateField = document.getElementById('date');

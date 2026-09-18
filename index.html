@@ -38,7 +38,7 @@
       link.rel = 'stylesheet';
       link.id = 'langFonts';
       link.href = (lang === 'ar')
-        ? 'https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap'
+        ? 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap'
         : 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap';
       document.head.appendChild(link);
     })();
@@ -397,45 +397,82 @@
         <h3 data-i18n="form_title">Bokningsformulär</h3>
         <div class="field">
           <label for="name" data-i18n="form_name">Fullständigt namn</label>
-          <input type="text" id="name" name="name" required placeholder="Ange ditt namn" data-i18n-ph="form_name_ph" />
+          <input type="text" id="name" name="name" required autocomplete="name" placeholder="Ange ditt namn" data-i18n-ph="form_name_ph" />
         </div>
         <div class="field-row">
           <div class="field">
             <label for="phone" data-i18n="form_phone">Telefonnummer</label>
-            <input type="tel" id="phone" name="phone" required placeholder="070 123 45 67" />
+            <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="070 123 45 67" />
           </div>
+          <!-- Optional. Lets the studio reply by email, and becomes the
+               Reply-To of the notification so "Reply" in Gmail just works. -->
+          <div class="field">
+            <label for="email" data-i18n="form_email">E-post (valfritt)</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="namn@exempel.se" data-i18n-ph="form_email_ph" />
+          </div>
+        </div>
+        <div class="field-row">
           <div class="field">
             <label for="type" data-i18n="form_type">Typ av evenemang</label>
             <select id="type" name="type" required>
               <option value="" data-i18n="form_type_opt0">Välj...</option>
               <option value="wedding" data-i18n="form_type_w">Bröllop</option>
               <option value="engagement" data-i18n="form_type_e">Förlovning</option>
+              <option value="christening" data-i18n="form_type_c">Dop &amp; kyrkliga tillfällen</option>
               <option value="special" data-i18n="form_type_s">Speciellt tillfälle</option>
               <option value="video" data-i18n="form_type_v">Filmisk video</option>
               <option value="drone" data-i18n="form_type_d">Flygdrönare</option>
             </select>
           </div>
-        </div>
-        <div class="field">
-          <label for="date" data-i18n="form_date">Önskat datum</label>
-          <input type="date" id="date" name="date" />
+          <div class="field">
+            <label for="date" data-i18n="form_date">Önskat datum</label>
+            <input type="date" id="date" name="date" />
+          </div>
         </div>
         <div class="field">
           <label for="message" data-i18n="form_msg">Ytterligare detaljer</label>
           <textarea id="message" name="message" rows="4" placeholder="Berätta om ert evenemang..." data-i18n-ph="form_msg_ph"></textarea>
         </div>
-        <button type="submit" class="btn btn-gold btn-block form-submit">
-          <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
-          <span data-i18n="form_submit">Skicka via WhatsApp</span>
-        </button>
 
-        <p class="form-privacy" data-i18n="form_privacy">Dina uppgifter skickas som ett WhatsApp-meddelande från din egen telefon. Vi sparar ingenting på den här webbplatsen.</p>
+        <!-- Spam trap. Invisible and unreachable for people (hidden from
+             screen readers, skipped by Tab); simple bots fill every field they
+             find, and a filled trap means the submission is quietly dropped. -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="hp_check">Lämna tomt</label>
+          <input type="text" id="hp_check" name="hp_check" tabindex="-1" autocomplete="off" />
+        </div>
 
-        <!-- role=status + aria-live so screen readers are told what happened.
-             Previously the confirmation simply appeared, silently. -->
-        <div class="form-status" id="formStatus" role="status" aria-live="polite" hidden>
-          <p class="form-note" data-i18n="form_sent">WhatsApp har öppnats med dina uppgifter ifyllda. Tryck på skicka där för att slutföra din förfrågan.</p>
-          <a class="form-fallback" id="formFallback" href="#" target="_blank" rel="noopener" data-i18n="form_fallback">Öppnades inte WhatsApp? Öppna det här</a>
+        <!-- Two ways to send. The first button is what Enter submits. -->
+        <div class="form-actions">
+          <button type="submit" name="via" value="email" class="btn btn-gold btn-block form-submit">
+            <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
+            <span data-i18n="form_submit">Skicka förfrågan</span>
+          </button>
+          <button type="submit" name="via" value="whatsapp" class="btn btn-outline btn-block form-submit">
+            <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+            <span data-i18n="form_submit_wa">Skicka via WhatsApp</span>
+          </button>
+        </div>
+
+        <p class="form-privacy" data-i18n="form_privacy">Formuläret skickar dina uppgifter till oss via e-posttjänsten FormSubmit – eller via WhatsApp, om du väljer det. De används bara för att svara på din förfrågan. <a href="integritet.html">Läs vår integritetspolicy</a>.</p>
+
+        <!-- One live region, always present, so screen readers announce each
+             change. Exactly one child is shown per state; the region only
+             draws its box while a state is set. -->
+        <div class="form-status" id="formStatus" role="status" aria-live="polite">
+          <p class="form-note" data-state-part="sending" hidden data-i18n="form_sending">Skickar …</p>
+          <p class="form-note" data-state-part="ok" hidden data-i18n="form_ok">Tack – vi har tagit emot din förfrågan och återkommer så snart vi kan.</p>
+          <div data-state-part="fail" hidden>
+            <p class="form-note" data-i18n="form_fail">Vi kunde inte bekräfta att din förfrågan kom fram. Skicka den via WhatsApp i stället, så vet du säkert att den når oss.</p>
+            <a class="btn btn-outline btn-block form-submit form-fail-wa" id="failWa" href="#" target="_blank" rel="noopener">
+              <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+              <span data-i18n="form_fail_btn">Skicka via WhatsApp</span>
+            </a>
+          </div>
+          <div data-state-part="wa" hidden>
+            <p class="form-note" data-i18n="form_sent">WhatsApp har öppnats med dina uppgifter ifyllda. Tryck på skicka där för att slutföra din förfrågan.</p>
+            <a class="form-fallback" id="formFallback" href="#" target="_blank" rel="noopener" data-i18n="form_fallback">Öppnades inte WhatsApp? Öppna det här</a>
+          </div>
         </div>
       </form>
     </div>
@@ -456,6 +493,7 @@
         <a href="webbdesign.html" data-i18n="nav_webdesign">Webbdesign</a>
         <a href="#about" data-i18n="footer_about">Om oss</a>
         <a href="#contact" data-i18n="footer_contact">Kontakt</a>
+        <a href="integritet.html" data-i18n="footer_privacy">Integritet</a>
       </nav>
       <p class="copyright">© <span id="year"></span> <span data-i18n="brand">ELEGANT<span class="logo-suffix">MEDIA</span></span>. <span data-i18n="footer_rights">Alla rättigheter förbehållna.</span></p>
     </div>
