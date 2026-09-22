@@ -36,7 +36,7 @@
      tablets (768px+) and computers (1024px+) are set near the end of this
      file. The sizes step rather than slide with the window width, because a
      sliding size lands between grid lines. */
-  --fs-display: 40px;  --lh-display: 48px;   /* hero title */
+  --fs-display: 32px;  --lh-display: 40px;   /* hero title - 40/48 from 360px, see "Phones" below */
   --fs-h1: 32px;       --lh-h1: 40px;        /* section and page titles */
   --fs-h2: 24px;       --lh-h2: 32px;        /* card, step and form titles */
   --fs-lead: 18px;     --lh-lead: 32px;      /* the line under a hero or page title */
@@ -845,6 +845,14 @@ h3 { font-weight: var(--fw-heading); }
 /* Base styles above are written for small phones (~320px) and up.
    Each breakpoint below progressively enhances the layout for larger viewports. */
 
+/* Phones — 360px+ */
+@media (min-width: 360px) {
+  /* The hero title's full phone size. Below 360px (the smallest phones) it
+     keeps the page-title size, 32px, so the headline still fits on two
+     lines instead of three or four. */
+  :root { --fs-display: 40px; --lh-display: 48px; }
+}
+
 /* Large phones — 480px+ */
 @media (min-width: 480px) {
   .hero-actions .btn, .webdesign-actions .btn { flex: 0 1 auto; text-align: center; }
@@ -906,8 +914,11 @@ h3 { font-weight: var(--fw-heading); }
    the Latin values, still on the 8px grid. They come after the steps above
    so that they win at every screen size. */
 [dir="rtl"] {
-  --lh-display: 56px; --lh-h1: 48px; --lh-h2: 40px; --lh-small: 32px;
+  --lh-display: 48px; --lh-h1: 48px; --lh-h2: 40px; --lh-small: 32px;
   --fs-eyebrow: 14px; --lh-eyebrow: 24px;   /* 12px is too small for Arabic */
+}
+@media (min-width: 360px) {
+  [dir="rtl"] { --lh-display: 56px; }
 }
 @media (min-width: 768px) {
   [dir="rtl"] { --lh-display: 80px; --lh-h1: 56px; --lh-lead: 40px; }
