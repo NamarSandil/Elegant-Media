@@ -29,10 +29,10 @@ replaced, change `photo:` to `file:`
 
 ```js
 // before — Unsplash placeholder
-{ id: 'g1', cat: 'wedding', photo: 'photo-1519225421980-715cb0215aed', tall: false },
+{ id: 'g1', cat: 'wedding', photo: 'photo-1519225421980-715cb0215aed' },
 
 // after — the studio's own photo
-{ id: 'g1', cat: 'wedding', file: 'assets/gallery/g1.jpg', tall: false },
+{ id: 'g1', cat: 'wedding', file: 'assets/gallery/g1.jpg' },
 ```
 
 That's the whole change. You can do them one at a time — placeholders and real
@@ -62,15 +62,26 @@ When real christening photographs arrive:
 3. In `i18n.js`, add `filter_christening` to all three languages —
    `'Dop'` (Swedish), `'Christenings'` (English), `'تعميد'` (Arabic).
 
-### Sizes and shapes
+### One shape for every photo
 
-| Setting | Shape | Export at |
-|---|---|---|
-| `tall: false` | Landscape, 4:3 | **1600 × 1200 px** |
-| `tall: true` | Portrait, 3:4 | **1200 × 1600 px** |
+**Every photo on the site is shown in the same frame: landscape, 4:3.** That
+covers all twelve gallery tiles and the "About us" photo, so the gallery never
+mixes tall and wide pictures. Export gallery photos at **1600 × 1200 px**.
 
-Portrait photos (`tall: true`) are shown landscape on phones and portrait on
-larger screens, so keep the subject near the middle.
+- **Portrait photos work too.** They are cropped to the frame, from the
+  middle. If that cuts off faces, add `focus` to that photo's line in
+  `script.js` to choose which part stays in view:
+
+  ```js
+  { id: 'g2', cat: 'engagement', file: 'assets/gallery/g2.jpg', focus: 'top' },
+  ```
+
+  `'top'`, `'bottom'` and `'center 30%'` (30% down from the top) all work.
+- **Opening a photo** (clicking a tile) always shows the whole picture,
+  uncropped, whatever its shape.
+- **To change the shape for the whole site** (for example to 3:2), change
+  `--photo-ratio` near the top of `styles.css` and `PHOTO_RATIO` near the top
+  of `script.js` together.
 
 ---
 
@@ -95,7 +106,8 @@ Swedish and English, and over the right in Arabic.
 
 ## The "About us" photo
 
-Save as `assets/about/team.jpg`, **1800 × 1200 px** (3:2, landscape). In
+Save as `assets/about/team.jpg`, **1600 × 1200 px** (4:3, landscape, the
+same shape as the gallery). In
 `index.html`, find the `<img>` inside `class="about-media"` and do the same —
 replace `src`, delete `srcset` and `sizes`.
 

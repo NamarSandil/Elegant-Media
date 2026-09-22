@@ -90,9 +90,8 @@ const I18N = {
     wa_title: 'طلب حجز – ELEGANTMEDIA', wa_name: 'الاسم', wa_phone: 'الهاتف',
     wa_type: 'نوع المناسبة', wa_date: 'التاريخ المفضّل', wa_details: 'تفاصيل', wa_email: 'البريد الإلكتروني',
 
-    footer_tag: 'نحوّل لحظاتكم إلى ذكريات خالدة',
     footer_gallery: 'المعرض', footer_services: 'الخدمات', footer_about: 'من نحن', footer_contact: 'تواصل', footer_privacy: 'الخصوصية',
-    brand: 'ELEGANT<span class="logo-suffix">MEDIA</span>', footer_rights: 'جميع الحقوق محفوظة.',
+    footer_rights: 'جميع الحقوق محفوظة.',
 
     /* Interface labels for screen readers — never shown on screen */
     a11y_skip: 'تخطَّ إلى المحتوى', a11y_menu: 'القائمة', a11y_lang: 'اختيار اللغة',
@@ -220,9 +219,8 @@ const I18N = {
     wa_title: 'Booking request – ELEGANTMEDIA', wa_name: 'Name', wa_phone: 'Phone',
     wa_type: 'Type of event', wa_date: 'Preferred date', wa_details: 'Details', wa_email: 'Email',
 
-    footer_tag: 'We transform your moments into timeless memories',
     footer_gallery: 'Gallery', footer_services: 'Services', footer_about: 'About us', footer_contact: 'Contact', footer_privacy: 'Privacy',
-    brand: 'ELEGANT<span class="logo-suffix">MEDIA</span>', footer_rights: 'All rights reserved.',
+    footer_rights: 'All rights reserved.',
 
     /* Interface labels for screen readers — never shown on screen */
     a11y_skip: 'Skip to content', a11y_menu: 'Menu', a11y_lang: 'Select language',
@@ -350,9 +348,8 @@ const I18N = {
     wa_title: 'Bokningsförfrågan – ELEGANTMEDIA', wa_name: 'Namn', wa_phone: 'Telefon',
     wa_type: 'Typ av evenemang', wa_date: 'Önskat datum', wa_details: 'Detaljer', wa_email: 'E-post',
 
-    footer_tag: 'Vi förvandlar era ögonblick till eviga minnen',
     footer_gallery: 'Galleri', footer_services: 'Tjänster', footer_about: 'Om oss', footer_contact: 'Kontakt', footer_privacy: 'Integritet',
-    brand: 'ELEGANT<span class="logo-suffix">MEDIA</span>', footer_rights: 'Alla rättigheter förbehållna.',
+    footer_rights: 'Alla rättigheter förbehållna.',
 
     /* Interface labels for screen readers — never shown on screen */
     a11y_skip: 'Hoppa till innehåll', a11y_menu: 'Meny', a11y_lang: 'Välj språk',
