@@ -697,12 +697,33 @@ h3 { font-weight: var(--fw-heading); }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--gold); }
 .field input::placeholder, .field textarea::placeholder { color: var(--text-subtle); opacity: 1; }
 .field textarea { resize: vertical; }
-/* Two send buttons, stacked: email (gold, the default) above WhatsApp. */
-.form-actions { display: grid; gap: var(--space-2); }
+/* Two ways to send, one of them the main one: the gold email button, then
+   "or send via WhatsApp" as a line of text under it. */
+.form-actions { display: grid; gap: var(--space-1); }
 
 /* .btn already lays the icon out beside the label, 8px apart. */
 .form-submit .icon { font-size: 20px; }
 .form-submit:disabled { opacity: .55; cursor: progress; transform: none; }
+
+/* The WhatsApp alternative. The link is a real submit button styled as a
+   link; the line is 48px tall so it is still an easy tap. In Arabic the
+   words simply flow the other way. */
+.form-alt {
+  display: flex; align-items: center; justify-content: center; flex-wrap: wrap;
+  gap: var(--space-1); min-height: 48px;
+  color: var(--text-muted); font-size: var(--fs-ui); line-height: var(--lh-ui);
+}
+.form-alt-link {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  min-height: 48px; padding: 0 var(--space-half);
+  background: none; border: 0; cursor: pointer;
+  font: inherit; font-weight: 500; color: var(--gold-light);
+  text-decoration: underline; text-underline-offset: 4px;
+  transition: color .3s;
+}
+.form-alt-link:hover { color: var(--text-primary); }
+.form-alt-link .icon { font-size: 20px; }
+.form-alt-link:disabled { opacity: .55; cursor: progress; }
 
 /* The spam trap: out of the layout and invisible. It is already hidden from
    screen readers and skipped by Tab in the markup. */

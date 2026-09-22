@@ -288,8 +288,10 @@ counters.forEach(c => counterObs.observe(c));
 
    There are now two ways to send, as the owner chose at the start:
    - "Skicka förfrågan" emails the enquiry to the studio through FormSubmit.
-     This is the default, and what Enter submits.
-   - "Skicka via WhatsApp" opens WhatsApp with the enquiry written out.
+     This is the main button, the default, and what Enter submits.
+   - "eller skicka via WhatsApp", the link-style line under it (Batch 11),
+     opens WhatsApp with the enquiry written out. It is a submit button too,
+     so the form's checks run first, and setBusy() disables it with the other.
 
    The visitor is only ever told their request was received when FormSubmit
    has actually confirmed it. Anything else - network failure, timeout, or

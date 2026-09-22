@@ -473,10 +473,17 @@
             <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>
             <span data-i18n="form_submit">إرسال الطلب</span>
           </button>
-          <button type="submit" name="via" value="whatsapp" class="btn btn-outline btn-block form-submit">
-            <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
-            <span data-i18n="form_submit_wa">إرسال عبر واتساب</span>
-          </button>
+          <!-- WhatsApp is the alternative, so it reads as a line of text with a
+               link in it rather than as a second button of equal weight. It is
+               still a submit button: the form checks the fields, then opens
+               WhatsApp with the enquiry written out. -->
+          <p class="form-alt">
+            <span data-i18n="form_or">أو</span>
+            <button type="submit" name="via" value="whatsapp" class="form-alt-link">
+              <svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg>
+              <span data-i18n="form_submit_wa">أرسلوه عبر واتساب</span>
+            </button>
+          </p>
         </div>
 
         <p class="form-privacy" data-i18n="form_privacy">يرسل هذا النموذج بياناتكم إلينا عبر خدمة البريد FormSubmit، أو عبر واتساب إن اخترتم ذلك. تُستخدم فقط للرد على طلبكم. <a href="integritet.html">اقرأوا سياسة الخصوصية</a>.</p>
