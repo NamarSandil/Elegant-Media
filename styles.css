@@ -102,6 +102,10 @@ body {
   width: 100%;
 }
 img, video, iframe, svg { max-width: 100%; display: block; }
+/* Images carry width/height attributes so the browser can reserve their space
+   before they arrive. Without height:auto the height attribute wins while
+   max-width shrinks the width, and the photo is squashed out of shape. */
+img { height: auto; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
@@ -206,7 +210,7 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .navbar.scrolled {
   padding: 12px 0;
   background: rgba(13, 13, 13, .92);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, .4);
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
@@ -220,7 +224,7 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .logo-suffix { display: block; font-size: .4em; letter-spacing: 3px; margin-top: 2px; }
 .nav-links {
   position: fixed; inset: 0 0 0 auto; width: 78%; max-width: 320px; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: var(--space-md); background: rgba(15,15,15,.98); backdrop-filter: blur(14px);
+  align-items: center; justify-content: center; gap: var(--space-md); background: rgba(15,15,15,.98); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
   transform: translateX(100%); box-shadow: -10px 0 40px rgba(0,0,0,.5);
   z-index: 101; padding: 0 24px;
   /* Sliding the panel off-screen hid it visually but left its links in the
@@ -630,6 +634,7 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .form-privacy a, .legal a {
   color: var(--gold-light);
   text-decoration: underline; text-underline-offset: 3px;
+  padding-block: 3px;   /* lifts the tap area to 24px+ without moving the text */
 }
 .form-privacy a:hover, .legal a:hover { color: var(--text-primary); }
 
@@ -662,7 +667,7 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 
 /* ===== Lightbox ===== */
 .lightbox {
-  position: fixed; inset: 0; z-index: 200; background: rgba(8,8,8,.96); backdrop-filter: blur(6px);
+  position: fixed; inset: 0; z-index: 200; background: rgba(8,8,8,.96); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   display: none; align-items: center; justify-content: center;
 }
 .lightbox.open { display: flex; animation: fadeIn .3s ease; }
@@ -670,7 +675,7 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .lightbox img { max-width: 88vw; max-height: 82vh; border-radius: 8px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
 .lb-close, .lb-nav {
   position: absolute; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
-  color: var(--white); cursor: pointer; transition: all .3s var(--ease); backdrop-filter: blur(4px);
+  color: var(--white); cursor: pointer; transition: all .3s var(--ease); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
 }
 .lb-close { top: 26px; inset-inline-end: 26px; width: 48px; height: 48px; border-radius: 50%; font-size: var(--text-lg); }
 .lb-nav { top: 50%; transform: translateY(-50%); width: 56px; height: 56px; border-radius: 50%; font-size: 2rem; line-height: 1; }
@@ -730,7 +735,7 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
   .nav-toggle { display: none; }
   .nav-links {
     position: static; width: auto; max-width: none; flex-direction: row; padding: 0; flex: 1 1 auto;
-    background: none; backdrop-filter: none; box-shadow: none; transform: none; transition: none;
+    background: none; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none; transform: none; transition: none;
     justify-content: flex-end;
     visibility: visible;   /* desktop nav is always on screen */
   }
