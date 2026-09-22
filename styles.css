@@ -373,6 +373,11 @@ h3 { font-weight: var(--fw-heading); }
      Plain 100vh is taller than the visible area on iOS Safari and Android
      Chrome, which pushed the booking buttons below the fold on first paint. */
   min-height: 100svh;
+  /* Keeps the text clear of the fixed navbar (96px) above and the scroll
+     arrow below. The two are equal, so on most screens the text stays
+     centred exactly as before; on short ones (a 320px phone, a phone held
+     sideways) the hero grows instead of sliding the title under the logo. */
+  padding-block: var(--space-12);
 }
 .hero-bg {
   position: absolute; inset: 0;

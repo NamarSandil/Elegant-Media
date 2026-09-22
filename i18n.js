@@ -17,7 +17,7 @@ const I18N = {
     nav_home: 'الرئيسية', nav_gallery: 'المعرض', nav_services: 'خدماتنا',
     nav_about: 'من نحن', nav_webdesign: 'تصميم مواقع', nav_testimonials: 'آراء العملاء', nav_book: 'احجزوا الآن',
 
-    hero_title: 'يومكم،', hero_title_span: 'كما عشتموه',
+    hero_title: 'عيشوا يومكم،', hero_title_span: 'ونحفظ إحساسه',
     hero_sub: 'نصوّر الأعراس وحفلات العماد والمناسبات في ستوكهولم، صورةً وفيديو، عن قرب وبهدوء، ودون أن نسرق الأضواء من يومكم.',
     hero_book: 'اسألوا عن موعدكم', hero_view: 'شاهدوا المعرض',
 
@@ -146,7 +146,7 @@ const I18N = {
     nav_home: 'Home', nav_gallery: 'Gallery', nav_services: 'Services',
     nav_about: 'About us', nav_webdesign: 'Web design', nav_testimonials: 'Testimonials', nav_book: 'Book now',
 
-    hero_title: 'Your day,', hero_title_span: 'as it felt',
+    hero_title: 'You live the day,', hero_title_span: 'we keep the feeling',
     hero_sub: 'We photograph and film weddings, christenings and celebrations in Stockholm – up close, calmly, and without taking over the day.',
     hero_book: 'Check your date', hero_view: 'See the gallery',
 
@@ -275,7 +275,7 @@ const I18N = {
     nav_home: 'Hem', nav_gallery: 'Galleri', nav_services: 'Tjänster',
     nav_about: 'Om oss', nav_webdesign: 'Webbdesign', nav_testimonials: 'Omdömen', nav_book: 'Boka nu',
 
-    hero_title: 'Er dag,', hero_title_span: 'som den kändes',
+    hero_title: 'Ni lever dagen,', hero_title_span: 'vi bevarar känslan',
     hero_sub: 'Vi fotograferar och filmar bröllop, dop och fester i Stockholm – nära, lugnt och utan att ta över dagen.',
     hero_book: 'Fråga om ert datum', hero_view: 'Se galleriet',
 
