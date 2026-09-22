@@ -43,10 +43,14 @@ SITE = "https://namarsandil.github.io/Elegant-Media/"
 # custom domain needs a new property and a new code here.
 GOOGLE_SITE_VERIFICATION = "U59bcrzSS9EYo_qQybPawmnmjly41655PvMC7Fz8YPo"
 
-LTR_FONTS = ("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700"
+# Swedish and English: Bodoni Moda for titles and numerals - upright 500-600
+# with optical sizing, plus one display-size italic that is only used for the
+# gold words in the hero title - and Jost for everything else.
+# The wordmark is Latin Cormorant in every language, so both lists carry
+# Cormorant 700 for it alone.
+LTR_FONTS = ("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..600;1,72,500"
+             "&family=Cormorant+Garamond:wght@700"
              "&family=Jost:wght@300;400;500;600&display=swap")
-# The wordmark is Latin Cormorant in every language, so Arabic needs that
-# one weight as well.
 RTL_FONTS = ("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700"
              "&family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap")
 
@@ -274,7 +278,7 @@ def head_block(page, lang, strings, t):
         '<meta property="og:image:alt" content="%s" />' % e(strings["meta_og_alt"]),
         '<meta name="twitter:card" content="summary_large_image" />',
         "",
-        "<!-- Only this language's two font families are downloaded. -->",
+        "<!-- Only this language's fonts are downloaded. -->",
         '<link rel="preconnect" href="https://fonts.googleapis.com" />',
         '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />',
         '<link rel="stylesheet" href="%s" />' % e(LANGS[lang]["fonts"]),
