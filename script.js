@@ -257,8 +257,12 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-/* ===== Animated counters ===== */
-const counters = document.querySelectorAll('[data-count]');
+/* ===== Animated counters =====
+   The page already says "12+" on its own, so it is right even if this
+   never runs. The count-up from zero is decoration on top, and is skipped
+   for visitors who have asked their device for less motion. */
+const counters = matchMedia('(prefers-reduced-motion: reduce)').matches
+  ? [] : document.querySelectorAll('[data-count]');
 const counterObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -268,7 +272,7 @@ const counterObs = new IntersectionObserver(entries => {
     const step = Math.max(1, Math.ceil(target / 60));
     const tick = () => {
       cur += step;
-      if (cur >= target) { el.textContent = target + '+'; }
+      if (cur >= target) { el.innerHTML = target + '<span class="stat-plus">+</span>'; }
       else { el.textContent = cur; requestAnimationFrame(tick); }
     };
     tick();
