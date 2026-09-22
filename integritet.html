@@ -40,10 +40,10 @@
   <meta property="og:image:alt" content="ELEGANTMEDIA – fotografi och film för bröllop och fest i Stockholm" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Only this language's fonts are downloaded. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..600;1,72,500&amp;family=Cormorant+Garamond:wght@700&amp;family=Jost:wght@300;400;500;600&amp;display=swap" />
+  <!-- The fonts a visitor sees first, fetched straight away (all fonts: fonts/). -->
+  <link rel="preload" href="fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/cormorant-garamond-logo.woff2" as="font" type="font/woff2" crossorigin />
   <!-- /build:head -->
 
   <!-- Icons -->
@@ -102,7 +102,7 @@
       <div class="container">
         <h1 class="page-title" data-i18n="pp_title">Integritetspolicy</h1>
         <p class="page-lead" data-i18n="pp_intro">Här beskriver vi vilka uppgifter vi får när du kontaktar oss, varför vi behöver dem och vad du har rätt till. Vi samlar bara in det som behövs för att svara på din förfrågan.</p>
-        <p class="pp-updated" data-i18n="pp_updated">Senast uppdaterad 18 september 2026</p>
+        <p class="pp-updated" data-i18n="pp_updated">Senast uppdaterad 22 september 2026</p>
       </div>
     </div>
 
@@ -125,7 +125,7 @@
         <h2 data-i18n="pp_rights_h">Dina rättigheter</h2>
         <p data-i18n="pp_rights_p">Du har rätt att få veta vilka uppgifter vi har om dig, att få dem rättade eller raderade och att invända mot hur vi använder dem. Kontakta oss så hjälper vi dig. Om du anser att vi hanterar dina uppgifter fel kan du klaga hos Integritetsskyddsmyndigheten (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).</p>
         <h2 data-i18n="pp_site_h">Om den här webbplatsen</h2>
-        <p data-i18n="pp_site_p">Webbplatsen sparar ingenting i din webbläsare – inga kakor och ingen lokal lagring. Typsnitt hämtas från Google Fonts och bilder från Unsplash, vilket innebär att din IP-adress skickas till dem när sidan laddas – så fungerar alla sådana tjänster.</p>
+        <p data-i18n="pp_site_p">Webbplatsen sparar ingenting i din webbläsare – inga kakor och ingen lokal lagring. Typsnitten ligger på webbplatsen själv. Bilderna hämtas från Unsplash, vilket innebär att din IP-adress skickas dit när sidan laddas – så fungerar alla sådana tjänster.</p>
       </div>
     </section>
 

@@ -36,10 +36,10 @@
   <meta property="og:image:alt" content="ELEGANTMEDIA – wedding and event photography and film in Stockholm" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- Only this language's fonts are downloaded. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..600;1,72,500&amp;family=Cormorant+Garamond:wght@700&amp;family=Jost:wght@300;400;500;600&amp;display=swap" />
+  <!-- The fonts a visitor sees first, fetched straight away (all fonts: fonts/). -->
+  <link rel="preload" href="../fonts/bodoni-moda-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../fonts/cormorant-garamond-logo.woff2" as="font" type="font/woff2" crossorigin />
   <!-- /build:head -->
 
   <!-- Icons -->
@@ -98,7 +98,7 @@
       <div class="container">
         <h1 class="page-title" data-i18n="pp_title">Privacy policy</h1>
         <p class="page-lead" data-i18n="pp_intro">This page explains what information we receive when you contact us, why we need it and what your rights are. We only collect what we need to answer your enquiry.</p>
-        <p class="pp-updated" data-i18n="pp_updated">Last updated 18 September 2026</p>
+        <p class="pp-updated" data-i18n="pp_updated">Last updated 22 September 2026</p>
       </div>
     </div>
 
@@ -121,7 +121,7 @@
         <h2 data-i18n="pp_rights_h">Your rights</h2>
         <p data-i18n="pp_rights_p">You have the right to know what information we hold about you, to have it corrected or deleted, and to object to how we use it. Contact us and we will help. If you believe we are handling your information wrongly, you can complain to the Swedish Authority for Privacy Protection (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).</p>
         <h2 data-i18n="pp_site_h">About this website</h2>
-        <p data-i18n="pp_site_p">This website stores nothing in your browser – no cookies and no local storage. Fonts are loaded from Google Fonts and images from Unsplash, which means your IP address is sent to them when the page loads – that is how all such services work.</p>
+        <p data-i18n="pp_site_p">This website stores nothing in your browser – no cookies and no local storage. The fonts are served by this website itself. Images are loaded from Unsplash, which means your IP address is sent there when the page loads – that is how all such services work.</p>
       </div>
     </section>
 
