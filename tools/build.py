@@ -10,8 +10,8 @@ attribute naming a key in i18n.js. For each page and each language this:
   1. fills in the text from i18n.js
   2. builds the <head>: title, description, canonical address, the hreflang
      links that tell Google the three versions are one page in three
-     languages, social-media preview tags, that language's fonts, and on the
-     home page the business listing data
+     languages, social-media preview tags, the fonts to fetch first, and on
+     the home page the business listing data
   3. builds the language switcher as links to the same page in the other
      languages
   4. writes Swedish back in place and the others to en/ and ar/
@@ -43,16 +43,20 @@ SITE = "https://namarsandil.github.io/Elegant-Media/"
 # custom domain needs a new property and a new code here.
 GOOGLE_SITE_VERIFICATION = "U59bcrzSS9EYo_qQybPawmnmjly41655PvMC7Fz8YPo"
 
-# Swedish and English: Bodoni Moda for titles and numerals - upright 500-600
-# with optical sizing, plus one display-size italic that is only used for the
-# gold words in the hero title - and Jost for everything else.
-# The wordmark is Latin Cormorant in every language, so both lists carry
-# Cormorant 700 for it alone.
-LTR_FONTS = ("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..600;1,72,500"
-             "&family=Cormorant+Garamond:wght@700"
-             "&family=Jost:wght@300;400;500;600&display=swap")
-RTL_FONTS = ("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700"
-             "&family=El+Messiri:wght@400;600;700&family=Tajawal:wght@300;400;500;700&display=swap")
+# The fonts are hosted with the site, in fonts/ (fonts/README.md says where
+# they came from and holds their licences). styles.css declares every file,
+# and a browser only downloads the ones a page actually uses. The few below
+# are preloaded - fetched as soon as the page starts arriving - so the header
+# and the first lines of text don't wait for the stylesheet to be read.
+# Swedish and English: Bodoni Moda titles, Jost text. Arabic: El Messiri and
+# Tajawal. The wordmark is Latin Cormorant in every language, in a file cut
+# down to its nine letters.
+LTR_FONTS = ("fonts/bodoni-moda-latin.woff2", "fonts/jost-latin.woff2",
+             "fonts/cormorant-garamond-logo.woff2")
+RTL_FONTS = ("fonts/el-messiri-arabic.woff2", "fonts/tajawal-400-arabic.woff2",
+             "fonts/cormorant-garamond-logo.woff2")
+# The gold italic words are only in the home page's hero title.
+LTR_HOME_FONTS = ("fonts/bodoni-moda-italic-latin.woff2",)
 
 # Order matters: the first language is the default, served at the root.
 LANGS = {
@@ -278,11 +282,16 @@ def head_block(page, lang, strings, t):
         '<meta property="og:image:alt" content="%s" />' % e(strings["meta_og_alt"]),
         '<meta name="twitter:card" content="summary_large_image" />',
         "",
-        "<!-- Only this language's fonts are downloaded. -->",
-        '<link rel="preconnect" href="https://fonts.googleapis.com" />',
-        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />',
-        '<link rel="stylesheet" href="%s" />' % e(LANGS[lang]["fonts"]),
+        "<!-- The fonts a visitor sees first, fetched straight away (all fonts: fonts/). -->",
     ]
+    # This block goes in after rebase_assets() has run, so pages one folder
+    # down get their "../" here.
+    up = "../" if LANGS[lang]["folder"] else ""
+    fonts = LANGS[lang]["fonts"]
+    if page == "index.html" and LANGS[lang]["dir"] == "ltr":
+        fonts += LTR_HOME_FONTS
+    lines += ['<link rel="preload" href="%s%s" as="font" type="font/woff2" crossorigin />' % (up, f)
+              for f in fonts]
     if page == "index.html":
         data = dict(BUSINESS, description=strings["meta_home_desc"])
         body = json.dumps(data, ensure_ascii=False, indent=2).replace("</", "<\\/")

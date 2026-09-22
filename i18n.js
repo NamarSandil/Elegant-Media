@@ -107,7 +107,7 @@ const I18N = {
 
     /* Privacy policy page */
     pp_title: 'سياسة الخصوصية',
-    pp_updated: 'آخر تحديث: 18 سبتمبر 2026',
+    pp_updated: 'آخر تحديث: 22 سبتمبر 2026',
     pp_intro: 'توضّح هذه الصفحة البيانات التي نتلقّاها عندما تتواصلون معنا، ولماذا نحتاجها، وما هي حقوقكم. لا نجمع إلا ما نحتاجه للرد على طلبكم.',
     pp_who_h: 'من المسؤول عن بياناتكم؟',
     pp_who_p: 'ELEGANTMEDIA في سبونغا (Spånga)، ستوكهولم، هي الجهة المسؤولة عن البيانات. يمكنكم التواصل معنا عبر <a href="mailto:elegantmedia200@gmail.com" dir="ltr">elegantmedia200@gmail.com</a> أو <a href="tel:+46762000281" dir="ltr">+46 76 200 02 81</a>.',
@@ -122,7 +122,7 @@ const I18N = {
     pp_rights_h: 'حقوقكم',
     pp_rights_p: 'يحق لكم معرفة البيانات التي نحتفظ بها عنكم، وطلب تصحيحها أو حذفها، والاعتراض على طريقة استخدامها. تواصلوا معنا وسنساعدكم. وإن رأيتم أننا نتعامل مع بياناتكم بشكل خاطئ، يمكنكم تقديم شكوى إلى هيئة حماية الخصوصية السويدية (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).',
     pp_site_h: 'عن هذا الموقع',
-    pp_site_p: 'لا يحفظ هذا الموقع أي شيء في متصفحكم — لا ملفات تعريف ارتباط ولا تخزين محلي. تُحمَّل الخطوط من Google Fonts والصور من Unsplash، ما يعني أن عنوان IP الخاص بكم يُرسَل إليهما عند تحميل الصفحة — وهكذا تعمل جميع هذه الخدمات.',
+    pp_site_p: 'لا يحفظ هذا الموقع أي شيء في متصفحكم — لا ملفات تعريف ارتباط ولا تخزين محلي. الخطوط مستضافة على الموقع نفسه، أما الصور فتُحمَّل من Unsplash، ما يعني أن عنوان IP الخاص بكم يُرسَل إلى Unsplash عند تحميل الصفحة — وهكذا تعمل جميع هذه الخدمات.',
     pp_back: 'العودة إلى الصفحة الرئيسية',
 
     g1: 'عرس ملكي', g2: 'الوعد', g3: 'تحت غروب الشمس', g4: 'موكب العرس',
@@ -237,7 +237,7 @@ const I18N = {
 
     /* Privacy policy page */
     pp_title: 'Privacy policy',
-    pp_updated: 'Last updated 18 September 2026',
+    pp_updated: 'Last updated 22 September 2026',
     pp_intro: 'This page explains what information we receive when you contact us, why we need it and what your rights are. We only collect what we need to answer your enquiry.',
     pp_who_h: 'Who is responsible for your information?',
     pp_who_p: 'ELEGANTMEDIA, Spånga, Stockholm, is the data controller. You can reach us at <a href="mailto:elegantmedia200@gmail.com" dir="ltr">elegantmedia200@gmail.com</a> or <a href="tel:+46762000281" dir="ltr">+46 76 200 02 81</a>.',
@@ -252,7 +252,7 @@ const I18N = {
     pp_rights_h: 'Your rights',
     pp_rights_p: 'You have the right to know what information we hold about you, to have it corrected or deleted, and to object to how we use it. Contact us and we will help. If you believe we are handling your information wrongly, you can complain to the Swedish Authority for Privacy Protection (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).',
     pp_site_h: 'About this website',
-    pp_site_p: 'This website stores nothing in your browser – no cookies and no local storage. Fonts are loaded from Google Fonts and images from Unsplash, which means your IP address is sent to them when the page loads – that is how all such services work.',
+    pp_site_p: 'This website stores nothing in your browser – no cookies and no local storage. The fonts are served by this website itself. Images are loaded from Unsplash, which means your IP address is sent there when the page loads – that is how all such services work.',
     pp_back: 'Back to the home page',
 
     g1: 'Royal wedding', g2: 'The promise', g3: 'Under the sunset', g4: 'The wedding procession',
@@ -367,7 +367,7 @@ const I18N = {
 
     /* Privacy policy page */
     pp_title: 'Integritetspolicy',
-    pp_updated: 'Senast uppdaterad 18 september 2026',
+    pp_updated: 'Senast uppdaterad 22 september 2026',
     pp_intro: 'Här beskriver vi vilka uppgifter vi får när du kontaktar oss, varför vi behöver dem och vad du har rätt till. Vi samlar bara in det som behövs för att svara på din förfrågan.',
     pp_who_h: 'Vem ansvarar för dina uppgifter?',
     pp_who_p: 'ELEGANTMEDIA, Spånga, Stockholm, är personuppgiftsansvarig. Du når oss på <a href="mailto:elegantmedia200@gmail.com" dir="ltr">elegantmedia200@gmail.com</a> eller <a href="tel:+46762000281" dir="ltr">+46 76 200 02 81</a>.',
@@ -382,7 +382,7 @@ const I18N = {
     pp_rights_h: 'Dina rättigheter',
     pp_rights_p: 'Du har rätt att få veta vilka uppgifter vi har om dig, att få dem rättade eller raderade och att invända mot hur vi använder dem. Kontakta oss så hjälper vi dig. Om du anser att vi hanterar dina uppgifter fel kan du klaga hos Integritetsskyddsmyndigheten (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).',
     pp_site_h: 'Om den här webbplatsen',
-    pp_site_p: 'Webbplatsen sparar ingenting i din webbläsare – inga kakor och ingen lokal lagring. Typsnitt hämtas från Google Fonts och bilder från Unsplash, vilket innebär att din IP-adress skickas till dem när sidan laddas – så fungerar alla sådana tjänster.',
+    pp_site_p: 'Webbplatsen sparar ingenting i din webbläsare – inga kakor och ingen lokal lagring. Typsnitten ligger på webbplatsen själv. Bilderna hämtas från Unsplash, vilket innebär att din IP-adress skickas dit när sidan laddas – så fungerar alla sådana tjänster.',
     pp_back: 'Tillbaka till startsidan',
 
     g1: 'Kungligt bröllop', g2: 'Löftet', g3: 'Under solnedgången', g4: 'Bröllopståget',
