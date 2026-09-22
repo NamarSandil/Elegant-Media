@@ -39,7 +39,6 @@
   --fs-display: 40px;  --lh-display: 48px;   /* hero title */
   --fs-h1: 32px;       --lh-h1: 40px;        /* section and page titles */
   --fs-h2: 24px;       --lh-h2: 32px;        /* card, step and form titles */
-  --fs-num: 40px;      --lh-num: 40px;       /* the large numerals */
   --fs-lead: 18px;     --lh-lead: 32px;      /* the line under a hero or page title */
   --fs-body: 18px;     --lh-body: 32px;      /* paragraphs */
   --fs-small: 16px;    --lh-small: 24px;     /* card text, lists, form fields */
@@ -114,7 +113,11 @@
    browser's default serif. Swedish and English: Bodoni Moda for titles and
    numerals, Jost for everything else, including buttons and the eyebrow. */
 [dir="ltr"] {
-  --font-head: 'Bodoni Moda', serif;
+  /* El Messiri only draws Arabic letters inside a Latin title - the word
+     "العربية" in the trust strip - so it matches the Arabic pages instead of
+     falling back to whatever Arabic font the device has. Only its Arabic file
+     is fetched, and only on a page that has such a word. */
+  --font-head: 'Bodoni Moda', 'El Messiri', serif;
   --font-body: 'Jost', sans-serif;
   --font-ui: 'Jost', sans-serif;
   --fw-display: 500;
@@ -223,11 +226,11 @@ h3 { font-weight: var(--fw-heading); }
 .section-head h2, .about-text h2, .contact-info h2, .webdesign-text h2, .page-title {
   font-size: var(--fs-h1); line-height: var(--lh-h1);
 }
-.service-card h3, .step h3, .booking-form h3, .legal h2, .g-title, .lb-caption, .stat .stat-text {
+.service-card h3, .step h3, .booking-form h3, .legal h2, .g-title, .lb-caption, .stat strong {
   font-size: var(--fs-h2); line-height: var(--lh-h2);
 }
 .hero-sub, .page-lead { font-size: var(--fs-lead); line-height: var(--lh-lead); font-weight: 300; }
-.service-card p, .step p, .webdesign-features li, .footer-links a, .stat span,
+.service-card p, .step p, .webdesign-features li, .footer-links a, .stat > span,
 .contact-list a, .contact-list .ci-value {
   font-size: var(--fs-small); line-height: var(--lh-small);
 }
@@ -407,17 +410,26 @@ h3 { font-weight: var(--fw-heading); }
 
 /* ===== Stats ===== */
 .stats { background: var(--black-soft); padding: var(--block-gap) 0; border-block: 1px solid var(--line); }
+/* Three facts, each exactly two lines: a gold title over a grey caption.
+   All three titles - "12+" included - share one size (the card-title role)
+   and one colour, and each fits on one line. They stand side by side only
+   from 1024px, where a column is wide enough for the longest title
+   ("Svenska · English · العربية", 266px); below that they stack. */
 .stats-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); text-align: center; }
-/* Two of the three items are short statements rather than counters. They
-   take the card-title role (.stat .stat-text, in the type roles above) so
-   they sit below the big numeral without looking like body copy. As a bare
-   .stat-text that rule used to lose to this one, and the statements were
-   set at numeral size. */
 .stat strong {
   display: block; font-family: var(--font-head); font-weight: var(--fw-display);
-  font-size: var(--fs-num); line-height: var(--lh-num); color: var(--gold-light);
+  color: var(--gold-light);
 }
-.stat span { color: var(--text-muted); margin-top: var(--space-1); display: block; }
+/* The caption only. As ".stat span" this also caught the language names
+   inside the languages title (they are spans, for their lang attribute), and
+   pushed "العربية" onto a line of its own in small grey type. */
+.stat > span { color: var(--text-muted); margin-top: var(--space-1); display: block; }
+/* Bodoni's plus sign is drawn in hairlines, so beside the heavy strokes of
+   "12" it read as grey. The text font's plus has even, solid strokes. */
+.stat-plus { font-family: var(--font-body); font-weight: 500; line-height: 1; }
+/* line-height: 1 keeps the second font from stretching the line: in Arabic
+   it made the "12+" title 42px tall instead of 40 - off the grid, and 2px
+   out of line with the titles beside it. */
 
 /* ===== How it works ===== */
 .steps-section { background: var(--black-soft); }
@@ -841,13 +853,11 @@ h3 { font-weight: var(--fw-heading); }
   :root {
     --fs-display: 56px; --lh-display: 64px;
     --fs-h1: 40px;      --lh-h1: 48px;
-    --fs-num: 48px;     --lh-num: 48px;
     --fs-lead: 20px;
     --section-py: var(--space-10);
     --gutter: var(--space-4);
   }
   .gallery-grid, .services-grid, .testimonials-grid, .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap); }
   .field-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .webdesign-features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -864,6 +874,7 @@ h3 { font-weight: var(--fw-heading); }
     --card-pad: var(--space-4);
     --grid-gap: var(--space-4);
   }
+  .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap); }
   .nav-toggle { display: none; }
   .nav-links {
     position: static; width: auto; max-width: none; flex-direction: row; padding: 0; flex: 1 1 auto;
