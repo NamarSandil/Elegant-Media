@@ -1,6 +1,8 @@
 # Rebuilds the English and Arabic pages (and every page's <head>) whenever the
 # text or a template changes, so an edit to i18n.js made on github.com is
-# published in all three languages with no tools on anyone's computer.
+# published in all three languages with no tools on anyone's computer. It also
+# runs when styles.css or script.js change, so every page's link to them gets
+# the new version stamp and no visitor is left with an old copy.
 #
 # If the build fails - for example a text key is missing in one language -
 # this run fails, nothing is committed, and the live site stays as it was.
@@ -12,6 +14,8 @@ on:
     branches: [main]
     paths:
       - i18n.js
+      - styles.css
+      - script.js
       - index.html
       - webbdesign.html
       - integritet.html

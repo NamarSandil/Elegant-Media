@@ -14,7 +14,10 @@ attribute naming a key in i18n.js. For each page and each language this:
      the home page the business listing data
   3. builds the language switcher as links to the same page in the other
      languages
-  4. writes Swedish back in place and the others to en/ and ar/
+  4. stamps the links to styles.css, script.js and i18n.js with a version
+     made from their contents, so a browser never pairs a new page with an
+     old copy of those files
+  5. writes Swedish back in place and the others to en/ and ar/
 
 It also writes sitemap.xml and 404.html.
 
@@ -23,6 +26,7 @@ language it stops with an error and writes nothing. Standard library only -
 there is nothing to install. GitHub runs this automatically on every push
 that changes the text or a template (.github/workflows/build-pages.yml).
 """
+import hashlib
 import html
 import io
 import json
@@ -243,6 +247,31 @@ def rebase_assets(page_html):
     return re.sub(r'\bsrcset="([^"]*)"', srcset, page_html)
 
 
+# GitHub Pages lets browsers keep a file for 10 minutes without asking for a
+# newer one. Right after an update, a visitor could therefore get the new
+# page with the old styles.css - which is what happened after Batch 11: the
+# new WhatsApp line showed up unstyled. Every link to these files carries a
+# stamp made from the file's contents (styles.css?v=1a2b3c4d5e), so a page
+# always asks for exactly the version it was built with. The stamp only
+# changes when the file does.
+VERSIONED = ("styles.css", "script.js", "i18n.js")
+VERSIONED_LINK = re.compile(r'\b(href|src)="((?:\.\./)?)(%s)(?:\?v=[0-9a-f]+)?"'
+                            % "|".join(re.escape(name) for name in VERSIONED))
+
+
+def asset_versions():
+    versions = {}
+    for name in VERSIONED:
+        with open(os.path.join(ROOT, name), "rb") as fh:
+            versions[name] = hashlib.sha256(fh.read()).hexdigest()[:10]
+    return versions
+
+
+def stamp_assets(page_html, versions):
+    return VERSIONED_LINK.sub(lambda m: '%s="%s%s?v=%s"' % (
+        m.group(1), m.group(2), m.group(3), versions[m.group(3)]), page_html)
+
+
 # --------------------------------------------------------- generated parts
 
 def head_block(page, lang, strings, t):
@@ -319,7 +348,7 @@ def generated_banner(page):
 
 # ------------------------------------------------------------------ build
 
-def build_page(template, page, lang, t):
+def build_page(template, page, lang, t, versions):
     strings = t[lang]
     where = "%s%s" % (LANGS[lang]["folder"], page)
     if not HEAD_SLOT.search(template) or not SWITCH_SLOT.search(template):
@@ -336,6 +365,7 @@ def build_page(template, page, lang, t):
     if sub:
         out = rebase_assets(out)
         out = TEMPLATE_BANNER.sub(lambda m: generated_banner(page), out, count=1)
+    out = stamp_assets(out, versions)
 
     out = HEAD_SLOT.sub(lambda m: m.group(1) + head_block(page, lang, strings, t) + m.group(2), out)
     out = SWITCH_SLOT.sub(lambda m: m.group(1) + switch_block(page, lang, strings) + m.group(2), out)
@@ -407,12 +437,13 @@ def not_found_page():
 
 def main():
     t = load_translations()
+    versions = asset_versions()
     outputs = {}
     for page in PAGES:
         path = os.path.join(ROOT, page)
         template = io.open(path, encoding="utf-8").read()
         for lang in LANGS:
-            outputs[LANGS[lang]["folder"] + page] = build_page(template, page, lang, t)
+            outputs[LANGS[lang]["folder"] + page] = build_page(template, page, lang, t, versions)
     outputs["sitemap.xml"] = sitemap()
     outputs["404.html"] = not_found_page()
 
