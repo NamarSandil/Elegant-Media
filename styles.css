@@ -30,33 +30,49 @@
   --border-subtle: rgba(255, 255, 255, .07);
   --surface-gold-wash: rgba(201, 162, 75, .12);
 
-  /* Type scale. Built around the sizes the design already used, so nothing
-     jumps - the point is that there is now a scale to pick from rather than
-     eleven one-off values. */
-  --text-xs:   .75rem;      /* 12px - micro labels */
-  --text-sm:   .875rem;     /* 14px - captions, form labels */
-  --text-base: 1rem;        /* 16px - UI text, buttons, nav */
-  --text-md:   1.125rem;    /* 18px - body copy */
-  --text-lg:   1.3125rem;   /* 21px - lead paragraphs */
-  --text-xl:   clamp(1.4rem, 1.1rem + 1.2vw, 1.6rem);   /* card titles */
-  --text-2xl:  clamp(1.9rem, 1.2rem + 2.6vw, 2.9rem);   /* section titles */
-  --text-3xl:  clamp(2.6rem, 1.5rem + 5vw, 4.8rem);     /* hero */
+  /* Type roles (BRAND.md section 4). Each role is a size and a line height,
+     and every line height is a multiple of 8, so any block of text ends on
+     the 8px grid. The values here are for phones; the larger steps for
+     tablets (768px+) and computers (1024px+) are set near the end of this
+     file. The sizes step rather than slide with the window width, because a
+     sliding size lands between grid lines. */
+  --fs-display: 40px;  --lh-display: 48px;   /* hero title */
+  --fs-h1: 32px;       --lh-h1: 40px;        /* section and page titles */
+  --fs-h2: 24px;       --lh-h2: 32px;        /* card, step and form titles */
+  --fs-num: 40px;      --lh-num: 40px;       /* the large numerals */
+  --fs-lead: 18px;     --lh-lead: 32px;      /* the line under a hero or page title */
+  --fs-body: 18px;     --lh-body: 32px;      /* paragraphs */
+  --fs-small: 16px;    --lh-small: 24px;     /* card text, lists, form fields */
+  --fs-caption: 14px;  --lh-caption: 24px;   /* labels, captions, footer */
+  --fs-eyebrow: 12px;  --lh-eyebrow: 16px;   /* the small gold label above a title */
+  --fs-ui: 16px;       --lh-ui: 24px;        /* buttons, menu, filters, fields - one line in a 48px control */
 
-  --leading-display: 1.2;
-  --leading-heading: 1.3;
-  --leading-body: 1.8;
+  --tracking-display: -0.01em;   /* Latin only - large serif titles */
+  --tracking-eyebrow: 0.2em;     /* Latin only - the capitals of the eyebrow */
 
-  /* Spacing - a 4px base. */
-  --space-3xs: 4px;
-  --space-2xs: 8px;
-  --space-xs: 12px;
-  --space-sm: 16px;
-  --space-md: 24px;
-  --space-lg: 32px;
-  --space-xl: 48px;
-  --space-2xl: 64px;
-  --space-3xl: 96px;
-  --section-py: clamp(60px, 9vw, 110px);
+  /* Spacing: an 8px grid. The number in each name is how many 8px steps it
+     is, so --space-3 is 3 x 8 = 24px. The 4px half step is only for the
+     insides of small parts, such as the gap between an icon and its label.
+     1px borders and outlines are drawn inside the grid and don't count. */
+  --space-half: 4px;
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
+  --space-16: 128px;
+
+  /* Layout spacing that grows with the screen (steps at the end of the file). */
+  --section-py: var(--space-8);   /* top and bottom of a section: 64 / 80 / 96 */
+  --gutter: var(--space-2);       /* page side margin: 16 / 32 / 48 */
+  --block-gap: var(--space-6);    /* title block to the content below it: 48 / 64 */
+  --card-pad: var(--space-3);     /* inside a card: 24 / 32 */
+  --grid-gap: var(--space-3);     /* between cards: 24 / 32 */
+  --container-max: 1280px;        /* the widest the content ever gets */
 
   /* Shape */
   --radius-sm: 10px;
@@ -75,32 +91,43 @@
   --dur-slow: 480ms;
   --ease: cubic-bezier(.22, 1, .36, 1);
 
+  /* Fonts and weights, Arabic values. --font-ui is for buttons and the
+     eyebrow label; in Arabic those stay in El Messiri as before. */
   --font-head: 'El Messiri', serif;
   --font-body: 'Tajawal', sans-serif;
+  --font-ui: 'El Messiri', serif;
+  --fw-display: 700;   /* hero, section and page titles */
+  --fw-heading: 700;   /* card, step and form titles */
+  --fw-ui: 600;        /* buttons */
 }
 
-/* The font pair follows the language. Only the active language's fonts are
-   downloaded (see the loader in each page's <head>), so --font-head and
-   --font-body must always name fonts that are actually loaded. Without this
-   rule, everything written as var(--font-head) - every button, the trust
-   strip, gallery captions, the About badge, step numbers - asked for
-   El Messiri in Swedish and English, where it is never loaded, and fell back
-   to the browser's default serif. */
+/* The fonts follow the language. Only the active language's fonts are
+   downloaded (see the loader in each page's <head>), so these must always
+   name fonts that are actually loaded - a font that isn't falls back to the
+   browser's default serif. Swedish and English: Bodoni Moda for titles and
+   numerals, Jost for everything else, including buttons and the eyebrow. */
 [dir="ltr"] {
-  --font-head: 'Cormorant Garamond', serif;
+  --font-head: 'Bodoni Moda', serif;
   --font-body: 'Jost', sans-serif;
+  --font-ui: 'Jost', sans-serif;
+  --fw-display: 500;
+  --fw-heading: 600;
+  --fw-ui: 500;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
 body {
   font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
   background: var(--black);
   color: var(--text-primary);
-  line-height: var(--leading-body);
   overflow-x: hidden;
   width: 100%;
 }
+/* No single word left alone on the last line of a paragraph. */
+p { text-wrap: pretty; }
 img, video, iframe, svg { max-width: 100%; display: block; }
 /* Images carry width/height attributes so the browser can reserve their space
    before they arrive. Without height:auto the height attribute wins while
@@ -109,7 +136,12 @@ img { height: auto; }
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
-.container { width: min(1180px, 92%); margin-inline: auto; }
+/* Content never runs wider than --container-max, and never closer to the
+   screen edge than --gutter. */
+.container {
+  width: 100%; max-width: calc(var(--container-max) + 2 * var(--gutter));
+  padding-inline: var(--gutter); margin-inline: auto;
+}
 .section { padding: var(--section-py) 0; }
 
 /* ===== Icons =====
@@ -141,7 +173,7 @@ ul { list-style: none; }
   position: fixed; top: 0; inset-inline-start: 0; z-index: 300;
   transform: translateY(-120%);
   background: var(--gold); color: var(--black);
-  padding: 14px 24px; border-end-end-radius: var(--radius);
+  padding: var(--space-2) var(--space-3); border-end-end-radius: var(--radius);
   font-weight: 600; transition: transform .25s var(--ease);
 }
 .skip-link:focus { transform: translateY(0); }
@@ -168,27 +200,58 @@ ul { list-style: none; }
   .reveal { opacity: 1 !important; transform: none !important; }
 }
 
-h1, h2, h3, .logo-text { font-family: var(--font-head); font-weight: 700; }
-/* Headings previously inherited the body's 1.8, which is right for running
-   text and far too airy for a two-line heading. Arabic keeps more room than
-   Latin - its diacritics sit above the line and descenders reach further
-   below. */
-h1, h2, h3, h4 { line-height: var(--leading-heading); }
-[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 { line-height: 1.45; }
+h1, h2, h3 {
+  font-family: var(--font-head); font-weight: var(--fw-display);
+  text-wrap: balance;          /* two-line titles split evenly */
+  overflow-wrap: break-word;   /* a long word never runs off the screen */
+}
+h3 { font-weight: var(--fw-heading); }
+[dir="ltr"] h1, [dir="ltr"] h2 { letter-spacing: var(--tracking-display); }
+
+/* ===== Type roles =====
+   Every piece of text on the site uses one of these roles. To change how a
+   role looks, change its tokens at the top of the file - not these rules.
+   Paragraphs need nothing: they take the body role from <body>. */
+.hero-title { font-size: var(--fs-display); line-height: var(--lh-display); }
+.section-head h2, .about-text h2, .contact-info h2, .webdesign-text h2, .page-title {
+  font-size: var(--fs-h1); line-height: var(--lh-h1);
+}
+.service-card h3, .step h3, .booking-form h3, .legal h2, .g-title, .lb-caption, .stat .stat-text {
+  font-size: var(--fs-h2); line-height: var(--lh-h2);
+}
+.hero-sub, .page-lead { font-size: var(--fs-lead); line-height: var(--lh-lead); font-weight: 300; }
+.service-card p, .step p, .webdesign-features li, .footer-links a, .stat span,
+.contact-list a, .contact-list .ci-value {
+  font-size: var(--fs-small); line-height: var(--lh-small);
+}
+.g-cat, .field label, .contact-list div span, .form-privacy, .form-fallback,
+.copyright, .pp-updated, .about-badge span {
+  font-size: var(--fs-caption); line-height: var(--lh-caption);
+}
+/* Long Swedish compounds ("Förlovningsfotografering") may break with a
+   hyphen on phones rather than overflow; on wider screens they fit whole. */
+@media (max-width: 767px) {
+  h1, h2, h3 { hyphens: auto; }
+}
 
 /* ===== Buttons ===== */
+/* 48px tall (40px for .btn-sm), whatever the label. min-height includes the
+   1px border, so the grid holds for outlined buttons too. */
 .btn {
-  display: inline-block;
-  padding: 15px 36px;
-  border-radius: 50px;
-  font-family: var(--font-head);
-  font-size: var(--text-base);
-  font-weight: 600;
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-1);
+  min-height: 48px;
+  padding: var(--space-1) var(--space-4);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-ui);
+  font-size: var(--fs-ui);
+  line-height: var(--lh-ui);
+  font-weight: var(--fw-ui);
+  text-align: center;
   cursor: pointer;
   border: 1px solid transparent;
   transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s, color .35s;
 }
-.btn-sm { padding: 11px 26px; font-size: var(--text-sm); }
+.btn-sm { min-height: 40px; padding: var(--space-half) var(--space-3); font-size: var(--fs-caption); }
 .btn-block { width: 100%; }
 .btn-gold {
   background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
@@ -202,19 +265,23 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .btn-dark:hover { background: var(--gold); color: var(--black); transform: translateY(-3px); }
 
 /* ===== Navbar ===== */
+/* 96px tall at the top of the page, 64px once scrolled: 48px controls plus
+   24px or 8px above and below. */
 .navbar {
   position: fixed; inset: 0 0 auto 0; z-index: 100;
-  padding: 22px 0;
+  padding: var(--space-3) 0;
   transition: padding .4s var(--ease), background .4s, box-shadow .4s;
 }
 .navbar.scrolled {
-  padding: 12px 0;
+  padding: var(--space-1) 0;
   background: rgba(13, 13, 13, .92);
   -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, .4);
 }
-.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 6px; }
-.logo { display: flex; align-items: center; gap: clamp(4px, 2vw, 10px); font-size: clamp(.85rem, 4.5vw, 1.5rem); flex-shrink: 0; min-width: 0; }
+.nav-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-1); }
+/* The wordmark keeps its own fluid size - the logo is not part of the type
+   scale and stays exactly as it was. */
+.logo { display: flex; align-items: center; gap: var(--space-1); font-size: clamp(.85rem, 4.5vw, 1.5rem); flex-shrink: 0; min-width: 0; }
 .logo-text {
   display: inline-flex; flex-direction: column; align-items: center; line-height: 1.05;
   font-family: 'Cormorant Garamond', serif; font-weight: 700; letter-spacing: 4px;
@@ -224,9 +291,9 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .logo-suffix { display: block; font-size: .4em; letter-spacing: 3px; margin-top: 2px; }
 .nav-links {
   position: fixed; inset: 0 0 0 auto; width: 78%; max-width: 320px; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: var(--space-md); background: rgba(15,15,15,.98); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  align-items: center; justify-content: center; gap: var(--space-3); background: rgba(15,15,15,.98); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
   transform: translateX(100%); box-shadow: -10px 0 40px rgba(0,0,0,.5);
-  z-index: 101; padding: 0 24px;
+  z-index: 101; padding: 0 var(--space-3);
   /* Sliding the panel off-screen hid it visually but left its links in the
      keyboard tab order, so Tab sent focus to invisible links beyond the edge
      of the screen. visibility:hidden takes them out of the tab order; the
@@ -239,33 +306,41 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
   visibility: visible;
   transition: transform .4s var(--ease), visibility 0s;
 }
-.nav-links a { font-weight: 500; font-size: var(--text-base); position: relative; transition: color .3s; }
+.nav-links a { font-weight: 500; font-size: var(--fs-ui); line-height: var(--lh-ui); position: relative; transition: color .3s; }
 .nav-links a:not(.nav-cta)::after {
-  content: ''; position: absolute; bottom: -6px; inset-inline-start: 0;
+  content: ''; position: absolute; bottom: calc(-1 * var(--space-1)); inset-inline-start: 0;
   width: 0; height: 2px; background: var(--gold); transition: width .3s var(--ease);
 }
 .nav-links a:not(.nav-cta):hover { color: var(--gold-light); }
 .nav-links a:not(.nav-cta):hover::after { width: 100%; }
 .nav-cta {
   background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
-  color: var(--black); padding: 10px 26px; border-radius: 50px; font-weight: 600;
+  color: var(--black); padding: var(--space-1) var(--space-3); border-radius: var(--radius-pill); font-weight: 600;
   transition: transform .3s var(--ease), box-shadow .3s;
 }
 .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(201, 162, 75, .4); }
-.nav-actions { display: flex; align-items: center; gap: 4px; }
+.nav-actions { display: flex; align-items: center; gap: var(--space-half); }
 
+/* The buttons fill the pill, so the switch is 48px tall like every other
+   control in the header. */
 .lang-switch {
-  display: flex; gap: 1px; background: rgba(255,255,255,.05); border: 1px solid var(--line);
-  border-radius: 50px; padding: 2px; flex-shrink: 0;
+  display: flex; background: rgba(255,255,255,.05);
+  box-shadow: inset 0 0 0 1px var(--line);   /* an outline that adds no height */
+  border-radius: var(--radius-pill); flex-shrink: 0;
 }
 .lang-btn {
   background: none; border: 0; cursor: pointer; color: var(--grey); font-family: var(--font-body);
-  font-size: var(--text-xs); font-weight: 700; letter-spacing: .5px; padding: 6px 7px; border-radius: 50px;
+  font-size: var(--fs-eyebrow); font-weight: 700; letter-spacing: .5px; padding: 0 var(--space-1); border-radius: var(--radius-pill);
   transition: all .3s var(--ease);
   /* Was 27x29px - the smallest control on the site, and one of the most
-     useful. Now meets the 44px minimum touch target. */
-  min-width: 44px; min-height: 44px;
+     useful. 48px is a comfortable touch target on every phone. */
+  min-width: 48px; min-height: 48px;
   display: inline-flex; align-items: center; justify-content: center;
+}
+/* The narrowest phones can't fit three 48px buttons beside the logo, so
+   they narrow to 40px - still well above the 24px minimum - and stay 48px tall. */
+@media (max-width: 359px) {
+  .lang-btn { min-width: 40px; }
 }
 .lang-btn:hover { color: var(--gold-light); }
 .lang-btn.active {
@@ -274,9 +349,9 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 
 .nav-toggle {
   display: flex; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer;
-  padding: 12px; z-index: 102; position: relative; flex-shrink: 0;
+  padding: 0; z-index: 102; position: relative; flex-shrink: 0;
   align-items: center; justify-content: center;
-  min-width: 44px; min-height: 44px;   /* touch target */
+  width: 48px; height: 48px;   /* touch target */
 }
 .nav-toggle span { width: 26px; height: 2px; background: var(--white); transition: .3s; }
 
@@ -299,84 +374,94 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
   position: absolute; inset: 0;
   background: linear-gradient(105deg, rgba(13,13,13,.92) 0%, rgba(13,13,13,.6) 45%, rgba(13,13,13,.25) 100%);
 }
-.hero-content { position: relative; z-index: 2; max-width: 720px; }
-.hero-title { font-size: var(--text-3xl); line-height: 1.2; margin-bottom: var(--space-md); }
+/* 720px of text; the container's side padding is added on top. */
+.hero-content { position: relative; z-index: 2; max-width: calc(720px + 2 * var(--gutter)); }
+.hero-title { margin-bottom: var(--space-3); }
 .hero-title .grad {
   background: linear-gradient(135deg, var(--gold-light), var(--gold));
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
-.hero-sub { font-size: clamp(1rem, 2.2vw, 1.2rem); color: var(--text-secondary); max-width: 560px; margin-bottom: 38px; font-weight: 300; }
-.hero-actions, .webdesign-actions { display: flex; gap: 18px; flex-wrap: wrap; }
+/* Swedish and English mark the highlighted words with the title font's
+   italic, in gold. Arabic has no italic, so it keeps the gold gradient. */
+[dir="ltr"] .hero-title .grad {
+  font-style: italic; color: var(--gold-light);
+  background: none; -webkit-text-fill-color: currentColor;
+}
+.hero-sub { color: var(--text-secondary); max-width: 560px; margin-bottom: var(--space-4); }
+.hero-actions, .webdesign-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
 .hero-actions .btn, .webdesign-actions .btn { flex: 1 1 auto; text-align: center; }
 .scroll-down {
-  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%); z-index: 2;
-  width: 26px; height: 44px; border: 2px solid rgba(255,255,255,.5); border-radius: 14px;
-  display: flex; justify-content: center; padding-top: 8px;
+  position: absolute; bottom: var(--space-4); left: 50%; transform: translateX(-50%); z-index: 2;
+  width: 24px; height: 40px; border: 2px solid rgba(255,255,255,.5); border-radius: 12px;
+  display: flex; justify-content: center; padding-top: var(--space-1);
 }
 .scroll-down span { width: 4px; height: 8px; background: var(--gold-light); border-radius: 4px; animation: scrollDot 1.6s infinite; }
 @keyframes scrollDot { 0% { opacity: 0; transform: translateY(-6px); } 50% { opacity: 1; } 100% { opacity: 0; transform: translateY(12px); } }
 
 /* ===== Stats ===== */
-.stats { background: var(--black-soft); padding: clamp(40px, 6vw, 60px) 0; border-block: 1px solid var(--line); }
-.stats-grid { display: grid; grid-template-columns: 1fr; gap: 28px; text-align: center; }
+.stats { background: var(--black-soft); padding: var(--block-gap) 0; border-block: 1px solid var(--line); }
+.stats-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); text-align: center; }
+/* Two of the three items are short statements rather than counters. They
+   take the card-title role (.stat .stat-text, in the type roles above) so
+   they sit below the big numeral without looking like body copy. As a bare
+   .stat-text that rule used to lose to this one, and the statements were
+   set at numeral size. */
 .stat strong {
-  display: block; font-family: var(--font-head); font-size: clamp(2rem, 8vw, 3rem); color: var(--gold-light); line-height: 1;
+  display: block; font-family: var(--font-head); font-weight: var(--fw-display);
+  font-size: var(--fs-num); line-height: var(--lh-num); color: var(--gold-light);
 }
-.stat span { color: var(--text-muted); font-size: var(--text-base); margin-top: 8px; display: block; }
-/* Two of the three items are short statements rather than counters, so they
-   need a size that sits below the big numeral without looking like body copy. */
-.stat-text {
-  font-size: clamp(1.15rem, 4vw, 1.45rem);
-  line-height: var(--leading-heading);
-}
+.stat span { color: var(--text-muted); margin-top: var(--space-1); display: block; }
 
 /* ===== How it works ===== */
 .steps-section { background: var(--black-soft); }
 /* <ol> for the semantics - these are four steps in order - but the visible
    numbers are the gold discs below, so the native markers are hidden. */
-.steps { display: grid; grid-template-columns: 1fr; gap: var(--space-md); list-style: none; }
+.steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--grid-gap); list-style: none; }
 .step {
   position: relative;
   background: var(--black-card); border: 1px solid var(--border-subtle);
-  border-radius: var(--radius); padding: var(--space-lg) var(--space-md);
+  border-radius: var(--radius); padding: var(--space-4) var(--space-3);
   transition: border-color var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
 }
 .step:hover { border-color: var(--gold); transform: translateY(-4px); }
 .step-num {
   display: grid; place-items: center;
-  width: 44px; height: 44px; border-radius: 50%;
-  margin-bottom: var(--space-sm);
-  font-family: var(--font-head); font-weight: 700; font-size: var(--text-md);
+  width: 48px; height: 48px; border-radius: 50%;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-head); font-weight: var(--fw-display); font-size: var(--fs-lead); line-height: var(--lh-ui);
   color: var(--gold-light);
   background: var(--surface-gold-wash); border: 1px solid var(--line);
 }
-.step h3 { font-size: var(--text-lg); margin-bottom: var(--space-2xs); color: var(--text-primary); }
+.step h3 { margin-bottom: var(--space-1); color: var(--text-primary); }
 .step p { color: var(--text-muted); }
 
 /* ===== Section heads ===== */
-.section-head { text-align: center; max-width: 640px; margin: 0 auto var(--space-xl); }
+.section-head { text-align: center; max-width: 640px; margin: 0 auto var(--block-gap); }
+/* The eyebrow: the small gold label above a section title. */
 .section-tag {
   display: inline-block; color: var(--gold); font-weight: 600;
-  font-family: var(--font-head); margin-bottom: var(--space-xs); font-size: var(--text-sm);
+  font-family: var(--font-ui); margin-bottom: var(--space-2);
+  font-size: var(--fs-eyebrow); line-height: var(--lh-eyebrow);
   /* No letter-spacing or uppercase here: this is the default that Arabic
      gets. Arabic is cursive - its letters join - so spacing them apart
      breaks the letterforms, and it has no upper case to transform. Both are
      applied under [dir="ltr"] below instead. */
 }
-.section-head h2 { font-size: var(--text-2xl); margin-bottom: var(--space-sm); }
-.section-head p { color: var(--grey); font-size: var(--text-md); }
+.section-head h2 { margin-bottom: var(--space-3); }
+.section-head p { color: var(--grey); }
 
 /* ===== Gallery ===== */
 .gallery-section { background: var(--black); }
-.filters { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-xs); margin-bottom: var(--space-xl); }
+.filters { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--space-1); margin-bottom: var(--space-4); }
 .filter {
+  display: inline-flex; align-items: center; min-height: 40px;
   background: transparent; color: var(--grey); border: 1px solid var(--line);
-  padding: 10px 24px; border-radius: 50px; cursor: pointer; font-family: var(--font-body);
-  font-size: var(--text-base); font-weight: 500; transition: all .3s var(--ease);
+  padding: 0 var(--space-3); border-radius: var(--radius-pill); cursor: pointer; font-family: var(--font-body);
+  font-size: var(--fs-ui); line-height: var(--lh-ui); font-weight: 500; transition: all .3s var(--ease);
 }
 .filter:hover { color: var(--gold-light); border-color: var(--gold); }
 .filter.active { background: linear-gradient(135deg, var(--gold-light), var(--gold-deep)); color: var(--black); border-color: transparent; }
-.gallery-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-sm); }
+.gallery-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
 .g-item {
   position: relative; overflow: hidden; border-radius: var(--radius);
   aspect-ratio: 4/3; background: var(--black-card);
@@ -398,16 +483,16 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .g-btn:hover img, .g-btn:focus-visible img { transform: scale(1.1); }
 .g-overlay {
   position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 22px; background: linear-gradient(to top, rgba(13,13,13,.85), transparent 60%);
+  padding: var(--space-3); background: linear-gradient(to top, rgba(13,13,13,.85), transparent 60%);
   opacity: 0; transition: opacity .4s var(--ease);
 }
 .g-btn:hover .g-overlay, .g-btn:focus-visible .g-overlay { opacity: 1; }
-.g-title { display: block; font-family: var(--font-head); font-weight: 700; font-size: var(--text-md); color: var(--white); transform: translateY(12px); transition: transform .4s var(--ease); }
-.g-cat { display: block; color: var(--gold-light); font-size: var(--text-sm); transform: translateY(12px); transition: transform .4s var(--ease) .05s; }
+.g-title { display: block; font-family: var(--font-head); font-weight: var(--fw-heading); color: var(--white); transform: translateY(12px); transition: transform .4s var(--ease); }
+.g-cat { display: block; color: var(--gold-light); transform: translateY(12px); transition: transform .4s var(--ease) .05s; }
 .g-btn:hover .g-title, .g-btn:hover .g-cat,
 .g-btn:focus-visible .g-title, .g-btn:focus-visible .g-cat { transform: translateY(0); }
 .g-zoom {
-  position: absolute; top: 16px; inset-inline-start: 16px; width: 42px; height: 42px; border-radius: 50%;
+  position: absolute; top: var(--space-2); inset-inline-start: var(--space-2); width: 40px; height: 40px; border-radius: 50%;
   background: rgba(201,162,75,.9); color: var(--black); display: grid; place-items: center;
   font-size: 18px; opacity: 0; transform: scale(.6); transition: all .4s var(--ease);
 }
@@ -415,43 +500,44 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 
 /* ===== Services ===== */
 .services-section { background: var(--black-soft); }
-.services-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); }
+/* Every grid column is minmax(0, 1fr) rather than plain 1fr: a plain 1fr
+   column refuses to get narrower than its longest word, and at 320px
+   "Förlovningsfotografering" pushed these cards off the edge of the screen.
+   Now the word wraps inside its card instead. */
+.services-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--grid-gap); }
 .service-card {
   background: var(--black-card); border: 1px solid rgba(255,255,255,.05); border-radius: var(--radius);
-  padding: clamp(28px, 5vw, 42px) clamp(22px, 4vw, 32px); text-align: center; transition: transform .4s var(--ease), border-color .4s, box-shadow .4s;
+  padding: calc(var(--card-pad) + var(--space-1)) var(--card-pad);   /* 32/24, then 40/32 */
+  text-align: center; transition: transform .4s var(--ease), border-color .4s, box-shadow .4s;
 }
 .service-card:hover { transform: translateY(-8px); border-color: var(--gold); box-shadow: var(--shadow); }
 .service-icon {
-  width: 78px; height: 78px; margin: 0 auto var(--space-md); border-radius: 50%;
-  font-size: 34px; color: var(--gold-light);
+  width: 80px; height: 80px; margin: 0 auto var(--space-3); border-radius: 50%;
+  font-size: 32px; color: var(--gold-light);
   display: grid; place-items: center; background: var(--surface-gold-wash); border: 1px solid var(--line);
 }
-.service-card h3 { font-size: var(--text-xl); margin-bottom: var(--space-xs); color: var(--gold-light); }
+.service-card h3 { margin-bottom: var(--space-1); color: var(--gold-light); }
 .service-card p { color: var(--grey); }
 .service-card--cta {
   background: linear-gradient(145deg, rgba(201,162,75,.16), rgba(201,162,75,.04));
-  border-color: var(--gold); display: flex; flex-direction: column; justify-content: center; gap: 14px;
+  border-color: var(--gold); display: flex; flex-direction: column; justify-content: center;
 }
+/* Title to text as in every card (8px), then a clear step down to the button. */
+.service-card--cta .btn { margin-top: var(--space-3); }
 .service-card--cta h3 { color: var(--white); }
 
 /* ===== Standalone page head (webbdesign.html) ===== */
 /* No full-height hero here, so this clears the fixed navbar and gives the
    page a title block of its own. */
 .page-head {
-  padding-top: clamp(120px, 17vw, 170px);
-  padding-bottom: clamp(8px, 2vw, 20px);
+  padding-top: var(--space-16);    /* 96px navbar + 32px; 160px from 1024px */
+  padding-bottom: var(--space-2);
   text-align: center;
 }
-.page-title {
-  font-size: var(--text-2xl);
-  /* without this it inherits the body's 1.8, which leaves a long headline
-     sprawling over five airy lines */
-  line-height: 1.25;
-  max-width: 24ch; margin-inline: auto;
-}
+.page-title { max-width: 24ch; margin-inline: auto; }
 .page-lead {
-  color: var(--grey); font-size: var(--text-md);
-  max-width: 62ch; margin: 18px auto 0;
+  color: var(--grey);
+  max-width: 62ch; margin: var(--space-3) auto 0;
 }
 /* Current page in the nav, for people who navigate by keyboard or reading
    order rather than by looking at the highlight. */
@@ -459,13 +545,14 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .nav-links a[aria-current="page"]:not(.nav-cta)::after { width: 100%; }
 
 /* ===== Privacy policy page (integritet.html) ===== */
-.pp-updated { margin-top: var(--space-sm); color: var(--text-subtle); font-size: var(--text-sm); }
-.legal-section { padding-top: var(--space-lg); }
-/* A readable measure for long-form text: ~70 characters a line. */
-.legal { max-width: 70ch; margin-inline: auto; }
+.pp-updated { margin-top: var(--space-2); color: var(--text-subtle); }
+.legal-section { padding-top: var(--space-4); }
+/* A readable measure for long-form text: about 65 characters a line. */
+.legal { max-width: calc(65ch + 2 * var(--gutter)); margin-inline: auto; }
+/* A heading sits closer to the text it introduces than to the text above it. */
 .legal h2 {
-  font-size: var(--text-xl); color: var(--gold-light);
-  margin: var(--space-xl) 0 var(--space-xs);
+  color: var(--gold-light);
+  margin: var(--space-6) 0 var(--space-2);
 }
 .legal h2:first-child { margin-top: 0; }
 .legal p { color: var(--text-secondary); }
@@ -474,25 +561,25 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 
 /* Back link at the foot of a standalone page - shared by webbdesign.html
    and integritet.html. */
-.wd-back-wrap { padding-bottom: clamp(50px, 8vw, 90px); text-align: center; }
+.wd-back-wrap { padding-bottom: var(--section-py); text-align: center; }
 .wd-back {
   display: inline-block; color: var(--gold-light); font-weight: 500;
-  padding: 12px 4px; transition: color .3s;
+  padding: var(--space-1) var(--space-half); transition: color .3s;   /* 8 + 32px line + 8 = 48px tall */
 }
 /* "Back" points left in Swedish and English and right in Arabic, so the arrow
    lives in CSS rather than in the translated string. */
-.wd-back::before { content: '\2190'; margin-inline-end: 8px; }
+.wd-back::before { content: '\2190'; margin-inline-end: var(--space-1); }
 [dir="rtl"] .wd-back::before { content: '\2192'; }
 .wd-back:hover { color: var(--white); }
 
 /* ===== Web Design ===== */
 .webdesign-section { background: var(--black); }
-.webdesign-inner { display: grid; grid-template-columns: 1fr; gap: 44px; align-items: center; }
-.webdesign-text h2 { font-size: var(--text-2xl); margin: 10px 0 18px; }
+.webdesign-inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); align-items: center; }
+.webdesign-text h2 { margin-bottom: var(--space-3); }
 .webdesign-text > p { color: var(--grey); max-width: 560px; }
 
-.webdesign-features { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 30px 0 34px; }
-.webdesign-features li { display: flex; align-items: center; gap: 14px; color: var(--text-secondary); font-weight: 500; }
+.webdesign-features { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); margin: var(--space-4) 0; }
+.webdesign-features li { display: flex; align-items: center; gap: var(--space-2); color: var(--text-secondary); font-weight: 500; }
 .webdesign-features li:nth-child(1) { transition-delay: .04s; }
 .webdesign-features li:nth-child(2) { transition-delay: .09s; }
 .webdesign-features li:nth-child(3) { transition-delay: .14s; }
@@ -500,7 +587,7 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .webdesign-features li:nth-child(5) { transition-delay: .24s; }
 .webdesign-features li:nth-child(6) { transition-delay: .29s; }
 .wf-icon {
-  width: 42px; height: 42px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center;
+  width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center;
   font-size: 20px; color: var(--gold-light);
   background: var(--surface-gold-wash); border: 1px solid var(--line);
 }
@@ -512,23 +599,22 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 
 /* ===== About ===== */
 .about-section { background: var(--black); }
-.about-inner { display: grid; grid-template-columns: 1fr; gap: 44px; align-items: center; }
+.about-inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); align-items: center; }
 .about-media { position: relative; width: 100%; max-width: 520px; margin-inline: auto; }
 .about-media img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); }
 .about-badge {
-  position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+  position: absolute; bottom: calc(-1 * var(--space-3)); left: 50%; transform: translateX(-50%);
   background: linear-gradient(135deg, var(--gold-light), var(--gold-deep));
-  color: var(--black); padding: 18px 26px; border-radius: var(--radius); text-align: center; box-shadow: var(--shadow);
+  color: var(--black); padding: var(--space-2) var(--space-3); border-radius: var(--radius); text-align: center; box-shadow: var(--shadow);
   white-space: nowrap;
 }
-.about-badge strong { display: block; font-family: var(--font-head); font-size: 2rem; line-height: 1; }
-.about-badge span { font-size: var(--text-sm); font-weight: 600; }
-.about-text .section-tag { margin-bottom: 10px; }
-.about-text h2 { font-size: var(--text-2xl); margin-bottom: 20px; }
-.about-text p { color: var(--text-secondary); margin-bottom: var(--space-sm); }
+.about-badge strong { display: block; font-family: var(--font-head); font-weight: var(--fw-display); font-size: 32px; line-height: 32px; }
+.about-badge span { font-weight: 600; }
+.about-text h2 { margin-bottom: var(--space-3); }
+.about-text p { color: var(--text-secondary); margin-bottom: var(--space-3); }
 .about-text strong { color: var(--gold-light); }
-.about-list { margin: 24px 0 30px; display: grid; gap: var(--space-xs); }
-.about-list li { position: relative; padding-inline-start: 30px; color: var(--text-secondary); }
+.about-list { margin: var(--space-3) 0 var(--space-4); display: grid; gap: var(--space-1); }
+.about-list li { position: relative; padding-inline-start: var(--space-4); color: var(--text-secondary); }
 /* Drawn as a rotated square rather than the ✦ character, which falls back to
    a missing-glyph box in fonts that don't carry it. */
 .about-list li::before {
@@ -541,44 +627,49 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
    faces were all invented. These styles are kept deliberately so the
    section can be rebuilt as soon as there are genuine reviews to show. */
 .testimonials-section { background: var(--black-soft); }
-.testimonials-grid { display: grid; grid-template-columns: 1fr; gap: var(--space-md); }
+.testimonials-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--grid-gap); }
 .testimonial {
   background: var(--black-card); border: 1px solid rgba(255,255,255,.05); border-radius: var(--radius);
-  padding: clamp(24px, 5vw, 36px) clamp(20px, 4vw, 30px); transition: transform .4s var(--ease), border-color .4s;
+  padding: calc(var(--card-pad) + var(--space-1)) var(--card-pad); transition: transform .4s var(--ease), border-color .4s;
 }
 .testimonial:hover { transform: translateY(-6px); border-color: var(--gold); }
-.stars { color: var(--gold); letter-spacing: 3px; font-size: var(--text-md); margin-bottom: var(--space-sm); }
-.testimonial blockquote { color: var(--text-secondary); font-size: var(--text-base); margin-bottom: 22px; line-height: 1.9; }
-.testimonial figcaption { display: flex; align-items: center; gap: 14px; }
-.testimonial figcaption img { width: 54px; height: 54px; border-radius: 50%; border: 2px solid var(--gold); }
-.testimonial figcaption span { display: flex; flex-direction: column; color: var(--grey); font-size: var(--text-sm); }
-.testimonial figcaption strong { color: var(--white); font-family: var(--font-head); font-size: var(--text-base); }
+.stars { color: var(--gold); letter-spacing: 3px; margin-bottom: var(--space-2); }
+.testimonial blockquote { color: var(--text-secondary); margin-bottom: var(--space-3); }
+.testimonial figcaption { display: flex; align-items: center; gap: var(--space-2); }
+.testimonial figcaption img { width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--gold); }
+.testimonial figcaption span {
+  display: flex; flex-direction: column; color: var(--grey);
+  font-size: var(--fs-caption); line-height: var(--lh-caption);
+}
+.testimonial figcaption strong { color: var(--white); font-family: var(--font-head); font-size: var(--fs-small); }
 .testimonial figcaption em { font-style: normal; }
 
 /* ===== Contact ===== */
 .contact-section { background: var(--black); }
-.contact-inner { display: grid; grid-template-columns: 1fr; gap: 44px; align-items: start; }
-.contact-info h2 { font-size: var(--text-2xl); margin: 10px 0 18px; }
-.contact-info > p { color: var(--grey); margin-bottom: var(--space-lg); }
-.contact-list { display: grid; gap: var(--space-md); margin-bottom: var(--space-lg); }
-.contact-list li { display: flex; align-items: center; gap: var(--space-sm); }
+.contact-inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-6); align-items: start; }
+.contact-info h2 { margin-bottom: var(--space-3); }
+.contact-info > p { color: var(--grey); margin-bottom: var(--space-4); }
+.contact-list { display: grid; gap: var(--space-3); margin-bottom: var(--space-4); }
+.contact-list li { display: flex; align-items: center; gap: var(--space-2); }
+/* 48px circle beside a 24px label over a 24px value - the pair is exactly
+   as tall as the icon. */
 .ci-icon {
-  width: 52px; height: 52px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center;
-  font-size: 25px; color: var(--gold-light);
+  width: 48px; height: 48px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center;
+  font-size: 24px; color: var(--gold-light);
   background: var(--surface-gold-wash); border: 1px solid var(--line);
 }
 /* Scoped to the label span inside the text column. As `.contact-list span`
    this also matched .ci-icon - a plain <span> - and shrank the icon circles'
    font-size to 14px, which had been quietly undersizing them all along. */
-.contact-list div span { color: var(--text-muted); font-size: var(--text-sm); display: block; }
+.contact-list div span { color: var(--text-muted); display: block; }
 /* A contact line that isn't a link (the service area) - reads like the links. */
 .contact-list .ci-value { color: var(--text-primary); font-weight: 500; }
-/* inline-block + padding lifts these from 23px to clear the 24px minimum */
-.contact-list a { color: var(--white); font-weight: 500; transition: color .3s; display: inline-block; padding-block: 3px; }
+/* inline-block with a 24px line: the link is a full 24px tap target */
+.contact-list a { color: var(--white); font-weight: 500; transition: color .3s; display: inline-block; }
 .contact-list a:hover { color: var(--gold-light); }
-.socials { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+.socials { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .social-icon {
-  width: 46px; height: 46px; display: grid; place-items: center;
+  width: 48px; height: 48px; display: grid; place-items: center;
   border: 1px solid var(--line); border-radius: 50%; color: var(--grey); transition: all .3s var(--ease);
 }
 .social-icon svg { width: 20px; height: 20px; }
@@ -586,15 +677,20 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 
 .booking-form {
   background: var(--black-card); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius);
-  padding: clamp(24px, 6vw, 40px); box-shadow: var(--shadow); max-width: 100%;
+  padding: var(--card-pad); box-shadow: var(--shadow); max-width: 100%;
 }
-.booking-form h3 { font-size: var(--text-xl); margin-bottom: var(--space-md); color: var(--gold-light); }
-.field { margin-bottom: 18px; }
-.field-row { display: grid; grid-template-columns: 1fr; gap: var(--space-sm); }
-.field label { display: block; margin-bottom: 8px; font-size: var(--text-sm); color: var(--text-secondary); }
+.booking-form h3 { margin-bottom: var(--space-3); color: var(--gold-light); }
+.field { margin-bottom: var(--space-3); }
+/* Side by side from 768px. Stacked, the fields' own margins space them, so
+   the row adds no gap of its own on top. */
+.field-row { display: grid; grid-template-columns: minmax(0, 1fr); column-gap: var(--space-3); }
+.field label { display: block; margin-bottom: var(--space-1); color: var(--text-secondary); }
+/* 48px tall, like the buttons. 16px text also stops iPhones zooming in. */
 .field input, .field select, .field textarea {
-  width: 100%; max-width: 100%; padding: 13px 16px; background: var(--black-soft); border: 1px solid rgba(255,255,255,.1);
-  border-radius: 10px; color: var(--white); font-family: var(--font-body); font-size: var(--text-base); transition: border-color .3s;
+  width: 100%; max-width: 100%; min-height: 48px; padding: var(--space-1) var(--space-2);
+  background: var(--black-soft); border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--radius-sm); color: var(--white); font-family: var(--font-body);
+  font-size: var(--fs-small); line-height: var(--lh-ui); transition: border-color .3s;
 }
 /* Border change alone is too subtle to serve as a focus indicator, so the
    site-wide focus ring above is left in place rather than cancelled. */
@@ -602,14 +698,9 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .field input::placeholder, .field textarea::placeholder { color: var(--text-subtle); opacity: 1; }
 .field textarea { resize: vertical; }
 /* Two send buttons, stacked: email (gold, the default) above WhatsApp. */
-.form-actions { display: grid; gap: var(--space-xs); }
+.form-actions { display: grid; gap: var(--space-2); }
 
-/* Buttons carry an icon, so they lay out as a row rather than as a plain
-   inline-block. */
-.form-submit {
-  display: inline-flex; align-items: center; justify-content: center;
-  gap: var(--space-2xs); font-size: 1rem;
-}
+/* .btn already lays the icon out beside the label, 8px apart. */
 .form-submit .icon { font-size: 20px; }
 .form-submit:disabled { opacity: .55; cursor: progress; transform: none; }
 
@@ -623,10 +714,8 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 /* What happens to the visitor's details - required when a form collects
    personal data, and short enough that people actually read it. */
 .form-privacy {
-  margin-top: var(--space-xs);
+  margin-top: var(--space-2);
   color: var(--text-subtle);
-  font-size: var(--text-sm);
-  line-height: 1.6;
   text-align: center;
 }
 
@@ -634,36 +723,36 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 .form-privacy a, .legal a {
   color: var(--gold-light);
   text-decoration: underline; text-underline-offset: 3px;
-  padding-block: 3px;   /* lifts the tap area to 24px+ without moving the text */
+  padding-block: var(--space-half);   /* lifts the tap area to 24px+ without moving the text */
 }
 .form-privacy a:hover, .legal a:hover { color: var(--text-primary); }
 
 /* The live region is always in the page (so screen readers announce every
    change) but only draws its box while a message is showing. */
-.form-status { margin-top: var(--space-sm); }
+.form-status { margin-top: var(--space-2); }
 .form-status[data-state] {
-  padding: var(--space-sm);
+  padding: var(--space-2);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: var(--surface-gold-wash);
 }
 .form-note { color: var(--gold-light); text-align: center; font-weight: 600; }
-.form-fail-wa { margin-top: var(--space-sm); }
+.form-fail-wa { margin-top: var(--space-2); }
 .form-fallback {
-  display: block; margin-top: var(--space-2xs); text-align: center;
-  color: var(--text-secondary); font-size: var(--text-sm); text-decoration: underline;
+  display: block; margin-top: var(--space-1); text-align: center;
+  color: var(--text-secondary); text-decoration: underline;
 }
 .form-fallback:hover { color: var(--gold-light); }
 
 /* ===== Footer ===== */
-.footer { background: var(--black-soft); padding: 56px 0 30px; border-top: 1px solid var(--line); }
-.footer-inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); }
+.footer { background: var(--black-soft); padding: var(--space-8) 0 var(--space-4); border-top: 1px solid var(--line); }
+.footer-inner { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--space-2); }
 .footer-logo { font-size: clamp(1.2rem, 4vw, 1.7rem); }
 .footer-tag { color: var(--grey); font-family: var(--font-head); }
-.footer-links { display: flex; gap: var(--space-md); flex-wrap: wrap; justify-content: center; }
+.footer-links { display: flex; gap: var(--space-3); flex-wrap: wrap; justify-content: center; }
 .footer-links a { color: var(--text-secondary); transition: color .3s; }
 .footer-links a:hover { color: var(--gold-light); }
-.copyright { color: var(--text-subtle); font-size: var(--text-sm); margin-top: 8px; }
+.copyright { color: var(--text-subtle); margin-top: var(--space-1); }
 
 /* ===== Lightbox ===== */
 .lightbox {
@@ -677,28 +766,23 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
   position: absolute; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
   color: var(--white); cursor: pointer; transition: all .3s var(--ease); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
 }
-.lb-close { top: 26px; inset-inline-end: 26px; width: 48px; height: 48px; border-radius: 50%; font-size: var(--text-lg); }
-.lb-nav { top: 50%; transform: translateY(-50%); width: 56px; height: 56px; border-radius: 50%; font-size: 2rem; line-height: 1; }
-.lb-prev { inset-inline-start: 26px; }
-.lb-next { inset-inline-end: 26px; }
+.lb-close { top: var(--space-3); inset-inline-end: var(--space-3); width: 48px; height: 48px; border-radius: 50%; font-size: 24px; }
+.lb-nav { top: 50%; transform: translateY(-50%); width: 56px; height: 56px; border-radius: 50%; font-size: 32px; line-height: 1; }
+.lb-prev { inset-inline-start: var(--space-3); }
+.lb-next { inset-inline-end: var(--space-3); }
 .lb-close:hover, .lb-nav:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
-.lb-caption { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); color: var(--gold-light); font-family: var(--font-head); font-size: var(--text-md); }
+.lb-caption { position: absolute; bottom: var(--space-4); left: 50%; transform: translateX(-50%); color: var(--gold-light); font-family: var(--font-head); font-weight: var(--fw-heading); }
 
-/* ===== LTR (English / Swedish) typography & direction ===== */
-[dir="ltr"] body { font-family: 'Jost', sans-serif; letter-spacing: .2px; }
-[dir="ltr"] h1, [dir="ltr"] h2, [dir="ltr"] h3,
-[dir="ltr"] .logo-text, [dir="ltr"] .section-tag, [dir="ltr"] .footer-tag {
-  font-family: 'Cormorant Garamond', serif;
-}
+/* ===== LTR (English / Swedish) typography & direction =====
+   Fonts, weights and line heights come from the tokens at the top; what is
+   left here is what only Latin script gets. */
 /* Latin-only typographic treatments. Arabic never receives letter-spacing:
    previously .section-tag gave it 3px - MORE than the 2px Latin got - which
    pulled joined letterforms apart on every section heading on the site. */
-[dir="ltr"] .section-tag { letter-spacing: 2px; text-transform: uppercase; }
+[dir="ltr"] .section-tag { letter-spacing: var(--tracking-eyebrow); text-transform: uppercase; }
 /* .logo-text / .logo-suffix keep their spacing in every language - the
    wordmark reads "ELEGANTMEDIA" in Latin characters throughout, so the rule
    above about Arabic does not apply to it. */
-[dir="ltr"] .hero-title { line-height: 1.05; }
-[dir="ltr"] .page-title { line-height: 1.12; }
 [dir="ltr"] .hero-overlay {
   background: linear-gradient(255deg, rgba(13,13,13,.92) 0%, rgba(13,13,13,.6) 45%, rgba(13,13,13,.25) 100%);
 }
@@ -714,24 +798,40 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
 /* Large phones — 480px+ */
 @media (min-width: 480px) {
   .hero-actions .btn, .webdesign-actions .btn { flex: 0 1 auto; text-align: center; }
-  .nav-inner { gap: var(--space-xs); }
-  .nav-actions { gap: 10px; }
-  .lang-switch { gap: 2px; padding: 3px; }
-  .lang-btn { padding: 7px 10px; font-size: var(--text-xs); }
-  .nav-toggle { padding: 14px; }
+  .nav-inner { gap: var(--space-2); }
+  .nav-actions { gap: var(--space-1); }
 }
 
 /* Tablets — 768px+ */
 @media (min-width: 768px) {
-  .gallery-grid, .services-grid, .testimonials-grid, .steps { grid-template-columns: repeat(2, 1fr); }
-  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+  /* Type and spacing, step two. */
+  :root {
+    --fs-display: 56px; --lh-display: 64px;
+    --fs-h1: 40px;      --lh-h1: 48px;
+    --fs-num: 48px;     --lh-num: 48px;
+    --fs-lead: 20px;
+    --section-py: var(--space-10);
+    --gutter: var(--space-4);
+  }
+  .gallery-grid, .services-grid, .testimonials-grid, .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--grid-gap); }
   .g-item.tall { aspect-ratio: 3/4; }
-  .field-row { grid-template-columns: 1fr 1fr; }
-  .webdesign-features { grid-template-columns: 1fr 1fr; }
+  .field-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .webdesign-features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* Laptops — 1024px+ */
 @media (min-width: 1024px) {
+  /* Type and spacing, step three. */
+  :root {
+    --fs-display: 72px; --lh-display: 80px;
+    --fs-h1: 48px;      --lh-h1: 56px;
+    --section-py: var(--space-12);
+    --gutter: var(--space-6);
+    --block-gap: var(--space-8);
+    --card-pad: var(--space-4);
+    --grid-gap: var(--space-4);
+  }
   .nav-toggle { display: none; }
   .nav-links {
     position: static; width: auto; max-width: none; flex-direction: row; padding: 0; flex: 1 1 auto;
@@ -739,25 +839,31 @@ h1, h2, h3, h4 { line-height: var(--leading-heading); }
     justify-content: flex-end;
     visibility: visible;   /* desktop nav is always on screen */
   }
-  .stats-grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
-  .gallery-grid, .services-grid, .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
-  .steps { grid-template-columns: repeat(4, 1fr); }
+  .gallery-grid { gap: var(--space-3); }
+  .gallery-grid, .services-grid, .testimonials-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   /* Six services fill two clean rows of three; the enquiry card then
      spans the full width rather than sitting alone in a third row. */
   .service-card--cta { grid-column: 1 / -1; }
-  .webdesign-inner { grid-template-columns: 1.1fr 1fr; gap: 60px; }
-  .about-inner { grid-template-columns: 1fr 1.1fr; gap: 60px; }
+  .webdesign-inner { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--space-8); }
+  .about-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: var(--space-8); }
   .about-media { max-width: none; margin-inline: 0; }
-  .about-badge { left: -24px; transform: none; bottom: -24px; }
-  .contact-inner { grid-template-columns: 1fr 1.1fr; gap: 56px; }
+  .about-badge { left: calc(-1 * var(--space-3)); transform: none; bottom: calc(-1 * var(--space-3)); }
+  .contact-inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: var(--space-8); }
+  .page-head { padding-top: calc(var(--space-16) + var(--space-4)); }   /* 160px */
 }
 
-/* Desktops — 1440px+ */
-@media (min-width: 1440px) {
-  .container { width: min(1240px, 90%); }
+/* Arabic line heights. Arabic needs taller lines than Latin - diacritics sit
+   above the letters and descenders reach further below - so these replace
+   the Latin values, still on the 8px grid. They come after the steps above
+   so that they win at every screen size. */
+[dir="rtl"] {
+  --lh-display: 56px; --lh-h1: 48px; --lh-h2: 40px; --lh-small: 32px;
+  --fs-eyebrow: 14px; --lh-eyebrow: 24px;   /* 12px is too small for Arabic */
 }
-
-/* Ultra-wide screens — 1920px+ */
-@media (min-width: 1920px) {
-  .container { width: min(1320px, 88%); }
+@media (min-width: 768px) {
+  [dir="rtl"] { --lh-display: 80px; --lh-h1: 56px; --lh-lead: 40px; }
+}
+@media (min-width: 1024px) {
+  [dir="rtl"] { --lh-display: 104px; --lh-h1: 72px; }
 }
