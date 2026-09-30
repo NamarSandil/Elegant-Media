@@ -147,5 +147,5 @@ revisited at the same time:
   Facebook or WhatsApp, and the one in the Google business listing, is set
   once as `OG_IMAGE` near the top of `tools/build.py`. Point it at the real
   hero photo (use its full address, e.g.
-  `https://namarsandil.github.io/Elegant-Media/assets/hero/hero.jpg`) and it
+  `https://elegantmedia.se/assets/hero/hero.jpg`) and it
   updates on every page in all three languages.
