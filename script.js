@@ -287,20 +287,22 @@ counters.forEach(c => counterObs.observe(c));
    hand-off pointed at a number with a missing digit (fixed in Batch 4b).
 
    There are now two ways to send, as the owner chose at the start:
-   - "Skicka förfrågan" emails the enquiry to the studio through FormSubmit.
+   - "Skicka förfrågan" emails the enquiry to the studio through Web3Forms.
      This is the main button, the default, and what Enter submits.
    - "eller skicka via WhatsApp", the link-style line under it (Batch 11),
      opens WhatsApp with the enquiry written out. It is a submit button too,
      so the form's checks run first, and setBusy() disables it with the other.
 
-   The visitor is only ever told their request was received when FormSubmit
-   has actually confirmed it. Anything else - network failure, timeout, or
-   the form not yet being activated - offers WhatsApp instead, with the
-   details already filled in, so nobody is left not knowing.
+   The visitor is only ever told their request was received when Web3Forms
+   has actually confirmed it. Anything else - network failure, timeout, a
+   key that is missing - offers WhatsApp instead, with the details already
+   filled in, so nobody is left not knowing.
 
-   FormSubmit sends a one-time "Activate Form" email to BOOKING_EMAIL on the
-   first submission. Until someone clicks it, submissions are held (for up to
-   30 days, per formsubmit.co/help) and delivered on activation.
+   Web3Forms replaced FormSubmit in Batch 17, on 30 Sep 2026. FormSubmit had
+   started answering every request, on both its endpoints, with "500 Server
+   Error", and it has no status page to say when that would end. Web3Forms
+   needs no activation email per form - the account owns the address - it
+   publishes uptime, and its free plan carries 250 enquiries a month.
 
    When testing, never submit against the real endpoint - it emails the
    owner. Stub window.fetch and window.open instead. */
@@ -311,11 +313,16 @@ counters.forEach(c => counterObs.observe(c));
    valid Swedish mobile, so WhatsApp could not open a chat with it. */
 const WHATSAPP_NUMBER = '46762000281';
 
-/* Where email enquiries go. Given by the owner on 2026-09-18. If the
-   activation email never arrives, this address is the first thing to check. */
-const BOOKING_EMAIL = 'elegantmedia200@gmail.com';
+/* The Web3Forms access key. Public by design: it only forwards to the one
+   address held in the studio's Web3Forms account (elegantmedia200@gmail.com),
+   so it is safe in the page. To change where enquiries go, change it in that
+   account, not here.
+   Empty means email is not set up: the form then offers WhatsApp straight
+   away instead of pretending to send. THE KEY MUST BE FILLED IN BEFORE THIS
+   IS MERGED. */
+const WEB3FORMS_KEY = '';
 
-/* How long to wait for FormSubmit before offering WhatsApp instead. */
+/* How long to wait for Web3Forms before offering WhatsApp instead. */
 const EMAIL_TIMEOUT_MS = 15000;
 
 /* Event types -> the Swedish label, so the studio's inbox always reads the
@@ -379,8 +386,9 @@ if (bookingForm) {
   function emailPayload(f) {
     const sv = I18N.sv;
     const payload = {
-      _subject: `Ny bokningsförfrågan – ${f.name}`,
-      _template: 'table',
+      access_key: WEB3FORMS_KEY,
+      subject: `Ny bokningsförfrågan – ${f.name}`,
+      from_name: 'elegantmedia.se',
       'Namn': f.name,
       'Telefon': f.phone,
       'Typ av tillfälle': sv[TYPE_KEYS[f.type]] || f.type,
@@ -389,19 +397,21 @@ if (bookingForm) {
       'Språk på webbplatsen': LANG_NAMES[currentLang] || currentLang
     };
     if (f.email) {
-      payload.email = f.email;      // FormSubmit's reply-to convention
-      payload._replyto = f.email;
+      payload.email = f.email;      // shown in the notification
+      payload.replyto = f.email;    // Web3Forms' reply-to field
     }
     return payload;
   }
 
-  /* true only when FormSubmit confirms the message was accepted. It has been
-     documented both as the string "true" and as a boolean, so both count. */
+  /* true only when Web3Forms confirms the message was accepted. Its reply is
+     {"success": true, ...}; some of its examples show the string "true", so
+     both count. */
   async function sendEmail(f) {
+    if (!WEB3FORMS_KEY) return false;   // not set up - WhatsApp is offered instead
     const ctrl = new AbortController();
     const timer = setTimeout(() => ctrl.abort(), EMAIL_TIMEOUT_MS);
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${BOOKING_EMAIL}`, {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(emailPayload(f)),
