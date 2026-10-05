@@ -247,7 +247,7 @@ def rebase_assets(page_html):
             fixed.append(" ".join([fix(bits[0])] + bits[1:]))
         return 'srcset="%s"' % ", ".join(fixed)
 
-    page_html = re.sub(r'\b(src|href)="([^"]*)"', attr, page_html)
+    page_html = re.sub(r'\b(src|href|poster)="([^"]*)"', attr, page_html)
     return re.sub(r'\bsrcset="([^"]*)"', srcset, page_html)
 
 
