@@ -15,7 +15,7 @@ const I18N = {
     meta_og_alt: 'ELEGANTMEDIA – تصوير فوتوغرافي وفيديو للأعراس والمناسبات في ستوكهولم',
 
     nav_home: 'الرئيسية', nav_gallery: 'المعرض', nav_services: 'خدماتنا',
-    nav_about: 'من نحن', nav_webdesign: 'تصميم مواقع', nav_testimonials: 'آراء العملاء', nav_book: 'احجزوا الآن',
+    nav_about: 'من نحن', nav_webdesign: 'تصميم مواقع وتصميم إعلانات', nav_testimonials: 'آراء العملاء', nav_book: 'احجزوا الآن',
 
     hero_title: 'عيشوا يومكم،', hero_title_span: 'ونحفظ إحساسه',
     hero_sub: 'نصوّر الأعراس وحفلات العماد والمناسبات في ستوكهولم، صورةً وفيديو، عن قرب وبهدوء، ودون أن نسرق الأضواء من يومكم.',

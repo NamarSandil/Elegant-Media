@@ -895,6 +895,9 @@ h3 { font-weight: var(--fw-heading); }
     justify-content: flex-end;
     visibility: visible;   /* desktop nav is always on screen */
   }
+  /* The Arabic "web and ad design" label is long; at 1024px it wrapped and
+     squeezed its neighbours onto two lines. Kept whole, the row still fits. */
+  .nav-links a { white-space: nowrap; }
   .gallery-grid { gap: var(--space-3); }
   .gallery-grid, .services-grid, .testimonials-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
