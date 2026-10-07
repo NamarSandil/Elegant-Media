@@ -385,9 +385,14 @@ h3 { font-weight: var(--fw-heading); }
   animation: heroZoom 18s ease-in-out infinite alternate;
 }
 @keyframes heroZoom { from { transform: scale(1); } to { transform: scale(1.12); } }
+/* Darkest behind the headline, lightest over the couple. The first colour sits
+   where the gradient starts: 255deg runs from the right edge (Arabic, text on
+   the right); [dir="ltr"] below uses 105deg, from the left. Until October 2026
+   the two were swapped - the stock photo was dark on the left anyway, so it
+   only showed once the real photo went in. */
 .hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(105deg, rgba(13,13,13,.92) 0%, rgba(13,13,13,.6) 45%, rgba(13,13,13,.25) 100%);
+  background: linear-gradient(255deg, rgba(13,13,13,.92) 0%, rgba(13,13,13,.6) 45%, rgba(13,13,13,.25) 100%);
 }
 /* 720px of text; the container's side padding is added on top. */
 .hero-content { position: relative; z-index: 2; max-width: calc(720px + 2 * var(--gutter)); }
@@ -483,6 +488,7 @@ h3 { font-weight: var(--fw-heading); }
   padding: 0 var(--space-3); border-radius: var(--radius-pill); cursor: pointer; font-family: var(--font-body);
   font-size: var(--fs-ui); line-height: var(--lh-ui); font-weight: 500; transition: all .3s var(--ease);
 }
+.filter[hidden] { display: none; }   /* a category with no photos yet - see script.js */
 .filter:hover { color: var(--gold-light); border-color: var(--gold); }
 .filter.active { background: linear-gradient(135deg, var(--gold-light), var(--gold-deep)); color: var(--black); border-color: transparent; }
 .gallery-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }
@@ -834,8 +840,15 @@ h3 { font-weight: var(--fw-heading); }
    wordmark reads "ELEGANTMEDIA" in Latin characters throughout, so the rule
    above about Arabic does not apply to it. */
 [dir="ltr"] .hero-overlay {
-  background: linear-gradient(255deg, rgba(13,13,13,.92) 0%, rgba(13,13,13,.6) 45%, rgba(13,13,13,.25) 100%);
+  background: linear-gradient(105deg, rgba(13,13,13,.92) 0%, rgba(13,13,13,.6) 45%, rgba(13,13,13,.25) 100%);
 }
+/* A phone held upright shows only a narrow vertical slice of the wide hero
+   photo. These keep the slice on the couple's faces - on the right of the
+   left-to-right crop, on the left of the Arabic one (tools/photos.py). On a
+   wide screen nothing is cut at the sides, so they change nothing there.
+   Revisit both if the hero photo changes. */
+[dir="ltr"] .hero-bg { object-position: 70% center; }
+[dir="rtl"] .hero-bg { object-position: 30% center; }
 
 /* ===== Reveal animation ===== */
 .reveal { opacity: 0; transform: translateY(40px); transition: opacity .8s var(--ease), transform .8s var(--ease); }

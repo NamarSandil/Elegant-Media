@@ -30,7 +30,7 @@
   <meta property="og:title" content="مصوّر أعراس ومناسبات في ستوكهولم | ELEGANTMEDIA" />
   <meta property="og:description" content="تصوير الأعراس وحفلات العماد والمناسبات في ستوكهولم: صور وفيديو وتصوير جوي. عرض سعر خاص بمناسبتكم، ونتحدث العربية والسويدية والإنجليزية." />
   <meta property="og:url" content="https://elegantmedia.se/ar/" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&amp;h=630&amp;fit=crop&amp;q=80" />
+  <meta property="og:image" content="https://elegantmedia.se/assets/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="ELEGANTMEDIA – تصوير فوتوغرافي وفيديو للأعراس والمناسبات في ستوكهولم" />
@@ -48,7 +48,7 @@
     "@id": "https://elegantmedia.se/#business",
     "name": "ELEGANTMEDIA",
     "url": "https://elegantmedia.se/",
-    "image": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=630&fit=crop&q=80",
+    "image": "https://elegantmedia.se/assets/og.jpg",
     "telephone": "+46762000281",
     "email": "elegantmedia200@gmail.com",
     "address": {
@@ -80,11 +80,11 @@
   <link rel="icon" href="../favicon.ico" sizes="16x16 32x32 48x48" />
   <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
 
-  <link rel="stylesheet" href="../styles.css?v=d5d7997366" />
+  <link rel="stylesheet" href="../styles.css?v=4835d62941" />
 
   <!-- defer: downloaded in parallel with the HTML, run in order once parsed -->
-  <script src="../i18n.js?v=7b7ee31952" defer></script>
-  <script src="../script.js?v=0a73d82513" defer></script>
+  <script src="../i18n.js?v=334767f13e" defer></script>
+  <script src="../script.js?v=8364de89ac" defer></script>
 
 </head>
 <body>
@@ -198,11 +198,12 @@
     <!-- A real <img> rather than a CSS background: the browser's preloader can
          find it while the HTML is still parsing, instead of waiting for the
          stylesheet. This is the largest element on screen, so it decides how
-         fast the page feels. srcset stops phones downloading the 1920px file. -->
+         fast the page feels. srcset stops phones downloading the 1920px file.
+         The files come from tools/photos.py (see assets/README.md). -->
     <img class="hero-bg" alt="" fetchpriority="high" decoding="async"
          width="1920" height="1080"
-         src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1280&h=720&fit=crop&q=62&fm=webp"
-         srcset="https://images.unsplash.com/photo-1519741497674-611481863552?w=768&h=432&fit=crop&q=72&fm=webp 768w, https://images.unsplash.com/photo-1519741497674-611481863552?w=1280&h=720&fit=crop&q=62&fm=webp 1280w, https://images.unsplash.com/photo-1519741497674-611481863552?w=1920&h=1080&fit=crop&q=52&fm=webp 1920w"
+         src="../assets/hero/hero-rtl-1280.webp"
+         srcset="../assets/hero/hero-rtl-768.webp 768w, ../assets/hero/hero-rtl-1280.webp 1280w, ../assets/hero/hero-rtl-1920.webp 1920w"
          sizes="100vw" />
     <div class="hero-overlay"></div>
     <div class="container hero-content">
@@ -210,7 +211,7 @@
       <p class="hero-sub reveal" data-i18n="hero_sub">نصوّر الأعراس وحفلات العماد والمناسبات في ستوكهولم، صورةً وفيديو، عن قرب وبهدوء، ودون أن نسرق الأضواء من يومكم.</p>
       <div class="hero-actions reveal">
         <a href="#contact" class="btn btn-gold" data-i18n="hero_book">اسألوا عن موعدكم</a>
-        <a href="#gallery" class="btn btn-outline" data-i18n="hero_view">شاهدوا المعرض</a>
+        <a href="#gallery" class="btn btn-outline" data-i18n="hero_view">شاهدوا أعمالنا</a>
       </div>
     </div>
     <a href="#gallery" class="scroll-down" data-i18n-aria="a11y_scroll" aria-label="الانتقال إلى المعرض"><span></span></a>
@@ -245,7 +246,7 @@
       <div class="section-head reveal">
         <span class="section-tag" data-i18n="gallery_tag">المعرض</span>
         <h2 data-i18n="gallery_title">لحظات تبقى معكم</h2>
-        <p data-i18n="gallery_desc">اختاروا فئة، وافتحوا أي صورة لمشاهدتها بحجمها الكامل.</p>
+        <p data-i18n="gallery_desc">من أعراس صوّرناها. اختاروا فئة، وافتحوا أي صورة لمشاهدتها بحجمها الكامل.</p>
       </div>
 
       <div class="filters reveal" id="filters">
@@ -354,10 +355,10 @@
     <div class="container about-inner">
       <div class="about-media reveal">
         <img width="900" height="675" loading="lazy" decoding="async"
-             src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=900&h=675&fit=crop&q=66&fm=webp"
-             srcset="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=450&h=338&fit=crop&q=75&fm=webp 450w, https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=675&h=506&fit=crop&q=70&fm=webp 675w, https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=900&h=675&fit=crop&q=66&fm=webp 900w, https://images.unsplash.com/photo-1554048612-b6a482bc67e5?w=1350&h=1013&fit=crop&q=55&fm=webp 1350w"
+             src="../assets/about/about-900.webp"
+             srcset="../assets/about/about-450.webp 450w, ../assets/about/about-675.webp 675w, ../assets/about/about-900.webp 900w, ../assets/about/about-1350.webp 1350w"
              sizes="(min-width: 1024px) 45vw, 92vw"
-             data-i18n-alt="about_img_alt" alt="فريق التصوير أثناء العمل" />
+             data-i18n-alt="about_img_alt" alt="عروسان على مقعد حجري، بالأبيض والأسود" />
         <div class="about-badge"><strong>+12</strong><span data-i18n="about_badge_text">عامًا خلف الكاميرا</span></div>
       </div>
       <div class="about-text reveal">
@@ -370,7 +371,7 @@
           <li data-i18n="about_li2">موعد تسليم نتفق عليه مسبقًا</li>
           <li data-i18n="about_li3">لا نعرض صوركم علنًا دون إذنكم</li>
         </ul>
-        <a href="#gallery" class="btn btn-dark" data-i18n="about_btn">شاهدوا المعرض</a>
+        <a href="#gallery" class="btn btn-dark" data-i18n="about_btn">شاهدوا أعمالنا</a>
       </div>
     </div>
   </section>

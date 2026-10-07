@@ -19,14 +19,14 @@ const I18N = {
 
     hero_title: 'عيشوا يومكم،', hero_title_span: 'ونحفظ إحساسه',
     hero_sub: 'نصوّر الأعراس وحفلات العماد والمناسبات في ستوكهولم، صورةً وفيديو، عن قرب وبهدوء، ودون أن نسرق الأضواء من يومكم.',
-    hero_book: 'اسألوا عن موعدكم', hero_view: 'شاهدوا المعرض',
+    hero_book: 'اسألوا عن موعدكم', hero_view: 'شاهدوا أعمالنا',
 
     stat_years: 'عامًا من الخبرة',
     stat_langs_v: 'العربية · <span lang="en">English</span> · <span lang="sv">Svenska</span>', stat_langs: 'نعمل بثلاث لغات',
     stat_services_v: 'تصوير · فيديو · درون', stat_services: 'كل ذلك من فريق واحد',
 
     gallery_tag: 'المعرض', gallery_title: 'لحظات تبقى معكم',
-    gallery_desc: 'اختاروا فئة، وافتحوا أي صورة لمشاهدتها بحجمها الكامل.',
+    gallery_desc: 'من أعراس صوّرناها. اختاروا فئة، وافتحوا أي صورة لمشاهدتها بحجمها الكامل.',
     filter_all: 'الكل', filter_wedding: 'أعراس', filter_engagement: 'خطوبة',
     filter_party: 'حفلات', filter_special: 'مناسبات خاصة', filter_outdoor: 'جلسات خارجية',
 
@@ -53,7 +53,7 @@ const I18N = {
     about_p1: 'في <strong>ELEGANTMEDIA</strong>، نصوّر الأعراس وحفلات العماد والمناسبات في ستوكهولم منذ أكثر من اثني عشر عامًا. وأجمل الصور نادرًا ما تكون المرتّبة مسبقًا: نظرة بين اثنين، ضحكة الجدّة، والأطفال يرقصون حين لا ينظر إليهم أحد.',
     about_p2: 'نصوّر ونصنع الفيديو ونحلّق بالدرون بأنفسنا، ليروي فريق واحد يومكم كاملًا. ولأننا نتحدث العربية والسويدية والإنجليزية، يمكنكم أنتم وضيوفكم التحدث معنا باللغة الأقرب إليكم.',
     about_li1: 'عرض سعر خاص بمناسبتكم', about_li2: 'موعد تسليم نتفق عليه مسبقًا', about_li3: 'لا نعرض صوركم علنًا دون إذنكم',
-    about_btn: 'شاهدوا المعرض', about_badge_text: 'عامًا خلف الكاميرا',
+    about_btn: 'شاهدوا أعمالنا', about_badge_text: 'عامًا خلف الكاميرا',
 
     testimonials_tag: 'آراء العملاء', testimonials_title: 'ماذا يقول عنا الأزواج والعائلات',
     testimonials_desc: 'بكلماتهم: أزواج وعائلات صوّرناهم.',
@@ -98,7 +98,7 @@ const I18N = {
     a11y_scroll: 'الانتقال إلى المعرض', a11y_lightbox: 'عارض الصور',
     a11y_close: 'إغلاق', a11y_prev: 'السابق', a11y_next: 'التالي',
     a11y_view: 'عرض الصورة', a11y_rating: '5 من 5 نجوم',
-    about_img_alt: 'فريق التصوير أثناء العمل',
+    about_img_alt: 'عروسان على مقعد حجري، بالأبيض والأسود',
 
     /* Web design page */
     wd_back: 'العودة إلى التصوير',
@@ -106,7 +106,7 @@ const I18N = {
 
     /* Privacy policy page */
     pp_title: 'سياسة الخصوصية',
-    pp_updated: 'آخر تحديث: 22 سبتمبر 2026',
+    pp_updated: 'آخر تحديث: 7 أكتوبر 2026',
     pp_intro: 'توضّح هذه الصفحة البيانات التي نتلقّاها عندما تتواصلون معنا، ولماذا نحتاجها، وما هي حقوقكم. لا نجمع إلا ما نحتاجه للرد على طلبكم.',
     pp_who_h: 'من المسؤول عن بياناتكم؟',
     pp_who_p: 'ELEGANTMEDIA في سبونغا (Spånga)، ستوكهولم، هي الجهة المسؤولة عن البيانات. يمكنكم التواصل معنا عبر <a href="mailto:elegantmedia200@gmail.com" dir="ltr">elegantmedia200@gmail.com</a> أو <a href="tel:+46762000281" dir="ltr">+46 76 200 02 81</a>.',
@@ -121,12 +121,12 @@ const I18N = {
     pp_rights_h: 'حقوقكم',
     pp_rights_p: 'يحق لكم معرفة البيانات التي نحتفظ بها عنكم، وطلب تصحيحها أو حذفها، والاعتراض على طريقة استخدامها. تواصلوا معنا وسنساعدكم. وإن رأيتم أننا نتعامل مع بياناتكم بشكل خاطئ، يمكنكم تقديم شكوى إلى هيئة حماية الخصوصية السويدية (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).',
     pp_site_h: 'عن هذا الموقع',
-    pp_site_p: 'لا يحفظ هذا الموقع أي شيء في متصفحكم — لا ملفات تعريف ارتباط ولا تخزين محلي. الخطوط مستضافة على الموقع نفسه، أما الصور فتُحمَّل من Unsplash، ما يعني أن عنوان IP الخاص بكم يُرسَل إلى Unsplash عند تحميل الصفحة — وهكذا تعمل جميع هذه الخدمات.',
+    pp_site_p: 'لا يحفظ هذا الموقع أي شيء في متصفحكم — لا ملفات تعريف ارتباط ولا تخزين محلي. الخطوط والصور مستضافة على الموقع نفسه، فلا يُحمَّل شيء من خدمات أخرى عند فتح الصفحة. ويستضيف الموقعَ GitHub (Microsoft)، الذي يتعامل، كأي مزوّد استضافة، مع البيانات التقنية للزيارة مثل عنوان IP.',
     pp_back: 'العودة إلى الصفحة الرئيسية',
 
-    g1: 'عشاء العرس', g2: 'الوعد', g3: 'عند الغروب', g4: 'موكب العرس',
-    g5: 'أمسية لا تُنسى', g6: 'احتفال التخرج', g7: 'تبادل الخواتم', g8: 'بداية الحكاية',
-    g9: 'في أحضان الطبيعة', g10: 'أجواء مليئة بالفرح', g11: 'لمسة عائلية', g12: 'الرقصة الأولى',
+    g1: 'الطرحة في مهبّ الريح', g2: 'لحظة لاثنين', g3: 'على رصيف البحيرة', g4: 'مراسم الزفاف',
+    g5: 'التاج', g6: 'تحت الطرحة', g7: 'تحت السماء المفتوحة', g8: 'على حلبة الرقص',
+    g9: 'عطر اليوم', g10: 'وردة العريس', g11: 'يدًا بيد', g12: 'باقة العروس',
   },
 
   en: {
@@ -148,14 +148,14 @@ const I18N = {
 
     hero_title: 'You live the day,', hero_title_span: 'we keep the feeling',
     hero_sub: 'We photograph and film weddings, christenings and celebrations in Stockholm – up close, calmly, and without taking over the day.',
-    hero_book: 'Check your date', hero_view: 'See the gallery',
+    hero_book: 'Check your date', hero_view: 'See our work',
 
     stat_years: 'Years of experience',
     stat_langs_v: 'Svenska · English · <span lang="ar">العربية</span>', stat_langs: 'We work in three languages',
     stat_services_v: 'Photo · Film · Drone', stat_services: 'All from one team',
 
     gallery_tag: 'Gallery', gallery_title: 'Moments that stay with you',
-    gallery_desc: 'Pick a category, and open any photograph to see it full size.',
+    gallery_desc: 'From weddings we have photographed. Pick a category, and open any photograph to see it full size.',
     filter_all: 'All', filter_wedding: 'Weddings', filter_engagement: 'Engagements',
     filter_party: 'Parties', filter_special: 'Special occasions', filter_outdoor: 'Outdoors',
 
@@ -182,7 +182,7 @@ const I18N = {
     about_p1: 'At <strong>ELEGANTMEDIA</strong>, we have spent more than twelve years photographing and filming weddings, christenings and celebrations in Stockholm. The best pictures are rarely the planned ones – it\'s the look between two people, a grandmother\'s laugh, the children dancing when nobody is watching.',
     about_p2: 'We photograph, film and fly the drone ourselves, so your whole day is told by one team. And because we speak Swedish, English and Arabic, you and your guests can talk to us in whichever language feels most natural.',
     about_li1: 'A personal quote for your occasion', about_li2: 'A delivery date agreed in advance', about_li3: 'Your photographs are never shown publicly without your permission',
-    about_btn: 'See the gallery', about_badge_text: 'Years behind the camera',
+    about_btn: 'See our work', about_badge_text: 'Years behind the camera',
 
     testimonials_tag: 'Testimonials', testimonials_title: 'What our couples and families say',
     testimonials_desc: 'In their own words: couples and families we\'ve photographed.',
@@ -227,7 +227,7 @@ const I18N = {
     a11y_scroll: 'Go to the gallery', a11y_lightbox: 'Image viewer',
     a11y_close: 'Close', a11y_prev: 'Previous', a11y_next: 'Next',
     a11y_view: 'View image', a11y_rating: '5 out of 5 stars',
-    about_img_alt: 'The photography team at work',
+    about_img_alt: 'A bride and groom on a stone bench, in black and white',
 
     /* Web design page */
     wd_back: 'Back to photography',
@@ -235,7 +235,7 @@ const I18N = {
 
     /* Privacy policy page */
     pp_title: 'Privacy policy',
-    pp_updated: 'Last updated 22 September 2026',
+    pp_updated: 'Last updated 7 October 2026',
     pp_intro: 'This page explains what information we receive when you contact us, why we need it and what your rights are. We only collect what we need to answer your enquiry.',
     pp_who_h: 'Who is responsible for your information?',
     pp_who_p: 'ELEGANTMEDIA, Spånga, Stockholm, is the data controller. You can reach us at <a href="mailto:elegantmedia200@gmail.com" dir="ltr">elegantmedia200@gmail.com</a> or <a href="tel:+46762000281" dir="ltr">+46 76 200 02 81</a>.',
@@ -250,12 +250,12 @@ const I18N = {
     pp_rights_h: 'Your rights',
     pp_rights_p: 'You have the right to know what information we hold about you, to have it corrected or deleted, and to object to how we use it. Contact us and we will help. If you believe we are handling your information wrongly, you can complain to the Swedish Authority for Privacy Protection (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).',
     pp_site_h: 'About this website',
-    pp_site_p: 'This website stores nothing in your browser – no cookies and no local storage. The fonts are served by this website itself. Images are loaded from Unsplash, which means your IP address is sent there when the page loads – that is how all such services work.',
+    pp_site_p: 'This website stores nothing in your browser – no cookies and no local storage. The fonts and photographs are served by this website itself, so nothing is fetched from other services when the page loads. The website is hosted by GitHub (Microsoft), which, like any web host, handles the technical traffic, such as IP addresses.',
     pp_back: 'Back to the home page',
 
-    g1: 'The wedding dinner', g2: 'The promise', g3: 'At sunset', g4: 'The wedding procession',
-    g5: 'A night to remember', g6: 'Graduation celebration', g7: 'The ring exchange', g8: 'The story begins',
-    g9: 'In the heart of nature', g10: 'Joyful moments', g11: 'Family warmth', g12: 'The first dance',
+    g1: 'The veil in the wind', g2: 'A moment for two', g3: 'On the jetty', g4: 'The ceremony',
+    g5: 'The tiara', g6: 'Beneath the veil', g7: 'Under open skies', g8: 'On the dance floor',
+    g9: 'The scent of the day', g10: 'The buttonhole rose', g11: 'Hand in hand', g12: 'The bridal bouquet',
   },
 
   sv: {
@@ -277,14 +277,14 @@ const I18N = {
 
     hero_title: 'Ni lever dagen,', hero_title_span: 'vi bevarar känslan',
     hero_sub: 'Vi fotograferar och filmar bröllop, dop och fester i Stockholm – nära, lugnt och utan att ta över dagen.',
-    hero_book: 'Fråga om ert datum', hero_view: 'Se galleriet',
+    hero_book: 'Fråga om ert datum', hero_view: 'Se våra bilder',
 
     stat_years: 'Års erfarenhet',
     stat_langs_v: 'Svenska · English · <span lang="ar">العربية</span>', stat_langs: 'Vi arbetar på tre språk',
     stat_services_v: 'Foto · Film · Drönare', stat_services: 'Allt från samma team',
 
     gallery_tag: 'Galleri', gallery_title: 'Ögonblick som stannar kvar',
-    gallery_desc: 'Välj en kategori och öppna en bild för att se den i full storlek.',
+    gallery_desc: 'Från bröllop vi har fotograferat. Välj en kategori och öppna en bild för att se den i full storlek.',
     filter_all: 'Alla', filter_wedding: 'Bröllop', filter_engagement: 'Förlovning',
     filter_party: 'Fester', filter_special: 'Högtider', filter_outdoor: 'Utomhus',
 
@@ -311,7 +311,7 @@ const I18N = {
     about_p1: 'På <strong>ELEGANTMEDIA</strong> har vi i mer än tolv år fotograferat och filmat bröllop, dop och fester i Stockholm. De bästa bilderna är sällan de planerade – det är blicken mellan två personer, farmors skratt, barnen som dansar när ingen tittar.',
     about_p2: 'Vi fotograferar, filmar och flyger drönare själva, så att hela dagen berättas av ett och samma team. Och eftersom vi talar svenska, engelska och arabiska kan ni och era gäster prata med oss på det språk som känns mest naturligt.',
     about_li1: 'Personlig offert efter ert tillfälle', about_li2: 'Leveranstid som vi bestämmer i förväg', about_li3: 'Era bilder visas aldrig offentligt utan ert tillstånd',
-    about_btn: 'Se galleriet', about_badge_text: 'År bakom kameran',
+    about_btn: 'Se våra bilder', about_badge_text: 'År bakom kameran',
 
     testimonials_tag: 'Omdömen', testimonials_title: 'Vad våra par och familjer säger',
     testimonials_desc: 'Med egna ord, från par och familjer vi har fotograferat.',
@@ -356,7 +356,7 @@ const I18N = {
     a11y_scroll: 'Gå till galleriet', a11y_lightbox: 'Bildvisare',
     a11y_close: 'Stäng', a11y_prev: 'Föregående', a11y_next: 'Nästa',
     a11y_view: 'Visa bild', a11y_rating: '5 av 5 stjärnor',
-    about_img_alt: 'Fotografteamet under arbete',
+    about_img_alt: 'Brudpar på en stenbänk, i svartvitt',
 
     /* Web design page */
     wd_back: 'Tillbaka till fotograferingen',
@@ -364,7 +364,7 @@ const I18N = {
 
     /* Privacy policy page */
     pp_title: 'Integritetspolicy',
-    pp_updated: 'Senast uppdaterad 22 september 2026',
+    pp_updated: 'Senast uppdaterad 7 oktober 2026',
     pp_intro: 'Här beskriver vi vilka uppgifter vi får när du kontaktar oss, varför vi behöver dem och vad du har rätt till. Vi samlar bara in det som behövs för att svara på din förfrågan.',
     pp_who_h: 'Vem ansvarar för dina uppgifter?',
     pp_who_p: 'ELEGANTMEDIA, Spånga, Stockholm, är personuppgiftsansvarig. Du når oss på <a href="mailto:elegantmedia200@gmail.com" dir="ltr">elegantmedia200@gmail.com</a> eller <a href="tel:+46762000281" dir="ltr">+46 76 200 02 81</a>.',
@@ -379,11 +379,11 @@ const I18N = {
     pp_rights_h: 'Dina rättigheter',
     pp_rights_p: 'Du har rätt att få veta vilka uppgifter vi har om dig, att få dem rättade eller raderade och att invända mot hur vi använder dem. Kontakta oss så hjälper vi dig. Om du anser att vi hanterar dina uppgifter fel kan du klaga hos Integritetsskyddsmyndigheten (<a href="https://www.imy.se" target="_blank" rel="noopener" dir="ltr">imy.se</a>).',
     pp_site_h: 'Om den här webbplatsen',
-    pp_site_p: 'Webbplatsen sparar ingenting i din webbläsare – inga kakor och ingen lokal lagring. Typsnitten ligger på webbplatsen själv. Bilderna hämtas från Unsplash, vilket innebär att din IP-adress skickas dit när sidan laddas – så fungerar alla sådana tjänster.',
+    pp_site_p: 'Webbplatsen sparar ingenting i din webbläsare – inga kakor och ingen lokal lagring. Typsnitt och bilder ligger på webbplatsen själv, så ingenting hämtas från andra tjänster när sidan laddas. Själva webbplatsen drivs av GitHub (Microsoft), som likt alla webbhotell hanterar den tekniska trafiken, till exempel IP-adresser.',
     pp_back: 'Tillbaka till startsidan',
 
-    g1: 'Bröllopsmiddagen', g2: 'Löftet', g3: 'I solnedgången', g4: 'Bröllopståget',
-    g5: 'En kväll att minnas', g6: 'Examensfirande', g7: 'Ringbytet', g8: 'Sagan börjar',
-    g9: 'Mitt i naturen', g10: 'Glädjefylld stämning', g11: 'En familjär stämning', g12: 'Första dansen',
+    g1: 'Slöjan i vinden', g2: 'Ett ögonblick för två', g3: 'På bryggan', g4: 'Vigseln',
+    g5: 'Tiaran', g6: 'Under slöjan', g7: 'Under öppen himmel', g8: 'På dansgolvet',
+    g9: 'Dagens doft', g10: 'Knapphålsrosen', g11: 'Hand i hand', g12: 'Brudbuketten',
   },
 };
