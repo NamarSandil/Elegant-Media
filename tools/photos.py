@@ -1,10 +1,14 @@
 """Turn the studio's original photographs into the files the site shows.
 
-    python tools/photos.py "<folder with the originals>"
+    python tools/photos.py
 
-The originals stay wherever they are (they are never copied into this public
-repository). For each photo named below, this writes small, ready-to-serve
-WebP files into assets/:
+The originals live in "photos (originals)" next to this folder. Git is told
+to ignore that folder (.gitignore), so they are never uploaded to this public
+repository - the set includes photos left off the site on purpose. To read
+them from somewhere else, give the folder: python tools/photos.py "<folder>".
+
+For each photo named below, this writes small, ready-to-serve WebP files into
+assets/:
 
   assets/hero/hero-ltr-768.webp ... -1920.webp   16:9, behind the headline
   assets/hero/hero-rtl-768.webp ... -1920.webp   the same, cropped for Arabic
@@ -125,9 +129,9 @@ def sizes(im, path_for, steps, report):
 
 
 def main():
-    if len(sys.argv) != 2:
+    if len(sys.argv) > 2:
         sys.exit(__doc__)
-    folder = sys.argv[1]
+    folder = sys.argv[1] if len(sys.argv) == 2 else os.path.join(ROOT, "photos (originals)")
     report = []
     rel = lambda *p: os.path.join(ROOT, "assets", *p)
 
