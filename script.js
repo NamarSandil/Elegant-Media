@@ -3,8 +3,9 @@
    the order on the page; the caption for each id is g1...g12 in i18n.js, and
    cat decides which filter button shows it.
 
-   The files are made by tools/photos.py from the originals, which stay
-   outside this public repository: for each id it writes 4:3 tiles in three
+   The files are made by tools/photos.py from the originals, which are kept
+   private (the git-ignored "photos (originals)" folder, never uploaded to
+   this public repository): for each id it writes 4:3 tiles in three
    widths (assets/gallery/g1-400.webp, -800, -1200) and the whole photo,
    uncropped, for the lightbox (assets/gallery/g1.webp). The crop - which part
    of a tall photo shows in the tile - is set there too. See assets/README.md.

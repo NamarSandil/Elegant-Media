@@ -6,16 +6,22 @@ photos. This folder holds the files the site shows. They are **made from the
 originals by a script**, not copied by hand, because each photo needs
 several sizes and a careful crop.
 
-> **The originals never go in here.** This repository is public. Keep the
-> full-size originals in a folder of their own outside it (in October 2026:
-> `Desktop\website photos`). The script reads them from there.
+> **The originals are private.** They live in the folder
+> **`photos (originals)`**, inside the website folder next to `assets`. That
+> folder is on the ignore list (`.gitignore`), so it is never uploaded:
+> this repository is public, and the originals include photos left off the
+> site on purpose.
+>
+> **One rule:** never drag the whole website folder into GitHub's website to
+> upload it. The ignore list only protects normal updates, not a manual
+> drag-and-drop, which would publish the originals too.
 
 ---
 
 ## Changing the photos
 
-1. **Put the originals in one folder** outside this repository. Straight from
-   the camera is best — the script does the resizing.
+1. **Put the originals in `photos (originals)`.** Straight from the camera is
+   best — the script does the resizing.
 2. **Open `tools/photos.py`** and name the photos you want near the top:
    - `HERO_SRC` — the photo behind the headline (must be landscape).
    - `ABOUT` — the "About us" photo.
@@ -26,10 +32,10 @@ several sizes and a careful crop.
    when it is cropped. `0.5, 0.5` is the middle. A tall photo in a 4:3 tile
    loses half its height, so its second number says which half to keep —
    `0.3` keeps the upper part, where the faces usually are.
-3. **Run it**, with the folder of originals:
+3. **Run it** from the website folder:
 
    ```
-   python tools/photos.py "C:\Users\...\Desktop\website photos"
+   python tools/photos.py
    ```
 
    It overwrites the files in this folder. Look at them before going on.
