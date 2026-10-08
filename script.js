@@ -1,72 +1,59 @@
 /* ===== Gallery data (titles & labels come from i18n) =====
-   These are Unsplash placeholders until the studio's own photographs arrive.
-   To swap one in: put the file in assets/gallery/ and replace
-       photo: 'photo-1519225421980-715cb0215aed'
-   with
-       file:  'assets/gallery/g1.jpg'
-   Nothing else needs changing. See assets/README.md.
+   The studio's own photographs (Batch 19, October 2026). The order here is
+   the order on the page; the caption for each id is g1...g12 in i18n.js, and
+   cat decides which filter button shows it.
 
-   Every tile has the same shape, whatever the photo (--photo-ratio in
-   styles.css, 4:3). A portrait photo is cropped to fit, from its middle; if
-   that cuts off faces, add focus: 'top' (or 'center 30%', 'bottom' - any
-   CSS object-position) to choose which part stays in view. Opening a photo
-   always shows the whole picture, uncropped. */
+   The files are made by tools/photos.py from the originals, which stay
+   outside this public repository: for each id it writes 4:3 tiles in three
+   widths (assets/gallery/g1-400.webp, -800, -1200) and the whole photo,
+   uncropped, for the lightbox (assets/gallery/g1.webp). The crop - which part
+   of a tall photo shows in the tile - is set there too. See assets/README.md.
+
+   A single ready-made file still works for a quick swap:
+       { id: 'g1', cat: 'wedding', file: 'assets/gallery/my-photo.jpg' }
+   is shown as it is, cropped to the tile from its middle. */
 const galleryItems = [
-  { id: 'g1',  cat: 'wedding',    photo: 'photo-1519225421980-715cb0215aed' },
-  { id: 'g2',  cat: 'engagement', photo: 'photo-1606216794074-735e91aa2c92' },
-  { id: 'g3',  cat: 'outdoor',    photo: 'photo-1583939003579-730e3918a45a' },
-  { id: 'g4',  cat: 'wedding',    photo: 'photo-1465495976277-4387d4b0b4c6' },
-  { id: 'g5',  cat: 'party',      photo: 'photo-1530103862676-de8c9debad1d' },
-  { id: 'g6',  cat: 'special',    photo: 'photo-1523580494863-6f3031224c94' },
-  { id: 'g7',  cat: 'wedding',    photo: 'photo-1511285560929-80b456fea0bc' },
-  { id: 'g8',  cat: 'engagement', photo: 'photo-1591604466107-ec97de577aff' },
-  { id: 'g9',  cat: 'outdoor',    photo: 'photo-1522673607200-164d1b6ce486' },
-  { id: 'g10', cat: 'party',      photo: 'photo-1492684223066-81342ee5ff30' },
-  { id: 'g11', cat: 'special',    photo: 'photo-1464366400600-7168b8af9bc3' },
-  { id: 'g12', cat: 'wedding',    photo: 'photo-1525258946800-98cfd641d0de' },
+  { id: 'g1',  cat: 'wedding' },
+  { id: 'g2',  cat: 'wedding' },
+  { id: 'g3',  cat: 'outdoor' },
+  { id: 'g4',  cat: 'wedding' },
+  { id: 'g5',  cat: 'wedding' },
+  { id: 'g6',  cat: 'wedding' },
+  { id: 'g7',  cat: 'outdoor' },
+  { id: 'g8',  cat: 'party' },
+  { id: 'g9',  cat: 'wedding' },
+  { id: 'g10', cat: 'wedding' },
+  { id: 'g11', cat: 'outdoor' },
+  { id: 'g12', cat: 'wedding' },
 ];
 
-/* Unsplash resizes and crops straight from URL parameters, so each device can
-   download only the pixels it will actually show rather than the same 800px
-   file everywhere. Local files are used exactly as they are. */
-const THUMB_WIDTHS = [400, 600, 800, 1000, 1200];
+/* The tile widths tools/photos.py writes, so each device downloads only what
+   it will show: a phone takes the 400 or 800 file, a large retina screen the
+   1200 one. The tiles are already cropped to 4:3, the shape of --photo-ratio
+   in styles.css. */
+const THUMB_WIDTHS = [400, 800, 1200];
 const THUMB_SIZES  = '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 92vw';
 
-// height ÷ width of every tile: 4:3, the same shape as --photo-ratio in
-// styles.css. Unsplash is asked for exactly that crop, so no pixels are wasted.
-const PHOTO_RATIO = 3 / 4;
-
-/* The wider variants are only ever picked by large or high-density displays,
-   where compression artefacts are far harder to see - so quality can come
-   down as width goes up with no visible difference. A 1200px file at q=55 is
-   27% smaller than the same file at q=75 and looks identical on a retina
-   screen. Without this, serving retina-sharp images would have doubled the
-   page weight. */
-const qualityFor = w => w >= 1200 ? 55 : w >= 1000 ? 62 : w >= 800 ? 68 : 75;
-
 /* Pages in /en/ and /ar/ sit one folder down. The build marks them with
-   <html data-root="../"> so a local photo such as assets/gallery/g1.jpg
+   <html data-root="../"> so a local photo such as assets/gallery/g1.webp
    resolves from the site root on every page. */
 const ROOT = document.documentElement.dataset.root || '';
 
-function thumbSet(item, ratio) {
+function thumbSet(item) {
   if (item.file) return { src: ROOT + item.file, srcset: '' };
-  const at = n =>
-    `https://images.unsplash.com/${item.photo}?w=${n}&h=${Math.round(n * ratio)}` +
-    `&fit=crop&q=${qualityFor(n)}&fm=webp`;
+  const at = n => `${ROOT}assets/gallery/${item.id}-${n}.webp`;
   return { src: at(800), srcset: THUMB_WIDTHS.map(n => `${at(n)} ${n}w`).join(', ') };
 }
 
 function pictureFor(item) {
-  const s = thumbSet(item, PHOTO_RATIO);
-  const focus = item.focus ? ` style="object-position: ${item.focus}"` : '';
+  const s = thumbSet(item);
   return `<img src="${s.src}"${s.srcset ? ` srcset="${s.srcset}" sizes="${THUMB_SIZES}"` : ''}` +
-    ` width="800" height="600" alt="" loading="lazy" decoding="async"${focus} />`;
+    ` width="800" height="600" alt="" loading="lazy" decoding="async" />`;
 }
 
 /* Full-size version for the lightbox - uncropped, so the whole frame shows. */
 function fullSize(item) {
-  return item.file ? ROOT + item.file : `https://images.unsplash.com/${item.photo}?w=1600&q=80&fm=webp`;
+  return ROOT + (item.file || `assets/gallery/${item.id}.webp`);
 }
 
 const grid = document.getElementById('galleryGrid');
@@ -114,8 +101,13 @@ function renderGallery(filter = currentFilter) {
   });
 }
 
-/* ===== Filters ===== */
+/* ===== Filters =====
+   A category with no photos hides its button instead of opening an empty
+   gallery - engagements and special occasions, until the studio adds some.
+   The button comes back by itself once a photo in galleryItems has that cat. */
 document.querySelectorAll('.filter').forEach(btn => {
+  const cat = btn.dataset.filter;
+  if (cat !== 'all' && !galleryItems.some(i => i.cat === cat)) btn.hidden = true;
   btn.addEventListener('click', () => {
     document.querySelectorAll('.filter').forEach(b => {
       const on = b === btn;

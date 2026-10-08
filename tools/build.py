@@ -83,9 +83,10 @@ PAGES = {
     "integritet.html": "pp",
 }
 
-# Placeholder photography until the studio's own arrives - see assets/README.md.
-OG_IMAGE = ("https://images.unsplash.com/photo-1519741497674-611481863552"
-            "?w=1200&h=630&fit=crop&q=80")
+# The picture shown when the site is shared (Facebook, WhatsApp) and in the
+# Google business data: the hero photo at 1200x630, made by tools/photos.py.
+# A JPEG rather than WebP, because some link previews still don't read WebP.
+OG_IMAGE = SITE + "assets/og.jpg"
 
 # Business listing data (schema.org). The area is published, not the street
 # address: the studio is run from a home.
@@ -362,6 +363,10 @@ def build_page(template, page, lang, t, versions):
     out = HEAD_SLOT.sub(r"\1\2", template)
     out = SWITCH_SLOT.sub(r"\1\2", out)
     out = fill_text(out, strings, where)
+    # The hero photo is cropped twice by tools/photos.py so the couple is
+    # never behind the headline; right-to-left pages get the mirrored crop.
+    if strings["_dir"] == "rtl":
+        out = out.replace("assets/hero/hero-ltr-", "assets/hero/hero-rtl-")
 
     sub = bool(LANGS[lang]["folder"])
     root_attr = ' data-root="../"' if sub else ""

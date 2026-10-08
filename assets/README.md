@@ -1,151 +1,106 @@
-# Adding the studio's real photographs
+# The studio's photographs
 
-Every picture on the site right now is a **placeholder** from Unsplash — stock
-photography, not Elegant Media's work. This folder is where the real
-photographs go. The site is already built to use them; nothing needs
-redesigning when they arrive.
+Since October 2026 every picture on the site is Elegant Media's own work: the
+photo behind the headline, the "About us" photo and the twelve gallery
+photos. This folder holds the files the site shows. They are **made from the
+originals by a script**, not copied by hand, because each photo needs
+several sizes and a careful crop.
 
-> **Three languages, one set of files to edit.** The Swedish pages in the
-> main folder (`index.html` and the others) are the originals. The `en/` and
-> `ar/` folders are generated from them by `tools/build.py` — never edit those
-> two folders. Make image changes in the Swedish page only; when you commit on
-> GitHub, the English and Arabic pages rebuild themselves within a minute or
-> two. Image paths like `assets/gallery/g1.jpg` work unchanged in all three.
+> **The originals never go in here.** This repository is public. Keep the
+> full-size originals in a folder of their own outside it (in October 2026:
+> `Desktop\website photos`). The script reads them from there.
 
 ---
 
-## The gallery (12 images)
+## Changing the photos
 
-**1. Save the photos here**, named `g1.jpg` through `g12.jpg`:
+1. **Put the originals in one folder** outside this repository. Straight from
+   the camera is best — the script does the resizing.
+2. **Open `tools/photos.py`** and name the photos you want near the top:
+   - `HERO_SRC` — the photo behind the headline (must be landscape).
+   - `ABOUT` — the "About us" photo.
+   - `GALLERY` — the twelve gallery photos, `g1` to `g12`, in the order they
+     appear.
 
-```
-assets/gallery/g1.jpg
-assets/gallery/g2.jpg
-...
-```
+   Each line has a **focus point**: which part of the photo stays in view
+   when it is cropped. `0.5, 0.5` is the middle. A tall photo in a 4:3 tile
+   loses half its height, so its second number says which half to keep —
+   `0.3` keeps the upper part, where the faces usually are.
+3. **Run it**, with the folder of originals:
 
-**2. Open `script.js`** and find the list near the top. For each photo you've
-replaced, change `photo:` to `file:`
+   ```
+   python tools/photos.py "C:\Users\...\Desktop\website photos"
+   ```
+
+   It overwrites the files in this folder. Look at them before going on.
+4. **Captions and categories.** Each gallery photo's caption is `g1:` …
+   `g12:` in `i18n.js`, in all three languages. Its category — which filter
+   button shows it — is `cat:` in the list at the top of `script.js`: one of
+   `wedding`, `engagement`, `party`, `special`, `outdoor`. A filter button
+   with no photos hides itself (engagements and special occasions, at the
+   moment) and comes back on its own once a photo has that category.
+5. **Build and commit** as usual: `python tools/build.py`.
+
+## What the script makes
+
+| Files | Shape | Used for |
+|---|---|---|
+| `hero/hero-ltr-768.webp` … `-1920` | 16:9 | Behind the headline, Swedish and English |
+| `hero/hero-rtl-768.webp` … `-1920` | 16:9 | The same photo for Arabic |
+| `about/about-450.webp` … `-1350` | 4:3 | "About us" |
+| `gallery/g1-400.webp`, `-800`, `-1200` | 4:3 | A gallery tile — phones get the small one |
+| `gallery/g1.webp` | as taken | The whole photo, when a tile is opened |
+| `og.jpg` | 1200×630 | The picture shown when the site is shared |
+
+- **Every file is drawn fresh.** Nothing stored inside the originals is copied
+  over — no camera data, and no GPS position of where the photo was taken.
+  Colours are converted to sRGB, which browsers expect.
+- **Why the hero is cropped twice:** the headline sits on the left in Swedish
+  and English and on the right in Arabic, so each version moves the couple to
+  the other side. On a phone held upright only a narrow strip of the photo
+  shows; `object-position` near the end of `styles.css` keeps that strip on the
+  faces. If the hero photo changes, check those two values.
+- **One shape for every photo.** All tiles and the About photo are 4:3
+  landscape, so the gallery never mixes tall and wide pictures. To change the
+  shape for the whole site, change `--photo-ratio` in `styles.css` and the
+  `4 / 3` crops in `tools/photos.py` together.
+
+## A quick swap without the script
+
+For a single photo already sized and saved by hand, a gallery line in
+`script.js` can point straight at it:
 
 ```js
-// before — Unsplash placeholder
-{ id: 'g1', cat: 'wedding', photo: 'photo-1519225421980-715cb0215aed' },
-
-// after — the studio's own photo
-{ id: 'g1', cat: 'wedding', file: 'assets/gallery/g1.jpg' },
+{ id: 'g3', cat: 'outdoor', file: 'assets/gallery/my-photo.jpg' },
 ```
 
-That's the whole change. You can do them one at a time — placeholders and real
-photos can sit side by side while the set is being filled in.
+It is shown as it is, cropped to the tile from its middle. Keep it under
+400 KB.
 
-**3. Change the caption** in `i18n.js` if you want a different title. Look for
-`g1:`, `g2:` and so on near the bottom of each language block. There are three
-to update per photo — Arabic, English and Swedish.
+## A christening category
 
-**4. Change the category** with `cat:` — one of `wedding`, `engagement`,
-`party`, `special`, `outdoor`. This decides which filter button shows it.
+Christenings and church events are listed as a service, but the gallery has
+no christening photos yet, so there is no filter for them. When there are:
 
-### Still to add: a christening category
-
-Christenings and church events are now listed as a service, but there is **no
-gallery category for them yet** — deliberately. Adding a `Dop` filter button
-that shows stock photographs of other people's christenings would be worse
-than not having one.
-
-When real christening photographs arrive:
-
-1. Save them as above and set `cat: 'christening'` on each.
+1. Add them in `tools/photos.py` and set `cat: 'christening'` in `script.js`.
 2. In `index.html`, add a filter button next to the others:
    ```html
    <button type="button" class="filter" data-filter="christening" aria-pressed="false" data-i18n="filter_christening">Dop</button>
    ```
 3. In `i18n.js`, add `filter_christening` to all three languages —
-   `'Dop'` (Swedish), `'Christenings'` (English), `'تعميد'` (Arabic).
+   `'Dop'` (Swedish), `'Christenings'` (English), `'العماد'` (Arabic).
 
-### One shape for every photo
+## Permission — read before adding any photo
 
-**Every photo on the site is shown in the same frame: landscape, 4:3.** That
-covers all twelve gallery tiles and the "About us" photo, so the gallery never
-mixes tall and wide pictures. Export gallery photos at **1600 × 1200 px**.
+Wedding and christening photos show identifiable people, often children, and
+the site promises that photos are never shown publicly without permission.
 
-- **Portrait photos work too.** They are cropped to the frame, from the
-  middle. If that cuts off faces, add `focus` to that photo's line in
-  `script.js` to choose which part stays in view:
-
-  ```js
-  { id: 'g2', cat: 'engagement', file: 'assets/gallery/g2.jpg', focus: 'top' },
-  ```
-
-  `'top'`, `'bottom'` and `'center 30%'` (30% down from the top) all work.
-- **Opening a photo** (clicking a tile) always shows the whole picture,
-  uncropped, whatever its shape.
-- **To change the shape for the whole site** (for example to 3:2), change
-  `--photo-ratio` near the top of `styles.css` and `PHOTO_RATIO` near the top
-  of `script.js` together.
-
----
-
-## The hero (the big photo behind the title)
-
-Save as `assets/hero/hero.jpg`, exported at **2400 × 1350 px** (16:9,
-landscape). Then in `index.html`, find the `<img class="hero-bg">` tag and
-replace the `src` and `srcset` with:
-
-```html
-<img class="hero-bg" alt="" fetchpriority="high" decoding="async"
-     width="2400" height="1350" src="assets/hero/hero.jpg" />
-```
-
-Delete the `srcset` and `sizes` lines when you do — they only apply to the
-Unsplash placeholders.
-
-Pick something with space on one side: the headline sits over the left in
-Swedish and English, and over the right in Arabic.
-
----
-
-## The "About us" photo
-
-Save as `assets/about/team.jpg`, **1600 × 1200 px** (4:3, landscape, the
-same shape as the gallery). In
-`index.html`, find the `<img>` inside `class="about-media"` and do the same —
-replace `src`, delete `srcset` and `sizes`.
-
----
-
-## Before exporting
-
-- **Format:** JPEG at quality 80 is right for photographs. The site converts
-  the placeholders to WebP automatically; for local files, JPEG is fine.
-- **File size:** aim under **400 KB** each, and under **700 KB** for the hero.
-  If a file is much larger, the export quality is set too high.
-- **Colour:** export as **sRGB**, not Adobe RGB, or the colours will look flat
-  in browsers.
-- **Don't** upload straight from a phone's camera roll without resizing — those
-  files are often 5–10 MB and will make the site slow on mobile data.
-
-## Permission
-
-Wedding and christening photographs show identifiable people, often children.
-Get the couple's or the family's written permission before any photo goes on
-a public website. This matters legally under GDPR and it matters to clients.
-
----
-
-## Once the real photos are in
-
-Two things on the site still describe placeholder content and should be
-revisited at the same time:
-
-- **The wording.** While the photos are stock, the site deliberately avoids
-  calling them "our work" — the gallery and its buttons refer to "the
-  gallery" instead ("Se galleriet", "Browse the Gallery", "تصفّح المعرض").
-  Once the photos are genuinely the studio's,
-  that can change: edit `gallery_desc`, `hero_view` and `about_btn` in
-  `i18n.js`, in all three languages.
-- **The sharing picture.** The image shown when the site is shared on
-  Facebook or WhatsApp, and the one in the Google business listing, is set
-  once as `OG_IMAGE` near the top of `tools/build.py`. Point it at the real
-  hero photo (use its full address, e.g.
-  `https://elegantmedia.se/assets/hero/hero.jpg`) and it
-  updates on every page in all three languages.
+- Have the couple's or family's **written permission** before a photo goes
+  on the site. It matters under GDPR, and it matters to clients.
+- **Guests** in the background are people too. A crowded party photo is
+  better with the couple's blessing and no one who asked not to be shown.
+- **Look for readable details** before choosing a photo, because opening a
+  tile shows the whole picture: names engraved on glasses or written on a
+  sign, a date, a car's number plate. Two photos were left out of the October
+  2026 set for exactly this reason — one with a number plate and one with
+  engraved names on the champagne glasses.
